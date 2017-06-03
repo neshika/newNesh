@@ -43,7 +43,7 @@ if (isset ($data['do_sighup'])){	//если кнопка нажата
 
 		$user->password = password_hash($data ['password'], PASSWORD_DEFAULT); //зашифровываем пароль
 		R::store ($user);
-		/*echo '<div style="color:green;">Добро пожаловать, все успешно!</div><hr>';*/
+		echo '<div style="color:green;">Добро пожаловать, все успешно!</div><hr>';
 				
 					
 

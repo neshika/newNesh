@@ -43,7 +43,7 @@ require "includes/functions.php";
     //echo $all;
  	f_get_image($Hr,$W,$F,$B,$T,$M);
  	?>
- <img src="<?php echo $_POST['url']?>" width="35%"><?php
+ <img src="<?php echo $_POST['url']?>" width="45%"><?php
 	}?>
 	<!--<div id="my_text">Здесь мы изучаем блоки и CSS</div> -->
 	<p class="text_effect">Ваша удача рядом</p>
