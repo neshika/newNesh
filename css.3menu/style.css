@@ -1,0 +1,82 @@
+body{
+   margin: 0;
+   padding: 0;
+  
+}
+
+img{
+  max-width: 100%;
+}
+
+a{
+  text-decoration: none;
+}
+ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+}
+/****************************Внешний вид меню****************/
+.side {
+	width: 150px; /*ширина кнопки*/
+	margin: 20px; /* отступ по бокам*/
+}
+
+.menu a{
+	background: #3d3d3d; /*черный цвет кнопки*/
+	color:#fff;
+	padding: 10px;
+	display: block;
+	border-bottom: 1px solid #666; /*каждая кнопка в серой рамке*/
+	transition: 0.5s all; /*плавность*/
+}
+/*что будет при наведении*/
+.menu a:hover{
+	background: #666; /*цвет серый*/
+	padding: 10px 0 10px 20px; /*пункты будут плавать / сдвигается текст вправо*/
+
+}
+/*для всех тегов Ли первый ребенок(Пункт 1)*/
+.menu li:first-child a{
+	border-radius: 3px 3px 0 0;
+}
+
+/*а радиус у подменю убираем*/
+.menu li .menu__drop li a{
+	border-radius: 0;
+}
+/****************************Всплывающие меню****************/
+.menu__list{
+	position: relative; /*чтобы подменю. прилепелны к меню*/
+}
+.menu__drop{
+	position: absolute;
+	width: 100%; /*ширина кнопок подменю*/
+	left:100%;	/*отступ влево 100% от основного*/
+	/*появляется на уровне пункт 1 top:0;*/
+	/*мы уводим меню за пределы экрана вверх*/
+	top:-9999em;
+	opacity: 0;
+	transition: 0.5s opacity; /*плавность*/
+}
+
+/*при наведении на лист, наш класс будет меняться*/
+.menu__list:hover .menu__drop{
+	opacity: 1; /*при наведении на пункт 1 включается видимость подпунктов*/
+	top:0; /*меняем положение на 0*/
+}
+
+/*иконки для всплывающих менюшек >*/
+.menu__list::after{
+	content: " ";		/*пустое поле*/
+	position: absolute;
+	border: 5px solid;  /* рамка в 10 */
+	border-color: transparent transparent transparent #fff; /*закрашивает все углы*/
+	top:1em; /*переместидись */
+	right: 0.7em; /*вправо */
+	transition: 0.5s; /*анимация*/
+}
+/*при наведении треугольнички переворачиваются*/
+.menu__list:hover::after{
+	transform: scale(-1);
+}
