@@ -103,21 +103,28 @@ require "/libs/up.php";
               </details>
         </details>
     
-<!-- ******************** кнопка вязка справа  *****************-->  
-                    <form method="POST">
-                        <input type="text" name="comment">
-                        <!-- Сменить имя: <textarea name="comment"></textarea> -->
-                           <input type="submit" value="Сменить имя" name="send">
-                    </form>
-                     <form method="POST" action = "/matting.php">
-                 <div align="right"><input id="button" name="knopka" type="submit" value="Вязка" class = "knopka">
-                 </div>
-                  <?php $_SESSION['Dog'] = $id; var_dump($_SESSION['Dog']); ?>
-                </form>
-
-        
     </div>
     </p>
     </main>
-    <p>
-<?php require '/libs/down.php';
+
+<?php
+?></div>
+    <!-- --------------------------------------  class="right_sidebar"  ----------------------------- -->   
+
+<div class="right_sidebar" >
+        <!-- ******************** кнопка вязка справа  *****************-->  
+   <form method="POST">
+      <input type="text" name="comment">
+<!-- Сменить имя: <textarea name="comment"></textarea> -->
+      <input id="button" type="submit" value="Сменить имя" name="send" class = "knopka">
+                           
+    </form>
+  <form method="POST" action = "/matting.php">
+      <div align="right"><input id="button" name="knopka" type="submit" value="Вязка" class = "knopka">
+      </div>
+      <?php $_SESSION['Dog'] = $id; var_dump($_SESSION['Dog']); ?>
+  </form>
+
+</div class="right_sidebar" >
+
+     
