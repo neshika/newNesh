@@ -1,59 +1,72 @@
 <?php
 require "/libs/up.php";
-?>
 
-   <form method="POST" action="/matting.php">
-    <?php echo $id_dog= $_SESSION['Dog']; ?>
-  </form>
-<?php 
-     
-// ******************** вывод картинки собаки по id  *****************--> 
-      $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-        [':id' => $id_dog]);
-      var_dump($row);
-    f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
-//<img src="<?php echo $_POST['url']
-?>
 
-    <details><summary> <?php echo "Выбранная собака: " . find_where($id_dog,'name'); . " владелец: " . find_where($id_dog,'owner');?></summary> <?php print_all_d($id_dog);?></details>
-     <?php
-     $owner = ret_owner(); 
-     if ('сука' === ret_sex($id_dog)){
+function bdika_pol($id_dog){  //проверяем пол выбранной собаки, чтобы вывести противоположных партнеров
+  $owner = find_where($id_dog,'owner'); 
+ 
+          if ('сука' === find_where($id_dog,'sex')){
 
               $array [] = get_where('animals', 'кобель', $owner);
-            }
-            else
-              $array [] = get_where('animals', 'сука', $owner);
-           //debug($array);
+            }else{
             
-   /*вывожу на экран возможных парнтеров в зависимости от пола*/     
-   ?> 
+              $array [] = get_where('animals', 'сука', $owner);
+            }
+        return $array;
+}
 
-   <?php foreach($array as $item) {
+
+
+
+
+
+
+
+$id_dog= $_SESSION['Dog'];// выгружаем из памяти id собаки 
+
+
+/***************************   рисуем собаку и ее характеристики*********************/
+?>
+<div style="background: white; height: 450px;">
+    <img src="<?php echo print_pic($id_dog)?>">
+    <details><summary> <?php echo "Выбранная собака: " . find_where($id_dog,'name');
+                        echo "<br>Владелец: " . find_where($id_dog,'owner');?>
+  
+    </summary> <?php print_all_d($id_dog);?></details>
+</div>
+<div style="background: yellow;">
+<?php /********************проверяем пол выбранной собаки, чтобы вывести противоположных партнеров******************/
+    
+      $array = bdika_pol($id_dog);
+      echo 'Партнеры: ';
+   /***************************вывожу на экран возможных парнтеров в зависимости от пола*************************/ 
+   foreach($array as $item) {
               foreach ($item as $key => $value) {
                   
                 echo "<br>";
-/*выводим на экран имя собаки как ссылку*/
+/**********************выводим на экран имя собаки как ссылку*********************************/
                ?>
                 <form method="post" action="breedding.php">
                 <?php $_SESSION['para']=$id_dog;?>
-                <INPUT TYPE=RADIO NAME="ONONA" VALUE="<?=$key?>"><?php echo '<a href="/name.php?id=' . $key . '">' . "$value";?> </a><BR>
-                 <input type="submit" class="knopka" value="Вяжем">
-                  </form>
+                <?php echo '<a href="/name.php?id=' . $key . '">' . "$value";?></a>
+               <div style="background: black; height: 150px; width: 150px;">
+                  <div style="display:none;" class="radio_buttons">
+                      <div>
+                          <input type="radio" NAME="ONONA" VALUE="<?=$key?>" class="knopka" checked />
+                          <label for="radio4">Вяжем</label>
+                      </div>
+                    </div>
+                 <img src="<?php echo print_pic($key)?>" width="100%" >
+                </div>
+                <input type="submit" class="knopka" value="Вяжем">
+                </form> 
                  
-               <?php   
-               
-                 $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-                 [':id' => $key]);
-                 f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
-                      ?><img src="<?php echo $_POST['url']?>"><?php
-                  ?>
-                  <hr>
-                
+</div>
                   <?php
+
+             
               }   
-        }   
-       
-     if( !isset( $_POST['ONONA'] ) ) echo 'Выбирите партнера';
+        } 
+  
 //функция вызывающая футер сайта
 require "/libs/down.php";

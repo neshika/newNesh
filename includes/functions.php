@@ -190,6 +190,9 @@ function f_bdika_sex(){
 
  
  <?php
+ function print_pic($id){
+ 	return find_where($id,'url');
+ }
  /*Функция вносит путь до картинки собаки*/
 function insert_url($url,$id){
 	R::exec( 'UPDATE animals SET url=:name WHERE id = :id ', array(':name'=> $url, ':id' => $id));

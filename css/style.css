@@ -97,9 +97,9 @@ div.title_cont{
 }
  
 .right_sidebar{
-    width: 170px;
+    width: 165px;
     height: 800px;
-    float: right;
+    float: left;
    /*background: #DBA0F0;*/
     padding: 3px;
     border: 1px groove #9868CE;
