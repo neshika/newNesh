@@ -20,6 +20,8 @@ if( isset($data['do_login']) ){
 				
 			//внесение даты посещения в таблицу USERS
          R::exec( 'UPDATE users SET l_time=:value WHERE login = :id ', array(':value'=> date("Y-m-d"), ':id' => $_SESSION['logged_user']->login));
+         R::exec( 'UPDATE users SET online=:value WHERE login = :id ', array(':value'=> '1', ':id' => $_SESSION['logged_user']->login));
+
     		//Проверка, если авторизовался админ переход в админку.
         			if('admin'==$_POST['login']){
         				header ('Location: admin/admin.php');
