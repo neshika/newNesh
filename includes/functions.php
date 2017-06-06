@@ -21,9 +21,112 @@ function print_all(){
               echo "<br><br>";
             }
 }
-/*Функция распечатывает все опции собак из таблицы*/
+/*Функция вносит изменения имени собаки по ее Id*/
 function insert_name($id,$name){
 	 R::exec( 'UPDATE animals SET name=:name WHERE id = :id ', array(':name'=> $name, ':id' => $id));
+	//$bean = R::load($id, $name);
+	//$id = R::store($bean); // int
+}
+/*Функция вносит изменения имени собаки по ее Id*/
+function insert_data($tabl,$id,$cell,$value){
+	if ('animals'===$tabl){
+
+	 switch ($value) {
+            case 'url':
+              return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+              break;
+            case 'litter':
+              return $row[$value];
+              break;
+            case 'puppy':
+              return $row[$value];
+              break;
+            case 'status':
+              return $row[$value];
+              break;
+            case 'ff':
+              return $row[$value];
+              break;
+            case 'ww':
+              return $row[$value];
+              break;
+            case 'mm':
+              return $row[$value];
+              break;
+            case 'tt':
+              return $row[$value];
+              break;
+            case 'bb':
+              return $row[$value];
+              break;
+            case 'aa':
+              return $row[$value];
+              break;
+            case 'hr':
+              return $row[$value];
+              break;
+            case 'dad':
+            	if ('0'!==$row[$value])
+              			return $row[$value];
+              	else 
+              			return 'нет данных';
+              
+              break;
+            case 'mum':
+             	if ('0'!==$row[$value])
+              			return $row[$value];
+              	else 
+              			return 'нет данных';
+              
+              break;
+            case 'now':
+              return $row[$value];
+              break;
+            case 'birth':
+              return $row[$value];
+              break;
+            case 'kennel':
+              return $row[$value];
+              break;
+            case 'owner':
+              return $row[$value];
+              break;
+            case 'breeder':
+              return $row[$value];
+              break;
+            case 'race':
+              return $row[$value];
+              break;
+            case 'sex':
+              return $row[$value];
+              break;
+            case 'name':
+              return $row[$value];
+              break;
+            case 'id':
+              return $row[$value];
+              break;
+        }
+	}//tabl animals
+	if('users'===$tabl){
+		switch ($value) {
+            case 'l_time':
+             return R::exec( 'UPDATE animals SET l_time=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+              break;
+            case 'email':
+              return $row[$value];
+              break;
+            case 'login':
+             return R::exec( 'UPDATE animals SET login=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+              break;
+            case 'id':
+              return $row[$value];
+              break;
+        }
+	}//tabl USERS
+
+
+
 	//$bean = R::load($id, $name);
 	//$id = R::store($bean); // int
 }
