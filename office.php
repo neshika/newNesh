@@ -6,7 +6,7 @@ require "/html/aside.html";
 */
 require "/libs/up.php";
       
-        echo 'Добро пожаловать, ' . $_SESSION['logged_user']->login . '.';
+        echo 'Добро пожаловать, ' . $_SESSION['logged_user']->login . ' .';
         echo ' Сегодня: ' . date("Y-m-d");
        //внесение даты посещения в таблицу USERS
         R::exec( 'UPDATE users SET l_time=:value WHERE login = :id ', array(':value'=> date("Y-m-d"), ':id' => $_SESSION['logged_user']->login));

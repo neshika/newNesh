@@ -7,7 +7,12 @@ require "/libs/up.php";
       $owner=ret_owner();
       $var = find_where('animals',$id,'hr');;
       print_hr($var);
-
+//    ******************** кнопка при нажатии которой меняем имя  *****************-->  
+      if (isset ($_POST['send'])){
+       // insert_name($id,$_POST['comment']);
+      if (!empty($_POST['comment']))insert_data('animals',$id,'name',$_POST['comment']);
+      else echo 'введите имя!';
+     }
 
 /*<h1 style="font-size: 120%; font-family: Verdana, Arial, Helvetica, sans-serif; 
   color: #336">Заголовок</h1>*/
@@ -29,12 +34,13 @@ require "/libs/up.php";
           <li>дата рождения:  <?php echo find_where('animals',$id,'birth');?></li>
        </ul>
       </div>
-<!-- ******************** вывод картинки собаки по id  *****************-->  
+<!-- ******************** вывод картинки собаки по id  *****************-->
      <div style="background: white; text-align: center; height: 350px; width: 350px; margin-left: 180px;">
+
+
 <?php 
-     if (isset ($_POST['send'])){
-        insert_name($id,$_POST['comment']);
-     }
+     
+     
       $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
         [':id' => $id]);
       f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
