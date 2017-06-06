@@ -3,9 +3,9 @@ require "/libs/up.php";
 
 
 function bdika_pol($id_dog){  //проверяем пол выбранной собаки, чтобы вывести противоположных партнеров
-  $owner = find_where($id_dog,'owner'); 
+  $owner = find_where('animals',$id_dog,'owner'); 
  
-          if ('сука' === find_where($id_dog,'sex')){
+          if ('сука' === find_where('animals',$id_dog,'sex')){
 
               $array [] = get_where('animals', 'кобель', $owner);
             }else{
@@ -29,8 +29,8 @@ $id_dog= $_SESSION['Dog'];// выгружаем из памяти id собак�
 ?>
 <div style="background: white; height: 450px;">
     <img src="<?php echo print_pic($id_dog)?>">
-    <details><summary> <?php echo "Выбранная собака: " . find_where($id_dog,'name');
-                        echo "<br>Владелец: " . find_where($id_dog,'owner');?>
+    <details><summary> <?php echo "Выбранная собака: " . find_where('animals',$id_dog,'name');
+                        echo "<br>Владелец: " . find_where('animals',$id_dog,'owner');?>
   
     </summary> <?php print_all_d($id_dog);?></details>
 </div>

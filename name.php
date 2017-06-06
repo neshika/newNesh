@@ -5,7 +5,7 @@ require "/libs/up.php";
       //echo $MYDOG;
       
       $owner=ret_owner();
-      $var = find_where($id,'hr');;
+      $var = find_where('animals',$id,'hr');;
       print_hr($var);
 
 
@@ -14,19 +14,19 @@ require "/libs/up.php";
 ?>
 
 <!-- ******************** вывод питомника / имя собаки и картинка пола  *****************-->    
-          <div style="background: white; height: 80px; width: 710px;"> <h3 align="center"><?php echo find_where($id,'kennel');?> <?php echo find_where($id,'name');?><?php echo ret_pic($id);?></h3>
+          <div style="background: white; height: 80px; width: 710px;"> <h3 align="center"><?php echo find_where('animals',$id,'kennel');?> <?php echo find_where('animals',$id,'name');?><?php echo ret_pic($id);?></h3>
            </div>
           
 <!-- ******************** вывод доп меню собаки  заводчик / хозяин  *****************-->  
         <div style="background: yellow; height: 55px; width: 708px;"> 
           <ul style="background: white; width: 45%; float: left;">
-            <li>Заводчик: <?php echo find_where($id,'breeder');?></li>
+            <li>Заводчик: <?php echo find_where('animals',$id,'breeder');?></li>
             <li>Хозяин: <?php echo $owner;?></li>
           </ul>
 <!-- ******************** вывод доп меню собаки  вид \\ Дата рождения \\ окрас    *****************-->       
         <ul style="background: white; width: 40%; float: right;">
-          <li>тип:  <?php echo find_where($id,'hr');?></li>
-          <li>дата рождения:  <?php echo find_where($id,'birth');?></li>
+          <li>тип:  <?php echo find_where('animals',$id,'hr');?></li>
+          <li>дата рождения:  <?php echo find_where('animals',$id,'birth');?></li>
        </ul>
       </div>
 <!-- ******************** вывод картинки собаки по id  *****************-->  
@@ -58,10 +58,10 @@ require "/libs/up.php";
     <div style="float: left; width: 35%;">
 <!-- имя мамы--> 
         <details>
-             <summary><?php echo find_where((find_where($id,'mum')),'name');?></summary> 
+             <summary><?php echo find_where('animals',(find_where('animals',$id,'mum')),'name');?></summary> 
 <!-- картинка мамы--> 
             <?php 
-                  $id_m=find_where($id,'mum');
+                  $id_m=find_where('animals',$id,'mum');
                   if ('нет данных'!==$id_m){
                         $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
                         [':id' => $id_m]);
@@ -83,10 +83,10 @@ require "/libs/up.php";
     <div style="float: right; width: 48%;">
 <!-- имя папы-->  
       <details>
-            <summary><?php echo find_where((find_where($id,'dad')),'name');?></summary> 
+            <summary><?php echo find_where('animals',(find_where('animals',$id,'dad')),'name');?></summary> 
 <!-- картинка папы-->  
               <?php 
-                    $id_d=find_where($id,'dad');
+                    $id_d=find_where('animals',$id,'dad');
                     if ('нет данных'!==$id_d){
                         $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
                               [':id' => $id_d]);

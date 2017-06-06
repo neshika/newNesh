@@ -156,7 +156,7 @@ function print_all_d($id){
 // }
 /*Функция возвращает название картинки в зависимости от пола собаки по ее ID*/
 function ret_pic($id){
-	If('сука'==find_where($id,'sex'))
+	If('сука'==find_where('animals',$id,'sex'))
 		return '<img src = "/pic/female_mini.png">';
 	else
 		return '<img src = "/pic/male_mini.png">';
@@ -191,7 +191,7 @@ function f_bdika_sex(){
  
  <?php
  function print_pic($id){
- 	return find_where($id,'url');
+ 	return find_where('animals',$id,'url');
  }
  /*Функция вносит путь до картинки собаки*/
 function insert_url($url,$id){
@@ -710,7 +710,8 @@ R::store( $dog );
 
 }
 
-function find_where($id,$value){
+function find_where($tabl, $id,$value){
+	if ('animals'===$tabl){
 	   $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
        [':id' => $id]);
       // debug($row);
@@ -791,5 +792,6 @@ function find_where($id,$value){
               return $row[$value];
               break;
         }
+     } //$tabl = animals
 }
 ?>
