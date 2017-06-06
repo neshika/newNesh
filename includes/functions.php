@@ -21,14 +21,14 @@ function print_all(){
               echo "<br><br>";
             }
 }
+// /*Функция вносит изменения имени собаки по ее Id*/
+// function insert_name($id,$name){
+// 	 R::exec( 'UPDATE animals SET name=:name WHERE id = :id ', array(':name'=> $name, ':id' => $id));
+// 	//$bean = R::load($id, $name);
+// 	//$id = R::store($bean); // int
+// }
 /*Функция вносит изменения имени собаки по ее Id*/
-function insert_name($id,$name){
-	 R::exec( 'UPDATE animals SET name=:name WHERE id = :id ', array(':name'=> $name, ':id' => $id));
-	//$bean = R::load($id, $name);
-	//$id = R::store($bean); // int
-}
-/*Функция вносит изменения имени собаки по ее Id*/
-function insert_data($tabl,$id,$cell,$value){
+function insert_data($tabl,$id,$cell,$value){  //$tabl - название таблицы \\ $id-ай ди выбранного\\ $cell-названия столба\\ $value- значение
 	if ('animals'===$tabl){
 
 	 switch ($cell) {
@@ -103,16 +103,16 @@ function insert_data($tabl,$id,$cell,$value){
 	if('users'===$tabl){
 		switch ($cell) {
             case 'l_time':
-             return R::exec( 'UPDATE animals SET l_time=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+             return R::exec( 'UPDATE users SET l_time=:value WHERE login = :id ', array(':value'=> $value, ':id' => $id));
               break;
             case 'email':
-              return R::exec( 'UPDATE animals SET enail=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+              return R::exec( 'UPDATE users SET enail=:value WHERE login = :id ', array(':value'=> $value, ':id' => $id));
               break;
             case 'login':
-             return R::exec( 'UPDATE animals SET login=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+             return R::exec( 'UPDATE users SET login=:value WHERE login = :id ', array(':value'=> $value, ':id' => $id));
               break;
             case 'id':
-              return R::exec( 'UPDATE animals SET id=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+              return R::exec( 'UPDATE users SET id=:value WHERE login = :id ', array(':value'=> $value, ':id' => $id));
               break;
         }
 	}//tabl USERS

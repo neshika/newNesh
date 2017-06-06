@@ -8,6 +8,7 @@ $data = $_POST;
 if( isset($data['do_login']) ){
 	$errors= array();
 	$user = R::findOne ('users','login = ?', array($data['login']));
+
 	if ($user){  //если Юзер найден
 		//если логин существует, то проверяем пароль
 		if ( password_verify($data['password'], $user->password)){
@@ -17,7 +18,8 @@ if( isset($data['do_login']) ){
 			$_SESSION['logged_user'] = $user;
 			/*Добро пожаловать, все успешно!*/
 				
-
+			//внесение даты посещения в таблицу USERS
+         R::exec( 'UPDATE users SET l_time=:value WHERE login = :id ', array(':value'=> date("Y-m-d"), ':id' => $_SESSION['logged_user']->login));
     		//Проверка, если авторизовался админ переход в админку.
         			if('admin'==$_POST['login']){
         				header ('Location: admin/admin.php');

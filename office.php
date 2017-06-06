@@ -9,7 +9,8 @@ require "/libs/up.php";
         echo 'Добро пожаловать, ' . $_SESSION['logged_user']->login . ' .';
         echo ' Сегодня: ' . date("Y-m-d");
        //внесение даты посещения в таблицу USERS
-        R::exec( 'UPDATE users SET l_time=:value WHERE login = :id ', array(':value'=> date("Y-m-d"), ':id' => $_SESSION['logged_user']->login));
+      //  insert_data('users',$_SESSION['logged_user']->login,'l_time',date("Y-m-d"));
+       // R::exec( 'UPDATE users SET l_time=:value WHERE login = :id ', array(':value'=> date("Y-m-d"), ':id' => $_SESSION['logged_user']->login));
       ?><h3><li>Последние новости</li></h3>
         <?php if (isset($_POST['comment'])) { //если в форме NewDog включена кнопка отправки имени собаки
                 //echo 'Поле было заполнено';
