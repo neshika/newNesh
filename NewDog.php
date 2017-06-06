@@ -23,10 +23,8 @@ $id_m=$_SESSION['id_m'];
 $id_d=$_SESSION['id_d'];
 var_dump($id_m);
 var_dump($id_d);
- $id_new=start($id_m,$id_d);
+ $id_new=start($id_m,$id_d); // функция для получания статов 
         // ******************** вывод картинки собаки по id  *****************-->  
-     $row_new = R::getRow('SELECT * FROM animals WHERE id = :id',
-        [':id' => $id_new]);
       echo "<br>Малыш:";
       var_dump($id_new);
 

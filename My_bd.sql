@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 01 2017 г., 16:41
+-- Время создания: Июн 06 2017 г., 15:06
 -- Версия сервера: 5.5.53
 -- Версия PHP: 5.5.38
 
@@ -72,7 +72,7 @@ CREATE TABLE `animals` (
   `race` varchar(100) NOT NULL,
   `breeder` varchar(100) NOT NULL,
   `owner` varchar(100) NOT NULL,
-  `kennel` varchar(100) NOT NULL,
+  `kennel` varchar(255) NOT NULL,
   `birth` date NOT NULL,
   `now` varchar(255) NOT NULL DEFAULT '0',
   `mum` int(11) NOT NULL,
@@ -95,13 +95,13 @@ CREATE TABLE `animals` (
 --
 
 INSERT INTO `animals` (`id`, `name`, `sex`, `race`, `breeder`, `owner`, `kennel`, `birth`, `now`, `mum`, `dad`, `hr`, `aa`, `bb`, `tt`, `mm`, `ww`, `ff`, `status`, `puppy`, `litter`, `url`) VALUES
-(1, 'Адам', 'кобель', 'КХС', 'nesh', 'nesh', '-= Чарующий соблазн =-', '2017-05-31', '0', 0, 0, 'hrhr', 'aa', 'BB', 'Tt', 'mm', 'ww', 'Ff', 1, 0, 0, 'pic/hrhr/hr_orange.png'),
-(2, 'EVA', 'сука', 'КХС', 'nesh', 'nesh', '-= Чарующий соблазн -=', '2017-05-31', '0', 0, 0, 'Hrhr', 'AA', 'bb', 'Tt', 'mm', 'Ww', 'ff', 1, 0, 0, 'pic/TT/shokoTT.png'),
-(3, 'Трешка', 'сука', 'КХС', 'nesh', 'nesh', '-= Чарующий соблазн -=', '2017-05-31', '0', 2, 1, 'hrhr', 'Aa', 'Bb', 'tt', 'mm', 'Ww', 'ff', 1, 0, 0, 'pic/hrhr/hr_white.png'),
-(4, '4 Белянка', 'сука', 'КХС', 'nesh', 'nesh', '-= Чарующий соблазн -=', '2017-05-31', '0', 3, 1, 'hrhr', 'Aa', 'Bb', 'tt', 'mm', 'Ww', 'Ff', 1, 0, 0, 'pic/hrhr/hr_white.png'),
-(5, 'Чистая и голая', 'сука', 'КХС', 'nesh', 'nesh', '-= Чарующий соблазн -=', '2017-05-31', '0', 2, 1, 'Hrhr', 'Aa', 'Bb', 'tt', 'mm', 'Ww', 'Ff', 1, 0, 0, 'pic/white.png'),
-(6, 'Шестой', 'кобель', 'КХС', 'nesh', 'nesh', '-= Чарующий соблазн -=', '2017-06-01', '0', 5, 1, 'hrhr', 'Aa', 'Bb', 'tt', 'mm', 'Ww', 'ff', 1, 0, 0, 'pic/hrhr/hr_white.png'),
-(7, 'Беленькая семерка', 'сука', 'КХС', 'nesh', 'nesh', '-= Чарующий соблазн -=', '2017-06-01', '0', 5, 1, 'hrhr', 'Aa', 'BB', 'tt', 'mm', 'Ww', 'Ff', 1, 0, 0, 'pic/hrhr/hr_white.png');
+(1, 'Адам', 'кобель', 'КХС', 'nesh', 'nesh', '-=Чарующий соблазн=-', '2017-05-31', '0', 0, 0, 'hrhr', 'aa', 'BB', 'Tt', 'mm', 'ww', 'Ff', 1, 0, 0, 'pic/hrhr/hr_orange.png'),
+(2, 'EVA', 'сука', 'КХС', 'nesh', 'nesh', '-=Чарующий соблазн=-', '2017-05-31', '0', 0, 0, 'Hrhr', 'AA', 'bb', 'Tt', 'mm', 'Ww', 'ff', 1, 0, 0, 'pic/TT/shokoTT.png'),
+(3, 'Трешка', 'сука', 'КХС', 'nesh', 'nesh', '-=Чарующий соблазн=-', '2017-05-31', '0', 2, 1, 'hrhr', 'Aa', 'Bb', 'tt', 'mm', 'Ww', 'ff', 1, 0, 0, 'pic/hrhr/hr_white.png'),
+(4, '4 Белянка', 'сука', 'КХС', 'nesh', 'nesh', '-=Чарующий соблазн=-', '2017-05-31', '0', 3, 1, 'hrhr', 'Aa', 'Bb', 'tt', 'mm', 'Ww', 'Ff', 1, 0, 0, 'pic/hrhr/hr_white.png'),
+(5, 'Чистая и голая', 'сука', 'КХС', 'nesh', 'nesh', '-=Чарующий соблазн=-', '2017-05-31', '0', 2, 1, 'Hrhr', 'Aa', 'Bb', 'tt', 'mm', 'Ww', 'Ff', 1, 0, 0, 'pic/white.png'),
+(6, 'Шестой', 'кобель', 'КХС', 'nesh', 'nesh', '-=Чарующий соблазн=-', '2017-06-01', '0', 5, 1, 'hrhr', 'Aa', 'Bb', 'tt', 'mm', 'Ww', 'ff', 1, 0, 0, 'pic/hrhr/hr_white.png'),
+(7, 'Беленькая семерка', 'сука', 'КХС', 'nesh', 'nesh', '-=Чарующий соблазн=-', '2017-06-01', '0', 5, 1, 'hrhr', 'Aa', 'BB', 'tt', 'mm', 'Ww', 'Ff', 1, 0, 0, 'pic/hrhr/hr_white.png');
 
 -- --------------------------------------------------------
 
@@ -243,24 +243,6 @@ INSERT INTO `hr` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `kennels`
---
-
-CREATE TABLE `kennels` (
-  `id_k` int(10) NOT NULL,
-  `name_kennel` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `kennels`
---
-
-INSERT INTO `kennels` (`id_k`, `name_kennel`) VALUES
-(1, 'Чарующий соблазн');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `mm`
 --
 
@@ -387,20 +369,27 @@ CREATE TABLE `users` (
   `id` int(11) UNSIGNED NOT NULL,
   `login` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kennel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `f_time` date NOT NULL,
+  `l_time` date NOT NULL,
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `email`, `password`) VALUES
-(18, 'nesh', 'h@h', '$2y$10$W/2Hrjkj4fIdZ0GbNpf24e3da6.03LLqMSMKwuuLgBH7STxeU/yFW'),
-(19, 'fgg', 'gbgdf@sd', '$2y$10$nu88rfUhfGE.6Qn0PkHhzuode6K5YXefx.3sDtFNP4rm7SMKc0cR6'),
-(20, 'Neshika', 'stepanovaml@mail.ru', '$2y$10$hARENCiSn/EVfUdYywIF6..KOt746yZpItARlqVCfhtABVjVwa8sy'),
-(21, 'admin', 'neshika69@gmail.com', '$2y$10$if1D7PAa12HxCCkNOjAfReD87FAVziC0Ppuwk91wvb4iDkZ0JQP.G'),
-(22, 'admin2', 'neshika69@gmail.com2', '$2y$10$WTEsW3rI9dvy/XzczoQBBuJ1lBAUaH8u1aYlcfH63SJidJmWx52fi'),
-(23, 'admin3', 'neshika69@gmail.com23', '$2y$10$3SKYlknPHT1svso2giH0fuS.UKoMMkJSIq51HPgYhM9eBlOpxfmyG');
+INSERT INTO `users` (`id`, `login`, `email`, `password`, `kennel`, `f_time`, `l_time`, `status`) VALUES
+(18, 'nesh', 'h@h', '$2y$10$W/2Hrjkj4fIdZ0GbNpf24e3da6.03LLqMSMKwuuLgBH7STxeU/yFW', '-=Чарующий соблазн=-', '0000-00-00', '0000-00-00', 0),
+(19, 'fgg', 'gbgdf@sd', '$2y$10$nu88rfUhfGE.6Qn0PkHhzuode6K5YXefx.3sDtFNP4rm7SMKc0cR6', '', '0000-00-00', '0000-00-00', 0),
+(20, 'Neshika', 'stepanovaml@mail.ru', '$2y$10$hARENCiSn/EVfUdYywIF6..KOt746yZpItARlqVCfhtABVjVwa8sy', '', '0000-00-00', '0000-00-00', 0),
+(21, 'admin', 'neshika69@gmail.com', '$2y$10$if1D7PAa12HxCCkNOjAfReD87FAVziC0Ppuwk91wvb4iDkZ0JQP.G', '', '0000-00-00', '0000-00-00', 0),
+(22, 'admin2', 'neshika69@gmail.com2', '$2y$10$WTEsW3rI9dvy/XzczoQBBuJ1lBAUaH8u1aYlcfH63SJidJmWx52fi', '', '0000-00-00', '0000-00-00', 0),
+(23, 'admin3', 'neshika69@gmail.com23', '$2y$10$3SKYlknPHT1svso2giH0fuS.UKoMMkJSIq51HPgYhM9eBlOpxfmyG', '', '0000-00-00', '0000-00-00', 0),
+(24, 'Nika', 'nika@taka', '$2y$10$tZtnHGYrrOTgS67LOdkfUeoT3B5bU3zdwg9qPvl.Ot6TFUm9ovQ/e', 'махрушки', '0000-00-00', '0000-00-00', 0),
+(25, 'nuki', 'nuki@q', '$2y$10$LeplyfcZcLDhJqGNyDlAcOcAaaAE8DNCX2WwGZk0ZhoZqUl.AsAa6', 'sgfe', '0000-00-00', '0000-00-00', 0),
+(26, 'nui', 'nui@qw', '$2y$10$j4IvDZkt/Vd/EqiR6naq7O5NxeimLNzD5Sp5LunNTkzRok/RuvbEu', 'муськи', '0000-00-00', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -477,8 +466,7 @@ ALTER TABLE `animals`
   ADD KEY `breeder` (`breeder`),
   ADD KEY `owner` (`owner`),
   ADD KEY `mum` (`mum`),
-  ADD KEY `dad` (`dad`),
-  ADD KEY `kennel` (`kennel`);
+  ADD KEY `dad` (`dad`);
 
 --
 -- Индексы таблицы `bb`
@@ -514,14 +502,6 @@ ALTER TABLE `hr`
   ADD KEY `name` (`name`);
 
 --
--- Индексы таблицы `kennels`
---
-ALTER TABLE `kennels`
-  ADD PRIMARY KEY (`id_k`),
-  ADD UNIQUE KEY `id_k` (`id_k`),
-  ADD KEY `name_kennel` (`name_kennel`);
-
---
 -- Индексы таблицы `mm`
 --
 ALTER TABLE `mm`
@@ -546,12 +526,6 @@ ALTER TABLE `sex`
 -- Индексы таблицы `status`
 --
 ALTER TABLE `status`
-  ADD PRIMARY KEY (`id`);
-
---
--- Индексы таблицы `test`
---
-ALTER TABLE `test`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -621,15 +595,10 @@ ALTER TABLE `dogs`
 ALTER TABLE `status`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT для таблицы `test`
---
-ALTER TABLE `test`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

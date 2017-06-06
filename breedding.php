@@ -28,12 +28,12 @@ error_reporting(E_ALL);
  $temp=(int)$_SESSION['para'];
  $temp2=(int)$_POST['ONONA'];
  echo $temp . "<br>"; echo $temp2 . "<br>";
-  if ('сука' === ret_sex($temp)){
+  if ('сука' === find_where('animals',$temp,'sex')){
             $id_m = $temp;
             $id_d = $temp2;
                    
       }
-  if ('кобель' === ret_sex($temp)){
+  if ('кобель' === find_where('animals',$temp,'sex')){
            $id_m = $temp2;
             $id_d = $temp; 
       } 
@@ -43,22 +43,13 @@ error_reporting(E_ALL);
 //echo 'Папа: ' . var_dump($id_d);;
 
 
-// ******************** вывод картинки собаки по id  *****************-->  
-     $row_m = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-        [':id' => $id_m]);
-      echo "<br>Мama:";
-   f_get_image($row_m['hr'],$row_m['ww'],$row_m['ff'],$row_m['bb'] ,$row_m['tt'],$row_m['mm']);
-      ?><img src="<?php echo $_POST['url']?>"><?php
-    print_all_d($id_m);       
+// ******************** вывод картинки мамы и папы по id  из базы *****************-->  
+?>  <img src="<?php echo print_pic($id_m)?>"><br>       
       
-  // ******************** вывод картинки собаки по id  *****************-->  
-     
-      $row_d = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-        [':id' => $id_d]);
-      echo "<br>Папа:";
-   f_get_image($row_d['hr'],$row_d['ww'],$row_d['ff'],$row_d['bb'] ,$row_d['tt'],$row_d['mm']);
-      ?><img src="<?php echo $_POST['url']?>"><?php
-	print_all_d($id_d);
+  
+ <img src="<?php echo print_pic($id_d)?>"><br>      
+
+ <?php  
 $_SESSION['id_m']=$id_m;
 $_SESSION['id_d']=$id_d;
 
