@@ -33,21 +33,24 @@ require "/libs/up.php";
         $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner',
         [':owner' => $owner]);
 /*картинка суки/кобели*/              
-        ?><p class="kennel"><img src = "/pic/male.png"><img src = "/pic/female.png"></p><?php
+        ?><p class="kennel"><img src = "/pic/male.png" width="10%"><img src = "/pic/female.png" width="10%"></p><?php
            foreach($array as $item) {
               foreach ($item as $key => $value) {
                 echo "<br><hr><a>";
 
 /*выводим на экран имя собаки как ссылку*/
-                echo '<a href="/name.php?id=' . $key . '">' . "$value";
-                   $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-                        [':id' => $key]);
-                    f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
-                     ?>
-                  <img src="<?php echo $_POST['url']?>" width="25%">
-             <?php
+                $tip=find_where('animals', $key,'hr');
+                $lit=find_where('animals', $key,'litter');
+                $pup=find_where('animals', $key,'puppy');
+                echo '<a href="/name.php?id=' . $key . '">'?>
+                  <img src="<?php echo print_pic($key)?>" width="25%" float="left"></a>
+              <div>
+             <?php echo 'имя: ' . $value;
+                    echo '<br> тип : ' . $tip;
+                    echo '<br> вязки/дети: ' . $lit . '/' . $pup;
+              ?></div><?php
              }    
-              echo "<br />";
+              echo "<br/>";
             }
              
           }
@@ -57,15 +60,15 @@ require "/libs/up.php";
         [':owner' => $owner]);
 /*картинка сук*/
         ?>
-          <p class="right"><img src = "/pic/female.png" alt = "девочки">
+          <p class="right"><img src = "/pic/female.png" alt = "девочки" width="10%">
         <?php
            foreach($array as $item) {
               foreach ($item as $key => $value) {
                 echo "<br>";
 /*выводим имена сук как ссылки на страничку собаки*/
-                echo '<a href="/name.php?id=' . $key . '">' . "$value"; ?> </a>
+                echo '<a href="/name.php?id=' . $key . '">' . "$value"; ?>
 <!-- выводим картинку собаки -->
-
+                <img src="<?php echo print_pic($key)?>" width="25%"> </a>
                  <?php
                 }   
               echo "<br />"; 
@@ -77,13 +80,14 @@ require "/libs/up.php";
         $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && sex LIKE "кобель"' ,
         [':owner' => $owner]);
         ?>
-        <img src = "/pic/male.png" alt = "мальчики">
+        <img src = "/pic/male.png" alt = "мальчики" width="10%">
         <?php
            foreach($array as $item) {
               foreach ($item as $key => $value) {
                 echo "<br>";
 /*выводим имена кобелей как ссылки на страничку собаки*/
-                echo '<a href="/name.php?id=' . $key . '">' . "$value"; ?> </a>
+                echo '<a href="/name.php?id=' . $key . '">' . "$value"; ?>
+                <img src="<?php echo print_pic($key)?>" width="25%"> </a>
                  <?php
                 }    
               echo "<br />";

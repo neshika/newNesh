@@ -40,6 +40,7 @@ if (isset ($data['do_sighup'])){	//если кнопка нажата
 		$user->login = $data ['login'];
 		$user->email = $data ['email'];
 		$user->kennel = $data ['kennel'];
+		$user->f_time = date("Y-m-d");
 
 		$user->password = password_hash($data ['password'], PASSWORD_DEFAULT); //зашифровываем пароль
 		R::store ($user);
