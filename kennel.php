@@ -30,7 +30,7 @@ require "/libs/up.php";
 <?php
 /* Ели нажата кнопка ВСЕ СОБАКИ выводим на экран всех собак, пренадлежащих владельцу*/
        if( isset($_POST['all_dogs']) ){
-        $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner',
+        $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner & status = 1' ,
         [':owner' => $owner]);
 /*картинка суки/кобели*/              
         ?><p class="kennel"><img src = "/pic/male.png" width="10%"><img src = "/pic/female.png" width="10%"></p><?php

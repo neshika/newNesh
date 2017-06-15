@@ -9,7 +9,20 @@ function ret_owner(){
 function debug($arr){
     echo '<pre>' . print_r($arr, true). '</pre>';
 }
-
+/*Функция создает электронную подпись 6 цыфр и записывает ее а поле sign в таблице users*/
+function rand_sign($id){
+	 $row = R::getRow( 'SELECT * FROM users WHERE id = :id',
+       [':id' => $id]);
+	
+	while ($row['sign'] == $value=Rand(100000,999999))
+	 {
+	 	//echo 'одинаковые';  	
+      }
+      R::exec( 'UPDATE users SET sign=:sign WHERE id = :id ', array(':sign'=> $value, ':id' => $id));
+      $row = R::getRow( 'SELECT * FROM users WHERE id = :id',
+       [':id' => $id]);
+      echo 'цифровая подпись: ' . $row['sign'];
+}
 /*Функция распечатывает все опции собак из таблицы*/
 function print_all(){
 
