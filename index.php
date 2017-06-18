@@ -21,7 +21,7 @@ require "includes/functions.php";
 		<br>
 		
 		<a class="buttons" href='/login.php'>Да</a>
-		<a class="buttons" href='/signup.php'>НЕТ</a>
+		<a class="buttons" href='rand_dog.php'>НЕТ</a>
 		<?php
 		/*<form method="POST" action="/login.php">
 			<button type="submit" class="knopka">ДА</button>

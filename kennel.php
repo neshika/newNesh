@@ -15,7 +15,7 @@ require "/libs/up.php";
         echo "<br>Владелец: " . $_SESSION['logged_user']->login;
         
 /*каунтом считаем сколько строк с собаками по владельцу*/        
-         $count = R::count( 'animals', 'owner = :owner',
+         $count = R::count( 'animals', 'owner = :owner && status = 1',
         [':owner' => $owner]);
          echo "<br>Количество собак: " . $count;
 /*создаем форму с кнопками по сортировке собак на виды*/      
@@ -30,7 +30,7 @@ require "/libs/up.php";
 <?php
 /* Ели нажата кнопка ВСЕ СОБАКИ выводим на экран всех собак, пренадлежащих владельцу*/
        if( isset($_POST['all_dogs']) ){
-        $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner & status = 1' ,
+        $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && status = 1' ,
         [':owner' => $owner]);
 /*картинка суки/кобели*/              
         ?><p class="kennel"><img src = "/pic/male.png" width="10%"><img src = "/pic/female.png" width="10%"></p><?php
