@@ -7,7 +7,7 @@ require "/html/aside.html";
 require "/libs/up.php";
       
         echo 'Добро пожаловать, ' . $_SESSION['logged_user']->login . ' .';
-        echo ' Сегодня: ' . date("Y-m-d");
+        echo ' Сегодня: ' . date('d.m.Y', time() - 86400);;
        
       ?><h3><li>Последние новости</li></h3>
         <?php if (isset($_POST['comment'])) { //если в форме NewDog включена кнопка отправки имени собаки

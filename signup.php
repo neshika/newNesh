@@ -52,4 +52,4 @@ if (isset ($data['do_sighup'])){	//если кнопка нажата
 		echo '<div style="color:red;">'.array_shift($errors).'</div><hr>';
 	}
 }
-require_once '/html/singup.html';
+require_once '/blank_prist.php';

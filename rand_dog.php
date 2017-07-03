@@ -51,7 +51,7 @@ require "includes/functions.php";
 <form action="rand_dog.php" method="POST">
 <button type="submit" class="knopka" name="rand">Еще варианты</button>
 </form>
-<form action="signup.php" method="POST">
+<form action="blank_prist.php" method="POST">
 <button type="submit" class="knopka" name="rand">Отлично</button>
 </form>
 </body>
