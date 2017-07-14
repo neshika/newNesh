@@ -47,7 +47,8 @@ require "/libs/up.php";
               <div>
              <?php echo 'имя: ' . $value;
                     echo '<br> тип : ' . $tip;
-                    echo '<br> вязки/дети: ' . $lit . '/' . $pup;
+                    echo '<a href="/lit&pup.php?id=' . $key . '">' . "<br> вязки/дети: ". $lit .'/'. $pup;
+                    //echo '<br> вязки/дети: ' . $lit . '/' . $pup;
               ?></div><?php
              }    
               echo "<br/>";

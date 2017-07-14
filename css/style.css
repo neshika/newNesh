@@ -79,7 +79,7 @@ p {и в конце параграфов}*/
     width: 715px;  /*520*/
     height: auto;
     float: left;
-  background: #E0E0E0;
+    background: #E0E0E0;
     border: 1px groove #9868CE;
     padding: 3px;
             
@@ -308,4 +308,73 @@ a.buttons:not(:hover) {
 /*при наведении треугольнички переворачиваются*/
 .menu__list:hover::after{
   transform: scale(-1);
+}
+
+/*************************************данные lit&pup.php***********************/
+.dog{
+   position:relative;
+    height:5px;
+  
+}
+
+#mydog{
+  text-align: center;
+    float:left;
+    width:99%;
+    height:200px;
+    background: #9868CE;
+}
+.dad_mum{
+  position:relative;
+  height:200px;
+}
+#dad{
+  text-align: center;
+float:left;
+width:49%;
+height:200px;
+background:green;
+}
+
+#mum{
+  text-align: center;
+float:left;
+width:49%;
+height:200px;
+background:blue;
+}
+.GG_dad_mum{
+  position:relative;
+  height:200px;
+}
+#one{
+  text-align: center;
+float:left;
+width:24%;
+height:200px;
+background:green;
+}
+
+#two{
+  text-align: center;
+float:left;
+width:24%;
+height:200px;
+background:blue;
+}
+
+#three{
+  text-align: center;
+float:left;
+width:24%;
+height:200px;
+background:#9C339A;
+}
+
+#four{
+  text-align: center;
+float:left;
+width:24%;
+height:200px;
+background:olive;
 }
