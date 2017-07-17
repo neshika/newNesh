@@ -16,10 +16,10 @@ require "/libs/up.php";
         $pup=find_where('animals', $id,'puppy');
         $dad=find_where('animals', $id,'dad');
         $mum=find_where('animals', $id,'mum');
-        $G1dad=find_where('animals', $id,'G1dad');
-        $G1mum=find_where('animals', $id,'G1mum');
-        $G0dad=find_where('animals', $id,'G0dad');
-        $G0mum=find_where('animals', $id,'G0mum');
+        $G1dad=find_where('animals', $id,'g1dad');
+        $G1mum=find_where('animals', $id,'g1mum');
+        $G0dad=find_where('animals', $id,'g0dad');
+        $G0mum=find_where('animals', $id,'g0mum');
 
 
 

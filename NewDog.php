@@ -21,6 +21,7 @@ error_reporting(E_ALL);
 
 $id_m=$_SESSION['id_m'];
 $id_d=$_SESSION['id_d'];
+
 var_dump($id_m);
 var_dump($id_d);
  $id_new=start($id_m,$id_d); // функция для получания статов 
@@ -28,8 +29,11 @@ var_dump($id_d);
       echo "<br>Малыш:";
       var_dump($id_new);
 
+       $row_new = R::getRow( 'SELECT * FROM animals WHERE id = :id',
+       [':id' => $id_new]);
+
       f_get_image($row_new['hr'],$row_new['ww'],$row_new['ff'],$row_new['bb'] ,$row_new['tt'],$row_new['mm']);
-      ?><img src="<?php echo $_POST['url']?>"><?php
+      ?><img src="<?php echo $_POST['url'];?>"><?php
       insert_url($_POST['url'],$id_new); //вставляет ссылку на картинку в базу
 
 

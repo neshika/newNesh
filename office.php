@@ -15,19 +15,21 @@ require "/libs/up.php";
                 echo 'родился малыш: ';
                 echo $a = $_POST['comment'];
                // echo $_SESSION['id_new'];
-                insert_name($_SESSION['id_new'],$_POST['comment']);
+                insert_data('animals',$_SESSION['id_new'],'name',$_POST['comment']);
+              //  insert_name($_SESSION['id_new'],$_POST['comment']);
           
                 } ?> 
         <h3><li>Важные события: </li></h3>
         <?php
         
-        // $id=3;
-        // $value='name';
-        // $value2='sex';
-        // $value3='url';
-        // echo 'Имя: ' .  find_where($id,$value);
-        //  echo '  ' .  find_where($id,$value2);
-        //  echo '  ' .  find_where($id,$value3);
+      /*  $G1dad='33';
+   
+       $dogs=R::dispense( 'animals');
+       $dogs->id='12';
+       $dogs->gg1dad1=$G1dad;
+      
+       $id = R::store( $dogs );
+    */
      
     
 ?>

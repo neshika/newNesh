@@ -44,6 +44,45 @@ function print_all(){
 function insert_data($tabl,$id,$cell,$value){  //$tabl - название таблицы \\ $id-ай ди выбранного\\ $cell-названия столба\\ $value- значение
     if ('animals'===$tabl){
         switch ($cell) {
+                               /*данные по папе*/
+                               case 'gg1mum4':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'gg1dad3':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'gg1mum2':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'gg1dad1':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'g1mum':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'g1dad':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'gg0mum4':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'gg0dad3':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'gg0mum2':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'gg0dad1':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                              /*данные по маме*/
+                               case 'g0mum':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                               case 'g0dad':
+                                 return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                              /*данные по собаке*/
                                case 'url':
                                  return R::exec( 'UPDATE animals SET url=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
@@ -575,7 +614,7 @@ function breedding($on,$ona,$temp, $temp2,$temp3){
 //$temp3="Tt";
 $num=0;
 
-	echo "код самца: $on <br>";
+	echo "<br>код самца: $on <br>";
 	echo "код самки: $ona <br>";
 
 	if ($on==$temp && $ona==$temp){	//AA
@@ -637,7 +676,7 @@ $num=0;
 		}
 		else{						//Aa
 				$num=$on;
-				echo $num;
+				return $num;
 				die();
 			}
 	}
@@ -717,40 +756,40 @@ function find_where($tabl, $id,$value){
             case 'hr':
               return $row[$value];
               break;
-            case 'G0dad':
+            case 'g0dad':  //дед по линии мамы
             	return $row[$value];
               	break;
-            case 'G0mum':
+            case 'g0mum':		//бабка по линии мамы
             	return $row[$value];
               	break;
-            case 'G0dad1':
+            case 'g0dad1':		//прадед по линии мамы
             	return $row[$value];
               	break;
-            case 'G0mum2':
+            case 'g0mum2':		//пробабка по линии мамы
             	return $row[$value];
               	break;
-            case 'G0dad3':
+            case 'g0dad3':		//прадед по линии мамы
             	return $row[$value];
               	break;
-            case 'G0mum4':
+            case 'g0mum4':		//пробабка по линии мамы
             	return $row[$value];
               	break;
-            case 'G1dad':
+            case 'g1dad':		//дед по линии мамы
             	return $row[$value];
               	break;
-            case 'G1mum':
+            case 'g1mum':		//бабка по линии мамы
             	return $row[$value];
               	break;
-            case 'G1dad1':
+            case 'g1dad1':		//дед по линии отца 
             	return $row[$value];
               	break;
-            case 'G1mum2':
+            case 'g1mum2':		//бабка по линии отца
             	return $row[$value];
               	break;
-            case 'G1dad3':
+            case 'g1dad3':		//прадед по линии отца 
             	return $row[$value];
               	break;
-            case 'G1mum4':
+            case 'g1mum4':		//пробабка по линии отца
             	return $row[$value];
               	break; 	
             case 'dad':
@@ -819,6 +858,22 @@ foreach ($dogs_m as $dog) {
 	$breeder_m=$dog['breeder'];
 	$owner_m=$dog['owner'];
 	$kennel_m=$dog['kennel'];
+	$puppy=$dog['puppy'];
+	$litter=$dog['litter'];
+	$litter += 1;
+	$puppy += 1;
+	/*величить кол-во вязок у мамы*/
+	insert_data('animals',$id_m,'puppy',$puppy);
+	insert_data('animals',$id_m,'litter',$litter);
+echo '<br>предки мамы: ';
+	echo $G0dad=$dog['dad'];		//отец матери для щенка дед
+	echo $G0mum=$dog['mum'];		//мать матери для женка бабка
+	$GG0dad1=$dog['g1dad'];
+	$GG0mum2=$dog['g1mum'];
+	$GG0dad3=$dog['g0dad'];	//прадед
+	$GG0mum4=$dog['g0mum'];	//прабабка
+
+
 	
 }
 //        данные из поля      TT  папы
@@ -834,12 +889,24 @@ foreach ($dogs_d as $dog) {
 	$WW_d=$dog['ww'];
 	$FF_d=$dog['ff'];
 	$hr_on=$dog['hr'];
+	$puppy=$dog['puppy'];
+	$litter=$dog['litter'];
+	$litter += 1;
+	$puppy += 1;
+	/*величить кол-во вязок у папы*/
+	insert_data('animals',$id_d,'puppy',$puppy);
+	insert_data('animals',$id_d,'litter',$litter);
+echo '<br>предки папы: ';
+	echo $G1dad=$dog['dad'];
+	echo $G1mum=$dog['mum'];
+	$GG1dad1=$dog['g1dad'];
+	$GG1mum2=$dog['g1mum'];
+	$GG1dad3=$dog['g0dad'];
+	$GG1mum4=$dog['g0mum'];
 	
 }
-//echo "<br> mum: " . $TT_m;
-//echo "<br> dad: " . $TT_d;
 
-
+echo '<br>даем окрас!';
 $tt_new = breedding($TT_d,$TT_m,'TT','tt','Tt');
 echo "<br> tt_new: " . $tt_new;
 $aa_new = breedding($AA_d,$AA_m,'AA','aa','Aa');
@@ -853,6 +920,8 @@ echo "<br> ww_new: " . $ww_new;
 $ff_new = breedding($FF_d,$FF_m,'FF','ff','Ff');
 echo "<br> ff_new: " . $ff_new;
 
+
+echo '<br> рандомный пол!';
 $pol=f_bdika_sex();
 echo '=================';
 var_dump($hr_on);
@@ -889,6 +958,29 @@ $dogs->id='';
 $dogs->mum=$id_m;
 $dogs->dad=$id_d;
 
+echo '<br> $G1dad: ' . $G1dad;
+echo '<br> $G1mum: ' . $G1mum;
+echo '<br> $G0dad: ' . $G0dad;
+echo '<br> $G0mum: ' . $G0mum;
+
+/*по линии отца */
+$dogs->g1dad=$G1dad;
+$dogs->g1mum=$G1mum;
+$dogs->gg1dad1=$GG1dad1;
+$dogs->gg1mum2=$GG1mum2;
+$dogs->gg1dad3=$GG1dad3;
+$dogs->gg1mum4=$GG1mum4;
+/*по линии матери*/
+
+$dogs->g0dad=$G0dad;
+$dogs->g0mum=$G0mum;
+$dogs->gg0dad1=$GG0dad1;
+$dogs->gg0mum2=$GG0mum2;
+$dogs->gg0dad3=$GG0dad3;
+$dogs->gg0mum4=$GG0mum4;
+
+
+
 
 $dogs->sex=$pol;
 $dogs->hr=$hr_new;
@@ -901,40 +993,6 @@ $dogs->status='1';
 //Сохраняем, первичный ключ id создается автоматически
 $id = R::store( $dogs );
 return $id;
-
-
-
-/*
-$id=R::count('animals'); //counts all pages
-var_dump($id);
-
-for($i=1;$i<=$id;$i++){
-
-$dog = R::dispense( 'animals'); 
-$dog->status = '1';
-$dog->id=$i;
-R::store( $dog );
-}
-*///////////////////////////////////////////////////////////
-//Создаем объект (bean) работающий с таблицей book
-//$book = R::dispense( 'dogs' );
-
-//выставляем значение полей, тип поля будет автоматически модифицирован в зависимости от значения
-//$book->tt = $tt_new;
-
-
-//Сохраняем, первичный ключ id создается автоматически
-//$id = R::store($book);
-
-///////////////////////////////////////////////////////////
-//Создаем объект (bean) работающий с таблицей book
-
-//выставляем значение полей, тип поля будет автоматически модифицирован в зависимости от значения
-//$book->aa = $tt_new2;
-
-
-//Сохраняем, первичный ключ id создается автоматически
-//$id = R::store($book);
 
 }
 
