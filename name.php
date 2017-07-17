@@ -7,12 +7,6 @@ require "/libs/up.php";
       $owner=ret_owner();
       $var = find_where('animals',$id,'hr');;
       print_hr($var);
-//    ******************** кнопка при нажатии которой меняем имя  *****************-->  
-      if (isset ($_POST['send'])){
-       // insert_name($id,$_POST['comment']);
-      if (!empty($_POST['comment']))insert_data('animals',$id,'name',$_POST['comment']);
-      else echo 'введите имя!';
-     }
 
 /*<h1 style="font-size: 120%; font-family: Verdana, Arial, Helvetica, sans-serif; 
   color: #336">Заголовок</h1>*/
@@ -118,11 +112,12 @@ require "/libs/up.php";
     <!-- --------------------------------------  class="right_sidebar"  ----------------------------- -->   
 
 <div class="right_sidebar" >
-        <!-- ******************** кнопка вязка справа  *****************-->  
+        <!-- ******************** кнопка вязка справа  *****************--> 
+
    <form method="POST">
-      <input type="text" name="comment">
-<!-- Сменить имя: <textarea name="comment"></textarea> -->
-      <input id="button" type="submit" value="Сменить имя" name="send" class = "knopka">
+      
+      
+      <a class="buttons" <?php echo '<a href="/lit&pup.php?id=' . $id . '">'?>Родословная</a>
                            
     </form>
   <form method="POST" action = "/matting.php">

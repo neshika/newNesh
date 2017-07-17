@@ -28,7 +28,12 @@ require "/libs/up.php";
       </form>
     </p>
 <?php
-/* Ели нажата кнопка ВСЕ СОБАКИ выводим на экран всех собак, пренадлежащих владельцу*/
+
+
+/************************* Ели нажата кнопка ВСЕ СОБАКИ выводим на экран всех собак, пренадлежащих владельцу*/
+
+
+
        if( isset($_POST['all_dogs']) ){
         $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && status = 1' ,
         [':owner' => $owner]);
@@ -38,62 +43,100 @@ require "/libs/up.php";
               foreach ($item as $key => $value) {
                 echo "<br><hr><a>";
 
-/*выводим на экран имя собаки как ссылку*/
+/*сохранение данных о голости собаки + вязки/щенки*/
                 $tip=find_where('animals', $key,'hr');
                 $lit=find_where('animals', $key,'litter');
                 $pup=find_where('animals', $key,'puppy');
+/*выводим на экран имя собаки как ссылку*/
                 echo '<a href="/name.php?id=' . $key . '">'?>
-                  <img src="<?php echo print_pic($key)?>" width="25%" float="left"></a>
-              <div>
-             <?php echo 'имя: ' . $value;
-                    echo '<br> тип : ' . $tip;
-                    echo '<a href="/lit&pup.php?id=' . $key . '">' . "<br> вязки/дети: ". $lit .'/'. $pup;
-                    //echo '<br> вязки/дети: ' . $lit . '/' . $pup;
-              ?></div><?php
-             }    
-              echo "<br/>";
-            }
+
+
+                <img src="<?php echo print_pic($key)?>" width="25%" float="left"></a>
+                <div><?php   //  вывод на экран количество вязок и щенков
+                        echo 'имя: ' . $value;
+                        echo '<br> тип : ' . $tip;
+                        echo '<a href="/lit&pup.php?id=' . $key . '">' . "<br> вязки/дети: ". $lit .'/'. $pup;?>
+                    
+                </div><?php
+                }    
+            echo "<br/>";
+            }   // foreach($array as $item)
              
-          }
-/* Если нажата кнопка СУКИ выводим на экран всех собак, пренадлежащих владельцу*/
+          }   //if( isset($_POST['all_dogs']))
+
+
+
+
+/****************************** Если нажата кнопка СУКИ выводим на экран всех собак, пренадлежащих владельцу*/
+
+
         if( isset($_POST['female']) ){
-        $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && sex LIKE "сука"' ,
-        [':owner' => $owner]);
+            $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && sex LIKE "сука"' ,
+            [':owner' => $owner]);  
 /*картинка сук*/
-        ?>
-          <p class="right"><img src = "/pic/female.png" alt = "девочки" width="10%">
-        <?php
+            ?>
+            <p class="right"><img src = "/pic/female.png" alt = "девочки" width="10%">   <?php
+        
            foreach($array as $item) {
               foreach ($item as $key => $value) {
-                echo "<br>";
+                echo "<br><hr><a>";
+
+/*сохранение данных о голости собаки + вязки/щенки*/
+                $tip=find_where('animals', $key,'hr');
+                $lit=find_where('animals', $key,'litter');
+                $pup=find_where('animals', $key,'puppy');
 /*выводим имена сук как ссылки на страничку собаки*/
-                echo '<a href="/name.php?id=' . $key . '">' . "$value"; ?>
+                echo '<a href="/name.php?id=' . $key . '">'; ?>
 <!-- выводим картинку собаки -->
                 <img src="<?php echo print_pic($key)?>" width="25%"> </a>
-                 <?php
-                }   
+                <div>  <?php //вывод на экран количесва вязок и щенков у сук
+                        echo 'имя: ' . $value;
+                        echo '<br> тип : ' . $tip;
+                        echo '<a href="/lit&pup.php?id=' . $key . '">' . "<br> вязки/дети: ". $lit .'/'. $pup;  ?>
+                    
+                 </div><?php
+                }   //foreach ($item as $key => $value)
               echo "<br />"; 
-            }
+            }   //foreach($array as $item)
             ?></p><?php
-          }
-/* Ели нажата кнопка КОБЕЛИ выводим на экран всех собак, пренадлежащих владельцу*/
+          }   //if( isset($_POST['female']) )
+
+
+
+
+
+/******************************* Если нажата кнопка КОБЕЛИ выводим на экран всех собак, пренадлежащих владельцу*/
+
+
         if( isset($_POST['male']) ){
-        $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && sex LIKE "кобель"' ,
-        [':owner' => $owner]);
-        ?>
-        <img src = "/pic/male.png" alt = "мальчики" width="10%">
-        <?php
-           foreach($array as $item) {
-              foreach ($item as $key => $value) {
-                echo "<br>";
+              $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && sex LIKE "кобель"' ,
+              [':owner' => $owner]);
+              ?>
+              <img src = "/pic/male.png" alt = "мальчики" width="10%">   <?php
+        
+              foreach($array as $item) {
+                  foreach ($item as $key => $value) {
+                      echo "<br><hr><a>";
+/*сохранение данных о голости собаки + вязки/щенки*/
+                      $tip=find_where('animals', $key,'hr');
+                      $lit=find_where('animals', $key,'litter');
+                      $pup=find_where('animals', $key,'puppy');
+
 /*выводим имена кобелей как ссылки на страничку собаки*/
-                echo '<a href="/name.php?id=' . $key . '">' . "$value"; ?>
-                <img src="<?php echo print_pic($key)?>" width="25%"> </a>
-                 <?php
-                }    
+                      echo '<a href="/name.php?id=' . $key . '">'; ?>
+                      <img src="<?php echo print_pic($key)?>" width="25%"> </a>
+                 <div>
+                      <?php echo 'имя: ' . $value;
+                            echo '<br> тип : ' . $tip;
+                            echo '<a href="/lit&pup.php?id=' . $key . '">' . "<br> вязки/дети: ". $lit .'/'. $pup;  ?>
+                   
+                  </div><?php
+                }   //foreach ($item as $key => $value)  
               echo "<br />";
-            }
-          }
+            }   //foreach($array as $item)
+          }   //if( isset($_POST['male']) )
+
+
 
 //функция вызывающая футер сайта
 require "/libs/down.php";

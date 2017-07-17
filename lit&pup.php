@@ -57,5 +57,19 @@ require "/libs/up.php";
 </p>
 
 
+</div>
+    <!-- --------------------------------------  class="right_sidebar"  ----------------------------- -->   
 
-<?php require '/libs/down.php';     
+<div class="right_sidebar" >
+        <!-- ******************** кнопка вязка справа  *****************--> 
+
+   <form method="POST">
+      
+     
+      <a class="buttons" <?php echo '<a href="/name.php?id=' . $id . '">'?>назад</a>
+                           
+    </form>
+
+</div class="right_sidebar" >
+
+   
