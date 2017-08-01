@@ -7,29 +7,33 @@ require "/libs/up.php";
       $owner=ret_owner();
       $var = find_where('animals',$id,'hr');;
       print_hr($var);
+      
 
 /*<h1 style="font-size: 120%; font-family: Verdana, Arial, Helvetica, sans-serif; 
   color: #336">Заголовок</h1>*/
 ?>
 
 <!-- ******************** вывод питомника / имя собаки и картинка пола  *****************-->    
-          <div style="background: white; height: 80px; width: 710px;"> <h3 align="center"><?php echo find_where('animals',$id,'kennel');?> <?php echo find_where('animals',$id,'name');?><?php echo ret_pic($id);?></h3>
+          <div style="background: white; height: 80px; width: 1170px;"> <h3 align="center"><?php echo find_where('animals',$id,'kennel');?> <?php echo find_where('animals',$id,'name');?><?php echo ret_pic($id);?></h3>
            </div>
           
 <!-- ******************** вывод доп меню собаки  заводчик / хозяин  *****************-->  
-        <div style="background: yellow; height: 55px; width: 708px;"> 
+        <div style="background: yellow; height: 80px; width: 1170px;"> 
           <ul style="background: white; width: 45%; float: left;">
             <li>Заводчик: <?php echo find_where('animals',$id,'breeder');?></li>
             <li>Хозяин: <?php echo $owner;?></li>
+            <li>Вязок: <?php echo find_where('animals', $id,'litter');?></li>
+
           </ul>
 <!-- ******************** вывод доп меню собаки  вид \\ Дата рождения \\ окрас    *****************-->       
         <ul style="background: white; width: 40%; float: right;">
           <li>тип:  <?php echo find_where('animals',$id,'hr');?></li>
           <li>дата рождения:  <?php echo find_where('animals',$id,'birth');?></li>
+          <li>Щенков: <?php echo find_where('animals', $id,'puppy');?></li>
        </ul>
       </div>
 <!-- ******************** вывод картинки собаки по id  *****************-->
-     <div style="background: white; text-align: center; height: 350px; width: 350px; margin-left: 180px;">
+     <div style="background: white; text-align: center; height: 350px; width: 350px; margin-left: 410px;">
 
 
 <?php 
@@ -124,6 +128,7 @@ require "/libs/up.php";
       <div align="right"><input id="button" name="knopka" type="submit" value="Вязка" class = "knopka">
       </div>
       <?php $_SESSION['Dog'] = $id; var_dump($_SESSION['Dog']); ?>
+      <a class="buttons" <?php echo '<a href="/kennel.php">'?>в питомник</a>
   </form>
 
 </div class="right_sidebar" >

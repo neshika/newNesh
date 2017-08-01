@@ -22,9 +22,10 @@ $id_dog= $_SESSION['Dog'];// выгружаем из памяти id собак�
 ?>
 <div style="background: white; text-align: center; height: 350px; width: 350px; margin-left: 180px;">
     <img src="<?php echo print_pic($id_dog)?>">
+</div>
     <details><summary> <?php echo "Выбранная собака: " . find_where('animals',$id_dog,'name');?>
     </summary> <?php print_all_d($id_dog);?></details>
-</div>
+
 <div style="background: yellow;">
 <?php /********************проверяем пол выбранной собаки, чтобы вывести противоположных партнеров******************/
     
@@ -55,7 +56,12 @@ $id_dog= $_SESSION['Dog'];// выгружаем из памяти id собак�
              
               }   
         } ?>
-</div> <?php
-  
-//функция вызывающая футер сайта
-require "/libs/down.php";
+</div></div>
+    <!-- --------------------------------------  class="right_sidebar"  ----------------------------- -->   
+
+<div class="right_sidebar" >
+        <!-- ******************** кнопка вязка справа  *****************--> 
+          <a class="buttons" <?php echo '<a href="/name.php?id=' . $id_dog . '">'?>назад</a>
+
+</div class="right_sidebar" >
+

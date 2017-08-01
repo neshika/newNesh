@@ -24,7 +24,7 @@ $id_d=$_SESSION['id_d'];
 
 var_dump($id_m);
 var_dump($id_d);
- $id_new=start($id_m,$id_d); // функция для получания статов 
+ $id_new=start($id_m,$id_d); // функция для получания параметров собаки 
         // ******************** вывод картинки собаки по id  *****************-->  
       echo "<br>Малыш:";
       var_dump($id_new);
@@ -38,6 +38,10 @@ var_dump($id_d);
 
 
       print_all_d($id_new); 
+     
+     /***************функция по получению стат в зависимости от отца и матери************/
+     new_stats($id_m,$id_d,$id_new);
+
      $_SESSION['id_new'] = $id_new;
 
           //insert_name($_SESSION['id_new'],$_POST['comment']);

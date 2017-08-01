@@ -40,6 +40,22 @@ function print_all(){
 // 	//$bean = R::load($id, $name);
 // 	//$id = R::store($bean); // int
 // }
+/*Функция вносит данные с таблицу статы*/
+function insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,$scent_new,$find_new,$total_new,$mutation){
+   $stats = R::dispense( 'stats' );
+    $stats->dog_id = $id_new;
+    $stats->speed = $speed_new;
+    $stats->agility = $agility_new;
+    $stats->teach = $teach_new;
+    $stats->jump = $jump_new;
+    $stats->scent = $scent_new;
+    $stats->find= $find_new;
+    $stats->total = $total_new;
+    $stats->mutation = $mutation;
+
+    $id = R::store( $stats );
+}
+
 /*Функция вносит изменения имени собаки по ее Id*/
 function insert_data($tabl,$id,$cell,$value){  //$tabl - название таблицы \\ $id-ай ди выбранного\\ $cell-названия столба\\ $value- значение
     if ('animals'===$tabl){
@@ -167,11 +183,43 @@ function insert_data($tabl,$id,$cell,$value){  //$tabl - название таб
                                     break;
         }
 	}//tabl USERS
+  if('stats'===$tabl){
+              
+                   switch ($cell) {
+                          case 'mutation':
+                                    return R::exec( 'UPDATE stats SET total=:value WHERE dog_id = :id ', array(':value'=> $value, ':id' => $id));
+                                     break;
+                          case 'total':
+                                    return R::exec( 'UPDATE stats SET total=:value WHERE dog_id = :id ', array(':value'=> $value, ':id' => $id));
+                                     break;
+                          case 'find':
+                                    return R::exec( 'UPDATE stats SET find=:value WHERE dog_id = :id ', array(':value'=> $value, ':id' => $id));
+                                    break;
+                        case 'scent':
+                                    return R::exec( 'UPDATE stats SET scent=:value WHERE dog_id = :id ', array(':value'=> $value, ':id' => $id));
+                                     break;
+                          case 'jump':
+                                    return R::exec( 'UPDATE stats SET jump=:value WHERE dog_id = :id ', array(':value'=> $value, ':id' => $id));
+                                     break;
+                          case 'teach':
+                                    return R::exec( 'UPDATE stats SET teach=:value WHERE dog_id = :id ', array(':value'=> $value, ':id' => $id));
+                                    break;
+                         case 'agility':
+                                    return R::exec( 'UPDATE stats SET agility=:value WHERE dog_id = :id ', array(':value'=> $value, ':id' => $id));
+                                     break;
+                          case 'speed':
+                                    return R::exec( 'UPDATE stats SET speed=:value WHERE dog_id = :id ', array(':value'=> $value, ':id' => $id));
+
+                                     break;
+                          case 'dog_id':
+                                    return R::exec( 'UPDATE stats SET id=:value WHERE dog_id = :id ', array(':value'=> $value, ':id' => $id));
+                                    break;
+        }
+  }//tabl stats
 
 
-
-	//$bean = R::load($id, $name);
-	//$id = R::store($bean); // int
+  $bean = R::load($id, $name);
+	$id = R::store($bean); // int
 }
 /*                                             *************************   голая/пух                     */
 /*Функция возвращает тип собаки hrhr / HrHr / Hrhr*/
@@ -226,6 +274,21 @@ function gol_pooh($on,$ona){
 function get_where($tabl, $param, $owner){
 
    	return R::getAssoc ('SELECT id,name FROM animals WHERE sex =:pol and breeder=:own', array(':pol'=> $param, ':own' => $owner));
+
+}
+ /*Функция возвращает количество итемов у нанного владельца*/
+function get_count($item, $owner){
+
+    $string=R::getcol('SELECT count FROM owner_items WHERE owner_id =:id and item_id=:item', array(':id'=> $owner, ':item' => $item));
+    return $string[0];
+
+}
+function get_id($login){
+
+    $string =R::getCol('SELECT id FROM users WHERE login = :log',
+        [':log' => $login]);
+
+   return $string[0];
 
 }
 /*                                             *************************    данные по ID                 */
@@ -756,42 +819,49 @@ function find_where($tabl, $id,$value){
             case 'hr':
               return $row[$value];
               break;
-            case 'g0dad':  //дед по линии мамы
+            
+            case 'gg0dad1':		//прадед по линии мамы
             	return $row[$value];
               	break;
-            case 'g0mum':		//бабка по линии мамы
+            case 'gg0mum2':		//пробабка по линии мамы
             	return $row[$value];
               	break;
-            case 'g0dad1':		//прадед по линии мамы
+            case 'gg0dad3':		//прадед по линии мамы
             	return $row[$value];
               	break;
-            case 'g0mum2':		//пробабка по линии мамы
+            case 'gg0mum4':		//пробабка по линии мамы
             	return $row[$value];
               	break;
-            case 'g0dad3':		//прадед по линии мамы
+            
+           
+            
+            
+            case 'gg1dad3':		//прадед по линии отца 
             	return $row[$value];
               	break;
-            case 'g0mum4':		//пробабка по линии мамы
-            	return $row[$value];
-              	break;
-            case 'g1dad':		//дед по линии мамы
-            	return $row[$value];
-              	break;
-            case 'g1mum':		//бабка по линии мамы
-            	return $row[$value];
-              	break;
-            case 'g1dad1':		//дед по линии отца 
-            	return $row[$value];
-              	break;
-            case 'g1mum2':		//бабка по линии отца
-            	return $row[$value];
-              	break;
-            case 'g1dad3':		//прадед по линии отца 
-            	return $row[$value];
-              	break;
-            case 'g1mum4':		//пробабка по линии отца
+            case 'gg1mum4':		//пробабка по линии отца
             	return $row[$value];
               	break; 	
+
+            case 'gg1mum2':   //бабка по линии отца
+              return $row[$value];
+                break;
+            case 'gg1dad1':   //дед по линии отца 
+              return $row[$value];
+                break;
+            case 'g0mum':   //бабка по линии мамы
+              return $row[$value];
+                break;
+            case 'g0dad':  //дед по линии мамы
+              return $row[$value];
+                break;
+            
+            case 'g1mum':    //бабка по линии мамы
+              return $row[$value];
+                break;
+            case 'g1dad':   //дед по линии мамы
+              return $row[$value];
+                break;
             case 'dad':
             	if ('0'!==$row[$value])
               			return $row[$value];
@@ -835,6 +905,53 @@ function find_where($tabl, $id,$value){
               break;
         }
      } //$tabl = animals
+     if ('owner_items'===$tabl){
+     $row = R::getRow( 'SELECT * FROM owner_items WHERE owner_id = :id',
+       [':id' => $id]);
+          switch ($value) {
+
+            case 'item_id':
+              return $row[$value];
+              break;
+            case 'count':
+              return $row[$value];
+              break;
+          }
+     }//$tabl = owner_items
+     if ('stats'===$tabl){
+     $row = R::getRow( 'SELECT * FROM stats WHERE dog_id = :id',
+       [':id' => $id]);
+          switch ($value) {
+
+            case 'dog_id':
+              return $row[$value];
+              break;
+            case 'speed':
+              return $row[$value];
+              break;
+            case 'agility':
+              return $row[$value];
+              break;
+            case 'teach':
+              return $row[$value];
+              break;
+            case 'jump':
+              return $row[$value];
+              break;
+            case 'scent':
+              return $row[$value];
+              break;
+            case 'find':
+              return $row[$value];
+              break;
+            case 'total':
+              return $row[$value];
+              break;
+            case 'mutation':
+              return $row[$value];
+              break;
+          }
+     }//$tabl = stats
 }
 
 
@@ -865,9 +982,9 @@ foreach ($dogs_m as $dog) {
 	/*величить кол-во вязок у мамы*/
 	insert_data('animals',$id_m,'puppy',$puppy);
 	insert_data('animals',$id_m,'litter',$litter);
-echo '<br>предки мамы: ';
-	echo $G0dad=$dog['dad'];		//отец матери для щенка дед
-	echo $G0mum=$dog['mum'];		//мать матери для женка бабка
+//echo '<br>предки мамы: ';
+	//echo $G0dad=$dog['dad'];		//отец матери для щенка дед
+	//echo $G0mum=$dog['mum'];		//мать матери для женка бабка
 	$GG0dad1=$dog['g1dad'];
 	$GG0mum2=$dog['g1mum'];
 	$GG0dad3=$dog['g0dad'];	//прадед
@@ -896,9 +1013,9 @@ foreach ($dogs_d as $dog) {
 	/*величить кол-во вязок у папы*/
 	insert_data('animals',$id_d,'puppy',$puppy);
 	insert_data('animals',$id_d,'litter',$litter);
-echo '<br>предки папы: ';
-	echo $G1dad=$dog['dad'];
-	echo $G1mum=$dog['mum'];
+//echo '<br>предки папы: ';
+	//echo $G1dad=$dog['dad'];
+	//echo $G1mum=$dog['mum'];
 	$GG1dad1=$dog['g1dad'];
 	$GG1mum2=$dog['g1mum'];
 	$GG1dad3=$dog['g0dad'];
@@ -906,19 +1023,19 @@ echo '<br>предки папы: ';
 	
 }
 
-echo '<br>даем окрас!';
+//echo '<br>даем окрас!';
 $tt_new = breedding($TT_d,$TT_m,'TT','tt','Tt');
-echo "<br> tt_new: " . $tt_new;
+//echo "<br> tt_new: " . $tt_new;
 $aa_new = breedding($AA_d,$AA_m,'AA','aa','Aa');
-echo "<br> aa_new: " . $aa_new;
+//echo "<br> aa_new: " . $aa_new;
 $bb_new = breedding($BB_d,$BB_m,'BB','bb','Bb');
-echo "<br> bb_new: " . $bb_new;
+//echo "<br> bb_new: " . $bb_new;
 $mm_new = breedding($MM_d,$MM_m,'MM','mm','Mm');
-echo "<br> mm_new: " . $mm_new;
+//echo "<br> mm_new: " . $mm_new;
 $ww_new = breedding($WW_d,$WW_m,'WW','ww','Ww');
-echo "<br> ww_new: " . $ww_new;
+//echo "<br> ww_new: " . $ww_new;
 $ff_new = breedding($FF_d,$FF_m,'FF','ff','Ff');
-echo "<br> ff_new: " . $ff_new;
+//echo "<br> ff_new: " . $ff_new;
 
 
 echo '<br> рандомный пол!';
@@ -958,10 +1075,10 @@ $dogs->id='';
 $dogs->mum=$id_m;
 $dogs->dad=$id_d;
 
-echo '<br> $G1dad: ' . $G1dad;
-echo '<br> $G1mum: ' . $G1mum;
-echo '<br> $G0dad: ' . $G0dad;
-echo '<br> $G0mum: ' . $G0mum;
+//echo '<br> $G1dad: ' . $G1dad;
+//echo '<br> $G1mum: ' . $G1mum;
+//echo '<br> $G0dad: ' . $G0dad;
+//echo '<br> $G0mum: ' . $G0mum;
 
 /*по линии отца */
 $dogs->g1dad=$G1dad;
@@ -996,3 +1113,237 @@ return $id;
 
 }
 
+
+/********************************************************Изменение стат****************************/
+
+
+/**********************  Рандомный подсчет стат в зависимости от мутаций и родителей***************/
+function get_stats($id_m, $id_d, $value, $mutation, $plus){
+
+
+       //echo '$id_m ' . $id_m . '/ $id_d ' . $id_d . '/ $value ' . $value . '/ $mutation' . $mutation . '/ $plus ' . $plus;
+
+
+        $temp=((find_where('stats',$id_m,$value)+find_where('stats',$id_d,$value))/2);
+        if(1==$plus)
+          $temp=$temp+($temp*$mutation/100);
+        if(0==$plus)
+          $temp=$temp-($temp*$mutation/100);
+       //echo '<br>===' . $temp . '===<br>';
+        $temp = number_format ($temp , $decimals = 2 ,$dec_point = "." , $thousands_sep = " " );
+
+        return $temp;
+}
+
+
+/**********************  Проверка шанса мутаций в зависимости от родства партнеров****************/
+function check_mutation($id_m,$id_mum,$id_g1mum,$id_g0mum,$id_gg1mum2,$id_gg0mum2,$id_gg1mum4,$id_gg0mum4,
+                        $id_d,$id_dad,$id_g1dad,$id_g0dad,$id_gg1dad1,$id_gg0dad1,$id_gg1dad3,$id_gg0dad3){
+
+        // $id_dad=2;
+         //$id_gg1dad1=2;
+          
+          //echo '<br>num ' . $num=Rand(1,100);
+      //    echo '<br> проверка на родство: ';
+          $temp=1;
+          if($id_d==$id_dad){
+         //   echo '<br>партнер - отец';
+
+            if($num>0 && $num<75){
+              $temp=0;
+              return 0;//echo '<br>mutation -  !';
+            }
+
+
+
+                        
+          }
+          elseif(($id_d==$id_g1dad) || ($id_d==$id_g0dad)){
+         //   echo '<br>партнер - дед';
+
+           // echo 'num ' . $num=Rand(25,50);
+            if($num>50 && $num<100){
+              $temp=0;
+              return 0;//echo '<br>mutation2 -  !';
+            }
+           
+          }
+          elseif(($id_d==$id_gg1dad1) || ($id_d==$id_gg0dad1) || ($id_d==$id_gg1dad3)|| ($id_d==$id_gg0dad3)){ 
+           // echo '<br>партнер - прадед';
+
+            if($num>0 && $num<=25){
+              $temp=0;
+              return 0; //echo '<br>mutation3 -  !';
+            }
+            
+          }
+           
+          //самку
+          if($id_m==$id_mum){
+         //   echo '<br>партнерша - мать';
+
+             if($num>0 && $num<75){
+              $temp=0;
+              return 0;//echo '<br>mutation0 -  !';
+            }
+          }
+          
+          elseif(($id_m==$id_g1mum) || ($id_m==$id_g0mum)){
+         //  echo '<br>партнерша - бабка';
+
+             if($num>50 && $num<100){
+              $temp=0;
+              return 0; //echo '<br>mutation0-2 -  !';
+            }
+            
+          }
+          elseif(($id_m==$id_gg1mum2) || ($id_m==$id_gg0mum2) || ($id_m==$id_gg1mum4)|| ($id_m==$id_gg0mum4)){ 
+          //  echo '<br>партнерша - пробабка';
+
+             if($num>0 && $num<=25){
+              $temp=0;
+              //echo '<br>mutation0 - 3 -  !';
+            return 0;
+               }
+
+          }
+          if(1==$temp)
+            return 1;
+
+
+         
+}
+
+/**********************  Выписка предков по линии матери и отца***********************/
+
+function ancestry ($id_m,$id_d){
+/*******************   данные предков самки мужского пола */
+  //echo '<br>проверка мамы<br>';
+       $id_dad=find_where('animals', $id_m,'dad');
+      $id_g1dad=find_where('animals', $id_m,'g1dad');
+       $id_g0dad=find_where('animals', $id_m,'g0dad');
+       $id_gg1dad1=find_where('animals', $id_m,'gg1dad1');
+       $id_gg0dad1=find_where('animals', $id_m,'gg0dad1');
+      $id_gg1dad3=find_where('animals', $id_m,'gg1dad3');
+      $id_gg0dad3=find_where('animals', $id_m,'gg0dad3');
+        //echo 'отец=' . $id_dad . ' / дед по папе=' . $id_g1dad. ' / дед по маме=' . $id_g0dad. ' / прадед по деду(отец)=' . $id_gg1dad1. ' / прадед по бабке(отец)=' . $id_gg1dad3. ' / прадед по деду(мать)=' . $id_gg0dad1. ' / прадед по бабке(мать)=' . $id_gg0dad3;
+        
+        
+
+  
+
+/*******************   данные предков кобеля женского пола */
+
+
+     //   echo '<br>=====================<br>проверка папы<br>';
+        $id_mum=find_where('animals', $id_d,'mum');
+        $id_g1mum=find_where('animals', $id_d,'g1mum');
+        $id_g0mum=find_where('animals', $id_d,'g0mum');
+        $id_gg1mum2=find_where('animals', $id_d,'gg1mum2');
+        $id_gg0mum2=find_where('animals', $id_d,'gg0mum2');
+        $id_gg1mum4=find_where('animals', $id_d,'gg1mum4');
+        $id_gg0mum4=find_where('animals', $id_d,'gg0mum4');
+      //  echo 'мать=' . $id_mum . ' / бабка по папе=' . $id_g1mum. ' / бабка по маме=' . $id_g0mum. ' / пробабка по деду(отец)=' . $id_gg1mum2. ' / пробабка по бабке(отец)=' . $id_gg0mum2. ' / пробабка по деду(мать)=' . $
+      $plus=check_mutation($id_m,$id_mum,$id_g1mum,$id_g0mum,$id_gg1mum2,$id_gg0mum2,$id_gg1mum4,$id_gg0mum4,
+                        $id_d,$id_dad,$id_g1dad,$id_g0dad,$id_gg1dad1,$id_gg0dad1,$id_gg1dad3,$id_gg0dad3);
+     
+      return $plus;
+}  
+
+
+/**********************  получение статов и поля МУТАЦИЯ кобеля и суки***********************/
+function print_stats($id_m,$id_d,$mutation)
+{
+      
+
+      echo '<br> mutat ' . $mutation;
+            
+      echo '<br> / sp /';
+      echo ' / agl / ';
+      echo '/ tch / ';
+      echo '/ jmp / ';
+      echo '/ nuh / ';
+      echo '/ fnd / ';
+      echo '/ ttl / ';
+      echo '/ данные';
+      
+      echo ' <br>/' . find_where('stats',$id_m,'speed');
+      echo ' --- ' . find_where('stats',$id_m,'agility');
+      echo '  --- ' . find_where('stats',$id_m,'teach');
+      echo '  --- ' .find_where('stats',$id_m,'jump');
+      echo '  --- ' .find_where('stats',$id_m,'scent');
+      echo '  --- ' .find_where('stats',$id_m,'find');
+      echo '  ---/ ' .find_where('stats',$id_m,'total') . ' мать ' . $id_m;
+      
+      echo '<br>/' . find_where('stats',$id_d,'speed');
+      echo ' --- ' . find_where('stats',$id_d,'agility');
+      echo ' --- ' . find_where('stats',$id_d,'teach');
+      echo ' --- ' .find_where('stats',$id_d,'jump');
+      echo ' --- ' .find_where('stats',$id_d,'scent');
+      echo ' --- ' .find_where('stats',$id_d,'find');
+      echo ' ---/ ' .find_where('stats',$id_d,'total') . ' отец ' . $id_d;
+   /*   $speed=((find_where('stats',$id_m,'speed')+find_where('stats',$id_d,'speed'))/2);
+      $speed=$speed+($speed*$mutation/100);
+      $speed2=$speed-($speed*$mutation/100);
+      $speed = number_format ($speed , $decimals = 2 ,$dec_point = "." , $thousands_sep = " " );
+      $speed2 = number_format ($speed2 , $decimals = 2 ,$dec_point = "." , $thousands_sep = " " );
+       
+       echo '<br>speed = ' . $speed;
+       echo '<br>speed2 = ' . $speed2;
+*/
+}
+
+/******************************** внесение новых стат по ID мамы иID папы и даем ID новой собаки ******************************************/
+function new_stats($id_m,$id_d,$id_new){
+
+
+       // $id_m=17;
+      //  $id_d=15;
+       // $id_new=20;
+        $mutation=Rand(1,100)/100;
+        $plus='1';
+        
+        $plus=ancestry ($id_m,$id_d);
+       
+        if(1==$plus){
+          echo 'При вязки близкородственных партнеров возможны ухудшения качеств и получение мутаций! Будьте осторожнее!';
+        }
+        
+        
+        $speed_new= get_stats($id_m, $id_d, 'speed', $mutation, $plus);
+       // print_stats($id_m,$id_d,$mutation);
+       
+        $agility_new= get_stats($id_m, $id_d, 'agility', $mutation, $plus);
+        $teach_new= get_stats($id_m, $id_d, 'teach', $mutation, $plus);
+        $jump_new= get_stats($id_m, $id_d, 'jump', $mutation, $plus);
+        $scent_new= get_stats($id_m, $id_d, 'scent', $mutation, $plus);
+        $find_new= get_stats($id_m, $id_d, 'find', $mutation, $plus);
+        $total_new= get_stats($id_m, $id_d, 'total', $mutation, $plus);
+     
+     /*   echo '<br>' . $speed_new;
+        echo '/' .  $agility_new;
+        echo '/' .  $teach_new;
+        echo '/' . $jump_new;
+        echo '/' .  $scent_new;
+        echo '/' .   $find_new;
+        echo '/' . $total_new;
+    */
+       /* insert_data('stats',$id_new,'speed',$speed_new);
+        insert_data('stats',$id_new,'agility',$agility_new);
+        insert_data('stats',$id_new,'teach',$teach_new);
+        insert_data('stats',$id_new,'jump',$jump_new);
+        insert_data('stats',$id_new,'scent',$scent_new);
+        insert_data('stats',$id_new,'find',$find_new);
+        insert_data('stats',$id_new,'total',$total_new);
+        insert_data('stats',$id_new,'mutation',$mutation);
+        */
+
+
+
+       insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,$scent_new,$find_new,$total_new,$mutation);
+
+
+
+}
+
+/******************************************конец функций по изменению стат******************************/

@@ -21,17 +21,10 @@ require "/libs/up.php";
                 } ?> 
         <h3><li>Важные события: </li></h3>
         <?php
-        
-      /*  $G1dad='33';
-   
-       $dogs=R::dispense( 'animals');
-       $dogs->id='12';
-       $dogs->gg1dad1=$G1dad;
+
       
-       $id = R::store( $dogs );
-    */
-     
-    
+
+        
 ?>
        
 <?php require '/libs/down.php';

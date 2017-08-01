@@ -17,7 +17,11 @@ require "/libs/up.php";
 /*каунтом считаем сколько строк с собаками по владельцу*/        
          $count = R::count( 'animals', 'owner = :owner && status = 1',
         [':owner' => $owner]);
+         $id=get_id($owner);
+         $coins = get_count('1', $id);
+         $coins=number_format ($coins , $decimals = 0 ,$dec_point = "." , $thousands_sep = " " ); //number_format — Форматирует число с разделением групп
          echo "<br>Количество собак: " . $count;
+         echo "<br>Денежный запас: " .  $coins;
 /*создаем форму с кнопками по сортировке собак на виды*/      
       ?>
 
@@ -51,7 +55,7 @@ require "/libs/up.php";
                 echo '<a href="/name.php?id=' . $key . '">'?>
 
 
-                <img src="<?php echo print_pic($key)?>" width="25%" float="left"></a>
+                <img src="<?php echo print_pic($key)?>" width="10%" float="left"></a>
                 <div><?php   //  вывод на экран количество вязок и щенков
                         echo 'имя: ' . $value;
                         echo '<br> тип : ' . $tip;
@@ -88,7 +92,7 @@ require "/libs/up.php";
 /*выводим имена сук как ссылки на страничку собаки*/
                 echo '<a href="/name.php?id=' . $key . '">'; ?>
 <!-- выводим картинку собаки -->
-                <img src="<?php echo print_pic($key)?>" width="25%"> </a>
+                <img src="<?php echo print_pic($key)?>" width="10%"> </a>
                 <div>  <?php //вывод на экран количесва вязок и щенков у сук
                         echo 'имя: ' . $value;
                         echo '<br> тип : ' . $tip;
@@ -124,7 +128,7 @@ require "/libs/up.php";
 
 /*выводим имена кобелей как ссылки на страничку собаки*/
                       echo '<a href="/name.php?id=' . $key . '">'; ?>
-                      <img src="<?php echo print_pic($key)?>" width="25%"> </a>
+                      <img src="<?php echo print_pic($key)?>" width="10%"> </a>
                  <div>
                       <?php echo 'имя: ' . $value;
                             echo '<br> тип : ' . $tip;
