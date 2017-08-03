@@ -7,7 +7,26 @@ require "/html/aside.html";
 require "/libs/up.php";
       
         echo 'Добро пожаловать, ' . $_SESSION['logged_user']->login . ' .';
-        echo ' Сегодня: ' . date('d.m.Y', time() - 86400);;
+        //date('d.m.Y', time() - 86400);
+        echo ' Сегодня: ' . date('d.m.Y');
+
+        
+        $id=get_id($_SESSION['logged_user']->login);
+        $l_time=find_where('users', $id,'l_time');
+        $now=date('Y-m-d');  //2017-08-03
+        $visits=find_where('users',$id,'visits');
+        echo '<br>' . $visits .$now . $l_time;
+
+        if($now!=$l_time){
+          echo 'разые';
+          $visits=$visits+1;
+
+          insert_data('users',$id,'visits',$visits);
+          insert_data('users',$id,'l_time',$now);
+
+        }
+        
+        
        
       ?><h3><li>Последние новости</li></h3>
         <?php if (isset($_POST['comment'])) { //если в форме NewDog включена кнопка отправки имени собаки

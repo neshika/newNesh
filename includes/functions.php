@@ -34,6 +34,24 @@ function print_all(){
               echo "<br><br>";
             }
 }
+/***************получает сумму денег по имени владельца************/
+function print_money($owner){
+   $id=get_id($owner);
+         $coins = get_count('1', $id);
+         $coins=number_format ($coins , $decimals = 0 ,$dec_point = "." , $thousands_sep = " " ); //number_format — Форматирует число с разделением групп
+         return $coins;
+}
+
+/***************увеличивает сумму денег  на 50 000 ************/
+function put_money($owner){
+  $id=get_id($owner);
+  $coins = get_count('1', $id);
+  $coins = $coins + 1;
+
+ R::exec( 'UPDATE owner_items SET count= :coins WHERE owner_id = :id AND item_id = :item', array(':coins' => $coins,':item'=> '1', ':id' => $id));
+   
+
+}
 // /*Функция вносит изменения имени собаки по ее Id*/
 // function insert_name($id,$name){
 // 	 R::exec( 'UPDATE animals SET name=:name WHERE id = :id ', array(':name'=> $name, ':id' => $id));
@@ -168,18 +186,22 @@ function insert_data($tabl,$id,$cell,$value){  //$tabl - название таб
         }
 	}//tabl animals
 	if('users'===$tabl){
+   
                     switch ($cell) {
+                              case 'visits':
+                                 return R::exec( 'UPDATE users SET visits=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                  break;
                             case 'l_time':
-                                 return R::exec( 'UPDATE users SET l_time=:value WHERE login = :id ', array(':value'=> $value, ':id' => $id));
+                                 return R::exec( 'UPDATE users SET l_time=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                   break;
                              case 'email':
-                                    return R::exec( 'UPDATE users SET enail=:value WHERE login = :id ', array(':value'=> $value, ':id' => $id));
+                                    return R::exec( 'UPDATE users SET enail=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                     break;
                             case 'login':
-                                    return R::exec( 'UPDATE users SET login=:value WHERE login = :id ', array(':value'=> $value, ':id' => $id));
+                                    return R::exec( 'UPDATE users SET login=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                      break;
                           case 'id':
-                                    return R::exec( 'UPDATE users SET id=:value WHERE login = :id ', array(':value'=> $value, ':id' => $id));
+                                    return R::exec( 'UPDATE users SET id=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                     break;
         }
 	}//tabl USERS
@@ -952,9 +974,40 @@ function find_where($tabl, $id,$value){
               break;
           }
      }//$tabl = stats
+
+if ('users'===$tabl){
+     $row = R::getRow( 'SELECT * FROM users WHERE id = :id',
+       [':id' => $id]);
+          switch ($value) {
+
+            case 'login':
+              return $row[$value];
+              break;
+            case 'email':
+              return $row[$value];
+              break;
+            case 'kennel':
+              return $row[$value];
+              break;
+            case 'f_time':
+              return $row[$value];
+              break;
+            case 'l_time':
+              return $row[$value];
+              break;
+            case 'online':
+              return $row[$value];
+              break;
+            case 'sing':
+              return $row[$value];
+              break;
+            case 'visits':
+              return $row[$value];
+              break;
+          }
+     }//$tabl = owner_items
+
 }
-
-
 /*                                   *************************    данные Для бридинга готовой собаки**********  */
 function Start($id_m,$id_d){
 ////////////////////////////////////////////////////////////////TT

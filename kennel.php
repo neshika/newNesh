@@ -17,15 +17,15 @@ require "/libs/up.php";
 /*каунтом считаем сколько строк с собаками по владельцу*/        
          $count = R::count( 'animals', 'owner = :owner && status = 1',
         [':owner' => $owner]);
-         $id=get_id($owner);
-         $coins = get_count('1', $id);
-         $coins=number_format ($coins , $decimals = 0 ,$dec_point = "." , $thousands_sep = " " ); //number_format — Форматирует число с разделением групп
+        $coins = print_money($owner);
          echo "<br>Количество собак: " . $count;
          echo "<br>Денежный запас: " .  $coins;
+        
 /*создаем форму с кнопками по сортировке собак на виды*/      
       ?>
 
       <form method="POST" action="/kennel.php">
+          <button type="submit" class="knopka" name="money" >кредит 50 000</button>
           <button type="submit" class="knopka" name="all_dogs">все собаки</button>
           <button type="submit" class="knopka" name="female">суки</button>
           <button type="submit" class="knopka" name="male">кобели</button>
@@ -35,9 +35,12 @@ require "/libs/up.php";
 
 
 /************************* Ели нажата кнопка ВСЕ СОБАКИ выводим на экран всех собак, пренадлежащих владельцу*/
-
-
-
+ var_dump($_POST['money']);
+      if( isset($_POST['money']) ){
+       put_money($owner);
+      echo print_money($owner);
+     }
+     
        if( isset($_POST['all_dogs']) ){
         $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && status = 1' ,
         [':owner' => $owner]);
