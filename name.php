@@ -46,7 +46,11 @@ require "/libs/up.php";
 ?>
        <img src="<?php echo $_POST['url']?>"> 
       </div>
-
+<!-- ******************** вывод статы собаки  скрытый текст*****************--> 
+    <details>
+      <summary>Статы|speed|agility| teach | jump | scent | f i n d |  Total |Mutation|</summary> 
+          <?php print_stats_d($id);  ?>
+    </details>
 <!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
     <details>
       <summary>Генетический код</summary> 
@@ -77,10 +81,12 @@ require "/libs/up.php";
             <!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
               <details>
                     <summary>Генетический код</summary> 
-                    <?php print_all_d($id_m);  endif; ?>
+                    <?php print_all_d($id_m);?>
+                    <summary>Статы|spd|agl| tech | jmp |scnt| fnd| Ttl |Mut|</summary> 
+                    <?php print_stats_d($id_m);  ?>
                </details>
        </details>
-    
+ <?php endif;    ?>
      </div class="content_mum">
 <?php if(!isset($id_d)): ?>
 <!-- правая колонка папы-->  
@@ -103,7 +109,9 @@ require "/libs/up.php";
                   <!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
               <details>
                   <summary>Генетический код</summary> 
-                  <?php print_all_d($id_d); endif; ?>
+                    <?php print_all_d($id_d);?>
+                    <summary>Статы| spd | agl | tech | jmp | scnt| fnd | Ttl |Mut|</summary> 
+                    <?php print_stats_d($id_d); ?> 
               </details>
         </details>
     
@@ -111,7 +119,7 @@ require "/libs/up.php";
     </p>
     </main>
 
-<?php
+<?php endif;
 ?></div>
     <!-- --------------------------------------  class="right_sidebar"  ----------------------------- -->   
 

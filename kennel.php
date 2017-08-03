@@ -35,7 +35,7 @@ require "/libs/up.php";
 
 
 /************************* Ели нажата кнопка ВСЕ СОБАКИ выводим на экран всех собак, пренадлежащих владельцу*/
- var_dump($_POST['money']);
+ 
       if( isset($_POST['money']) ){
        put_money($owner);
       echo print_money($owner);

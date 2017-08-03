@@ -15,10 +15,10 @@ require "/libs/up.php";
         $l_time=find_where('users', $id,'l_time');
         $now=date('Y-m-d');  //2017-08-03
         $visits=find_where('users',$id,'visits');
-        echo '<br>' . $visits .$now . $l_time;
+       // echo '<br>' . $visits .$now . $l_time;
 
         if($now!=$l_time){
-          echo 'разые';
+         // echo 'разые';
           $visits=$visits+1;
 
           insert_data('users',$id,'visits',$visits);

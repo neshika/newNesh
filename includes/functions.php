@@ -317,15 +317,28 @@ function get_id($login){
 
  /*Функция возвращает данные по собаке по ее ID*/
 function print_all_d($id){
-	$array =  R::getAll( 'SELECT * FROM animals WHERE id = :id',
+	
+  $array =  R::getAll( 'SELECT * FROM animals WHERE id = :id',
         [':id' => $id]); 
 	foreach($array as $item) {
+              foreach ($item as $key => $value) {
+                 echo " | " . " $value";
+                }    
+              echo "<br><br>";
+            }
+}
+function print_stats_d($id){
+  
+  $array =  R::getAll( 'SELECT * FROM stats WHERE dog_id = :id',
+        [':id' => $id]); 
+  foreach($array as $item) {
               foreach ($item as $key => $value) {
                  echo " | " . "$value";
                 }    
               echo "<br><br>";
             }
 }
+
 //  /*Функция возвращает имя владельца по собаке по ее ID*/
 // function ret_breeder($id){
 // 	$string =  R::getCol( 'SELECT breeder FROM animals WHERE id = :id',
@@ -1335,15 +1348,7 @@ function print_stats($id_m,$id_d,$mutation)
       echo ' --- ' .find_where('stats',$id_d,'scent');
       echo ' --- ' .find_where('stats',$id_d,'find');
       echo ' ---/ ' .find_where('stats',$id_d,'total') . ' отец ' . $id_d;
-   /*   $speed=((find_where('stats',$id_m,'speed')+find_where('stats',$id_d,'speed'))/2);
-      $speed=$speed+($speed*$mutation/100);
-      $speed2=$speed-($speed*$mutation/100);
-      $speed = number_format ($speed , $decimals = 2 ,$dec_point = "." , $thousands_sep = " " );
-      $speed2 = number_format ($speed2 , $decimals = 2 ,$dec_point = "." , $thousands_sep = " " );
-       
-       echo '<br>speed = ' . $speed;
-       echo '<br>speed2 = ' . $speed2;
-*/
+   
 }
 
 /******************************** внесение новых стат по ID мамы иID папы и даем ID новой собаки ******************************************/
