@@ -54,6 +54,7 @@ require "/libs/up.php";
                 $tip=find_where('animals', $key,'hr');
                 $lit=find_where('animals', $key,'litter');
                 $pup=find_where('animals', $key,'puppy');
+                $pol=find_where('animals', $key,'sex');
 /*выводим на экран имя собаки как ссылку*/
                 echo '<a href="/name.php?id=' . $key . '">'?>
 
@@ -61,6 +62,7 @@ require "/libs/up.php";
                 <img src="<?php echo print_pic($key)?>" width="10%" float="left"></a>
                 <div><?php   //  вывод на экран количество вязок и щенков
                         echo 'имя: ' . $value;
+                        echo '<br> пол : ' . $pol;
                         echo '<br> тип : ' . $tip;
                         echo '<a href="/lit&pup.php?id=' . $key . '">' . "<br> вязки/дети: ". $lit .'/'. $pup;?>
                     

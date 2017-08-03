@@ -34,6 +34,49 @@ function print_all(){
               echo "<br><br>";
             }
 }
+/**************************** функция печатает на экран статы и ГП*************************/
+function detalis($id){
+
+          echo '<br>Статы: ' . find_where('animals',$id,'name');
+          echo '<br>Скорость:_____ ' . find_where('stats',$id,'speed');
+          echo '<br>Уворот:_______ ' . find_where('stats',$id,'agility');
+          echo '<br>Обучение:_____ ' . find_where('stats',$id,'teach');
+          echo '<br>Прыжки:______ ' . find_where('stats',$id,'jump');
+          echo '<br>Обоняние:_____ ' . find_where('stats',$id,'scent');
+          echo '<br>Поиск:________ ' . find_where('stats',$id,'find');
+          echo '<br>Итого:________ ' . find_where('stats',$id,'total');
+          echo '<br>ГП: ' . find_where('animals',$id,'sex');;
+          echo '<br>hr:_____ ' . find_where('animals',$id,'hr');
+          echo '<br>aa:_____ ' . find_where('animals',$id,'aa');
+          echo '<br>bb:_____ ' . find_where('animals',$id,'bb');
+          echo '<br>tt:______ ' . find_where('animals',$id,'tt');
+          echo '<br>mm:____ ' . find_where('animals',$id,'mm');
+          echo '<br>ww:____ ' . find_where('animals',$id,'ww');
+          echo '<br>ff:______ ' . find_where('animals',$id,'ff');
+
+
+}
+/**************************** функция печатает на экран дерево(родственников)*************************/
+function f_tree($id){
+         // echo '<br>Семья: ';
+          echo '<hr>';
+          echo '<br>мама: ' . find_where('animals',$id,'mum');
+          echo '<br>дед: ' . find_where('animals',$id,'g0dad');
+          echo '<br>бабка: ' . find_where('animals',$id,'g0mum');
+          echo '<br>прадед(по деду): ' . find_where('animals',$id,'gg0dad1');
+          echo '<br>прабабка(по деду): ' . find_where('animals',$id,'gg0mum2');
+          echo '<br>прадед(по бабке): ' . find_where('animals',$id,'gg0dad3');
+          echo '<br>прабабка(по бабке): ' . find_where('animals',$id,'gg0mum4');
+          echo '<hr>';
+
+          echo 'папа: ' . find_where('animals',$id,'dad');
+           echo '<br>дед: ' . find_where('animals',$id,'g1dad');
+          echo '<br>бабка: ' . find_where('animals',$id,'g1mum');
+          echo '<br>прадед(по деду): ' . find_where('animals',$id,'gg1dad1');
+          echo '<br>прабабка(по деду): ' . find_where('animals',$id,'gg1mum2');
+          echo '<br>прадед(по бабке): ' . find_where('animals',$id,'gg1dad3');
+          echo '<br>прабабка(по бабке): ' . find_where('animals',$id,'gg1mum4');
+}
 /***************получает сумму денег по имени владельца************/
 function print_money($owner){
    $id=get_id($owner);
@@ -273,8 +316,8 @@ function gol_pooh($on,$ona){
 	if('Hrhr'==$on){			//он голый
 		if('Hrhr'==$ona){	//она Голая
 			$num=Rand(1,3);
-			ECHO $num;
-			echo $ona;
+			//ECHO $num;
+			//echo $ona;
 			if(1==$num || 2==$num){
 			 return $ona; //шанс 75% голый 25% пух
 			}
@@ -400,7 +443,7 @@ function print_stats_d($id){
 // }
 /*Функция возвращает название картинки в зависимости от пола собаки по ее ID*/
 function ret_pic($id){
-	If('сука'==find_where('animals',$id,'sex'))
+	if('сука'==find_where('animals',$id,'sex'))
 		return '<img src = "/pic/female_mini.png">';
 	else
 		return '<img src = "/pic/male_mini.png">';
@@ -712,24 +755,24 @@ function breedding($on,$ona,$temp, $temp2,$temp3){
 //$temp3="Tt";
 $num=0;
 
-	echo "<br>код самца: $on <br>";
-	echo "код самки: $ona <br>";
+	//echo "<br>код самца: $on <br>";
+	//echo "код самки: $ona <br>";
 
 	if ($on==$temp && $ona==$temp){	//AA
-			echo 'Оба родителя ';
+		//	echo 'Оба родителя ';
 			$num=$on;
 			return $num;
 			die();
 	}
 	if($on==$temp2 && $ona==$temp2){	//аа
-		echo 'Оба родителя ';
+	//	echo 'Оба родителя ';
 		$num=$ona;
 		return $num;
 		die();
 	}
 	if($on==$temp3 && $ona==$temp3){	//AaАа
 		$num=rand(1,100);
-		echo $num;
+	//	echo $num;
 		if($num>1 && $num<50){
 			$num=$on;
 			return $num;
@@ -737,7 +780,7 @@ $num=0;
 		}
 		else{							//AA
 			$num=rand(1,2);
-			echo $num;
+		//	echo $num;
 			if($num%2){
 				$num=$temp;
 				return $num;
@@ -752,7 +795,7 @@ $num=0;
 	}
 	if($on==$temp3 && $ona==$temp2){	//Aa aa
 		$num=rand(1,100);
-		echo $num;
+	//	echo $num;
 		if($num>=1 && $num<=50){
 			$num=$on;
 			return $num;
@@ -766,7 +809,7 @@ $num=0;
 	}
 	if($on==$temp2 && $ona==$temp3){	//aa Aa
 		$num=rand(1,100);
-		echo $num;
+		//echo $num;
 		if($num>1 && $num<50){		//aa
 			$num=$ona;
 			return $num;
@@ -780,7 +823,7 @@ $num=0;
 	}
 	if($on==$temp && $ona==$temp3){	//AA Aa
 		$num=rand(1,100);
-		echo $num;
+		//echo $num;
 		if($num>=1 && $num<=50){		//AA
 			$num=$on;
 			return $num;
@@ -794,7 +837,7 @@ $num=0;
 	}
 	if($on==$temp3 && $ona==$temp){	//Aa AA
 		$num=rand(1,100);
-		echo $num;
+	//	echo $num;
 		if($num>=1 && $num<=50){		//AA
 			$num=$ona;
 			return $num;
@@ -807,7 +850,7 @@ $num=0;
 			}
 	}
 	else{ 
-		echo 'разные';
+		//echo 'разные';
 		$num=$temp3;
 		return $num;
 		die();
@@ -1049,8 +1092,9 @@ foreach ($dogs_m as $dog) {
 	insert_data('animals',$id_m,'puppy',$puppy);
 	insert_data('animals',$id_m,'litter',$litter);
 //echo '<br>предки мамы: ';
-	//echo $G0dad=$dog['dad'];		//отец матери для щенка дед
-	//echo $G0mum=$dog['mum'];		//мать матери для женка бабка
+	
+  $G0dad=$dog['dad'];   //отец матери для щенка дед
+  $G0mum=$dog['mum'];    //мать матери для женка бабка
 	$GG0dad1=$dog['g1dad'];
 	$GG0mum2=$dog['g1mum'];
 	$GG0dad3=$dog['g0dad'];	//прадед
@@ -1080,8 +1124,8 @@ foreach ($dogs_d as $dog) {
 	insert_data('animals',$id_d,'puppy',$puppy);
 	insert_data('animals',$id_d,'litter',$litter);
 //echo '<br>предки папы: ';
-	//echo $G1dad=$dog['dad'];
-	//echo $G1mum=$dog['mum'];
+	$G1dad=$dog['dad'];
+	$G1mum=$dog['mum'];
 	$GG1dad1=$dog['g1dad'];
 	$GG1mum2=$dog['g1mum'];
 	$GG1dad3=$dog['g0dad'];
@@ -1104,16 +1148,16 @@ $ff_new = breedding($FF_d,$FF_m,'FF','ff','Ff');
 //echo "<br> ff_new: " . $ff_new;
 
 
-echo '<br> рандомный пол!';
+//echo '<br> рандомный пол!';
 $pol=f_bdika_sex();
-echo '=================';
-var_dump($hr_on);
-var_dump($hr_ona);
+//echo '=================';
+//var_dump($hr_on);
+//var_dump($hr_ona);
 
 
-echo '=================';
-echo $hr_new=gol_pooh($hr_on,$hr_ona);
-echo '=================';
+//echo '=================';
+$hr_new=gol_pooh($hr_on,$hr_ona);
+//echo '=================';
 $birth=date("Y-m-d");
 
 //////////////////////////////////////////////////////////// обновление данных во всей таблице по столбцу
@@ -1145,6 +1189,9 @@ $dogs->dad=$id_d;
 //echo '<br> $G1mum: ' . $G1mum;
 //echo '<br> $G0dad: ' . $G0dad;
 //echo '<br> $G0mum: ' . $G0mum;
+
+
+
 
 /*по линии отца */
 $dogs->g1dad=$G1dad;
@@ -1208,12 +1255,13 @@ function check_mutation($id_m,$id_mum,$id_g1mum,$id_g0mum,$id_gg1mum2,$id_gg0mum
 
         // $id_dad=2;
          //$id_gg1dad1=2;
+           $num=Rand(1,100);
           
-          //echo '<br>num ' . $num=Rand(1,100);
+          echo '<br>num' . $num;
       //    echo '<br> проверка на родство: ';
           $temp=1;
           if($id_d==$id_dad){
-         //   echo '<br>партнер - отец';
+           echo '<br>партнер - отец';
 
             if($num>0 && $num<75){
               $temp=0;
@@ -1225,7 +1273,7 @@ function check_mutation($id_m,$id_mum,$id_g1mum,$id_g0mum,$id_gg1mum2,$id_gg0mum
                         
           }
           elseif(($id_d==$id_g1dad) || ($id_d==$id_g0dad)){
-         //   echo '<br>партнер - дед';
+              echo '<br>партнер - дед';
 
            // echo 'num ' . $num=Rand(25,50);
             if($num>50 && $num<100){
@@ -1235,7 +1283,7 @@ function check_mutation($id_m,$id_mum,$id_g1mum,$id_g0mum,$id_gg1mum2,$id_gg0mum
            
           }
           elseif(($id_d==$id_gg1dad1) || ($id_d==$id_gg0dad1) || ($id_d==$id_gg1dad3)|| ($id_d==$id_gg0dad3)){ 
-           // echo '<br>партнер - прадед';
+            echo '<br>партнер - прадед';
 
             if($num>0 && $num<=25){
               $temp=0;
@@ -1246,7 +1294,7 @@ function check_mutation($id_m,$id_mum,$id_g1mum,$id_g0mum,$id_gg1mum2,$id_gg0mum
            
           //самку
           if($id_m==$id_mum){
-         //   echo '<br>партнерша - мать';
+            echo '<br>партнерша - мать';
 
              if($num>0 && $num<75){
               $temp=0;
@@ -1255,7 +1303,7 @@ function check_mutation($id_m,$id_mum,$id_g1mum,$id_g0mum,$id_gg1mum2,$id_gg0mum
           }
           
           elseif(($id_m==$id_g1mum) || ($id_m==$id_g0mum)){
-         //  echo '<br>партнерша - бабка';
+           echo '<br>партнерша - бабка';
 
              if($num>50 && $num<100){
               $temp=0;
@@ -1264,7 +1312,7 @@ function check_mutation($id_m,$id_mum,$id_g1mum,$id_g0mum,$id_gg1mum2,$id_gg0mum
             
           }
           elseif(($id_m==$id_gg1mum2) || ($id_m==$id_gg0mum2) || ($id_m==$id_gg1mum4)|| ($id_m==$id_gg0mum4)){ 
-          //  echo '<br>партнерша - пробабка';
+            echo '<br>партнерша - пробабка';
 
              if($num>0 && $num<=25){
               $temp=0;
@@ -1293,11 +1341,7 @@ function ancestry ($id_m,$id_d){
       $id_gg1dad3=find_where('animals', $id_m,'gg1dad3');
       $id_gg0dad3=find_where('animals', $id_m,'gg0dad3');
         //echo 'отец=' . $id_dad . ' / дед по папе=' . $id_g1dad. ' / дед по маме=' . $id_g0dad. ' / прадед по деду(отец)=' . $id_gg1dad1. ' / прадед по бабке(отец)=' . $id_gg1dad3. ' / прадед по деду(мать)=' . $id_gg0dad1. ' / прадед по бабке(мать)=' . $id_gg0dad3;
-        
-        
-
-  
-
+   
 /*******************   данные предков кобеля женского пола */
 
 
@@ -1362,12 +1406,12 @@ function new_stats($id_m,$id_d,$id_new){
         $plus='1';
         
         $plus=ancestry ($id_m,$id_d);
-       
+       /*
         if(1==$plus){
           echo 'При вязки близкородственных партнеров возможны ухудшения качеств и получение мутаций! Будьте осторожнее!';
         }
         
-        
+     */   
         $speed_new= get_stats($id_m, $id_d, 'speed', $mutation, $plus);
        // print_stats($id_m,$id_d,$mutation);
        

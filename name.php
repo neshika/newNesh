@@ -45,12 +45,10 @@ require "/libs/up.php";
       //insert_url($_POST['url'],$id); //вставляет ссылку на картинку в базу
 ?>
        <img src="<?php echo $_POST['url']?>"> 
+      
       </div>
-<!-- ******************** вывод статы собаки  скрытый текст*****************--> 
-    <details>
-      <summary>Статы|speed|agility| teach | jump | scent | f i n d |  Total |Mutation|</summary> 
-          <?php print_stats_d($id);  ?>
-    </details>
+ <!-- ******************** вывод статы собаки  *****************--> 
+  <?php detalis($id);?>
 <!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
     <details>
       <summary>Генетический код</summary> 

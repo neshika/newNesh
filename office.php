@@ -41,7 +41,18 @@ require "/libs/up.php";
         <h3><li>Важные события: </li></h3>
         <?php
 
-      
+          //$needles = R::find('needle',' haystack = :haystack
+            //ORDER BY :sortorder',
+              //array( 'sortorder'=>$sortorder, ':haystack'=>$haystack ));
+        
+
+          $array =  R::getAll( 'SELECT * FROM stats ORDER BY dog_id'); 
+        foreach($array as $item) {
+              foreach ($item as $key => $value) {
+                 echo " | " . "$value";
+                }    
+              echo "<br><br>";
+            }
 
         
 ?>

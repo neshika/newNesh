@@ -24,6 +24,8 @@ $id_dog= $_SESSION['Dog'];// выгружаем из памяти id собак�
     <img src="<?php echo print_pic($id_dog)?>">
 </div>
     <details><summary> <?php echo "Выбранная собака: " . find_where('animals',$id_dog,'name');?>
+              <summary>Статы|speed|agility| teach | jump | scent | f i n d |  Total |Mutation|</summary> 
+                         <?php print_stats_d($id_dog);  ?>
     </summary> <?php print_all_d($id_dog);?></details>
 
 <div style="background: yellow;">
@@ -40,7 +42,10 @@ $id_dog= $_SESSION['Dog'];// выгружаем из памяти id собак�
                ?>
                 <form method="post" action="breedding.php">
                 <?php $_SESSION['para']=$id_dog;?>
-                <?php echo '<a href="/name.php?id=' . $key . '">' . "$value";?></a>
+                <?php echo '<a href="/name.php?id=' . $key . '">' . "$value";  //$value - имя собаки // $key = id ?>
+                                  <summary>Статы| spd | agl | tech | jmp | scnt| fnd | Ttl |Mut|</summary> 
+                                          <?php print_stats_d($key); ?> 
+                </a> 
                 <div style="background: black; height: 150px; width: 150px;">
                     <div style="display:none;" class="radio_buttons">
                           <input type="radio" NAME="ONONA" VALUE="<?=$key?>" class="knopka" checked />

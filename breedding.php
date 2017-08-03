@@ -16,18 +16,12 @@ error_reporting(E_ALL);
 <title>Cимулятор заводчика</title>
 </head>
 <body>
-
-<div align="center">
-
-<h1><?php var_dump($_POST['ONONA']); var_dump($_SESSION['para']);?></h1>
-
-
  <?php
  
 
  $temp=(int)$_SESSION['para'];
  $temp2=(int)$_POST['ONONA'];
- echo $temp . "<br>"; echo $temp2 . "<br>";
+ 
   if ('сука' === find_where('animals',$temp,'sex')){
             $id_m = $temp;
             $id_d = $temp2;
@@ -38,21 +32,43 @@ error_reporting(E_ALL);
             $id_d = $temp; 
       } 
  
-//echo 'Мама: ' . var_dump($id_m);;
-
-//echo 'Папа: ' . var_dump($id_d);;
-
-
 // ******************** вывод картинки мамы и папы по id  из базы *****************-->  
-?>  <img src="<?php echo print_pic($id_m)?>"><br>       
-      
-  
- <img src="<?php echo print_pic($id_d)?>"><br>      
+?>  
+<div id="all_breed">
 
- <?php  
+    <div id="left_breed">
+        
+    <?php echo '<br><br><br><br>Мама: ' . var_dump($id_m) . '<br>';?>
+        <img src="<?php echo print_pic($id_m)?>">
+        <?php detalis($id_m);
+        f_tree($id_m);
+        ?>
+        <br>       
+      
+    </div>
+    <div id="right_breed">
+          <?php echo '<br><br><br><br>Папа: ' . var_dump($id_d);?>
+         <img src="<?php echo print_pic($id_d)?>">
+         <?php detalis($id_d);
+         f_tree($id_d);
+          ?>
+         <br>      
+
+  </div> 
+</div>
+ <?php 
+
+
 $_SESSION['id_m']=$id_m;
 $_SESSION['id_d']=$id_d;
 
+?>
+ <?php
+ $plus=ancestry ($id_m,$id_d);
+       echo '<br>'. $plus;
+        if(0==$plus){
+          ?><h3 style="color:red"><?php echo '<br>При вязки близкородственных партнеров возможны ухудшения качеств и получение мутаций! Будьте осторожнее!';?></h3><?php
+        }
 ?>
 <form method="POST" action="/NewDog.php">
     <input type="submit" name="nazvanie_knopki" value="Вяжем" class="knopka"/>
@@ -60,7 +76,6 @@ $_SESSION['id_d']=$id_d;
 <form method="POST" action="/kennel.php">
     <input type="submit" name="exit" value="Вернуться" class="knopka"/>
 </form>
-</div>
 </body>
 </html>
 

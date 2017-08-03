@@ -15,15 +15,11 @@ error_reporting(E_ALL);
 <title>Cимулятор заводчика</title>
 </head>
 <body>
-
-<div align="center">
 <?php
 
 $id_m=$_SESSION['id_m'];
 $id_d=$_SESSION['id_d'];
 
-var_dump($id_m);
-var_dump($id_d);
  $id_new=start($id_m,$id_d); // функция для получания параметров собаки 
         // ******************** вывод картинки собаки по id  *****************-->  
       echo "<br>Малыш:";
@@ -57,6 +53,9 @@ var_dump($id_d);
   
 </form>
 </div>
+<p>Родители: </p>
+<div id="left_breed"><?php detalis($id_m);?> </div>
+<div id="right_breed"><?php detalis($id_d);?></div>
 </body>
 </html>
 

@@ -382,3 +382,21 @@ width:24%;
 height:200px;
 background:olive;
 }
+
+#left_breed{
+  position:absolute;
+left:0;
+width:500px;
+}
+
+#right_breed{
+  position:absolute;
+left:500px;
+width:200px;
+}
+#all_breed{
+  position:relative;
+  background: black;
+  
+
+} 
