@@ -856,8 +856,8 @@ $num=0;
 		die();
 	}
 }
-
-function find_where($tabl, $id,$value){
+//find_where('animals', $key,'hr');
+function find_where($tabl,$id,$value){
 	if ('animals'===$tabl){
 	   $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
        [':id' => $id]);
@@ -1158,7 +1158,7 @@ $pol=f_bdika_sex();
 //echo '=================';
 $hr_new=gol_pooh($hr_on,$hr_ona);
 //echo '=================';
-$birth=date("Y-m-d");
+$birth=date("d.m.Y");
 
 //////////////////////////////////////////////////////////// обновление данных во всей таблице по столбцу
 
