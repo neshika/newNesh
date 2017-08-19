@@ -499,32 +499,47 @@ function insert_url($url,$id){
   /*Функция вносит в переменную $_POST['url'] путь до картинки*/
  function ret_img($array){ //hr_white
  		//$array='hr_shoko';
-			$need='';
-			$anwer="pic/" . $array . ".png";
- 		
- 		if (strrpos($array , 'r_')){
- 			$anwer="pic/hrhr/" . $array . ".png";
- 		 		
- 		}elseif(strrpos($array , $need)){
- 			$anwer="pic/" . $array . ".png";
+    
+    $num=Rand(1,5);
+   // $num=1;
+    $coat=$array . '_0' . $num;
+    
+    echo $coat;
 
- 		}else{
- 			$need='MM';
+    $row = R::getRow( 'SELECT * FROM coat WHERE color = :co',
+       [':co' => $coat]);
+
+    //var_dump($row['url']);
+    $_POST['url']=$row['url'];
+
+			// $need='';
+			// $anwer="pic/" . $array . ".png";
+ 		
+ 		// if (strrpos($array , 'r_')){     //ЕСЛИ hrhr пуховая
+ 		// 	$anwer="pic/hrhr/" . $array . ".png";
+ 		 		
+ 		// }elseif(strrpos($array , $need)){    //ЕСЛИ голая собака 
+   //   // $num=Rand(1,5);
+   //   // $anwer="pic/clear/" . $array . "_0" . $num. ".png";
+ 		// 	$anwer="pic/" . $array . ".png";
+
+ 		// }else{
+ 		// 	$need='MM';
  			
- 		//echo "<br>need  " . $need;
- 			if (strrpos($array , $need)) $anwer=ret_need($array, $need);
- 			$need='TT';
+ 		// //echo "<br>need  " . $need;
+ 		// 	if (strrpos($array , $need)) $anwer=ret_need($array, $need);
+ 		// 	$need='TT';
  			
- 		//echo "<br>need  " . $need;
- 			if (strrpos($array , $need)) $anwer=ret_need($array, $need);
- 			$need='TM';
+ 		// //echo "<br>need  " . $need;
+ 		// 	if (strrpos($array , $need)) $anwer=ret_need($array, $need);
+ 		// 	$need='TM';
  			
- 		//echo "<br>need  " . $need;
- 			if (strrpos($array , $need)) $anwer=ret_need($array, $need);
- 		}
+ 		// //echo "<br>need  " . $need;
+ 		// 	if (strrpos($array , $need)) $anwer=ret_need($array, $need);
+ 		// }
  		
  		
- 		$_POST['url']= $anwer;
+ 		// $_POST['url']= $anwer;
  		//var_dump($_POST['url']);
 }
 
@@ -650,7 +665,7 @@ function hr_white_ttmm($B){
 	if ($B=='bb')	//шоко
 		ret_img('hr_white_sh');
 	else 			//черный
-		ret_img('hr_white');
+		ret_img('hr_white_bl');
 }
 
 
@@ -659,7 +674,11 @@ function hr_white_ttmm($B){
 //1.1 голый белый (шоко/черный)
 function white_ttmm($B,$T,$M){	
 	if(($T=="tt") && ($M=="mm")){
-			ret_img('white');
+      if($B == "bb")
+        ret_img('white_sh');
+      if(($B == "BB") || ($B == "Bb"))
+        ret_img('white_bl');
+			
 		}
 		elseif (($T=="tt") && ($M!="mm")){
 			if($B == "bb")
@@ -706,6 +725,7 @@ function f_gol($W,$F,$B,$T,$M){
 			}
 			if (($B == 'Bb') || ($B == 'BB')){ //черный
 				black_ttmm();
+        echo 'black_ttmm';
 			}
 		}
 					
@@ -1031,7 +1051,7 @@ function find_where($tabl,$id,$value){
           }
      }//$tabl = stats
 
-if ('users'===$tabl){
+    if ('users'===$tabl){
      $row = R::getRow( 'SELECT * FROM users WHERE id = :id',
        [':id' => $id]);
           switch ($value) {
@@ -1062,7 +1082,52 @@ if ('users'===$tabl){
               break;
           }
      }//$tabl = owner_items
+    if ('coat'===$tabl){
+     $row = R::getRow( 'SELECT * FROM coat WHERE id = :id',
+       [':id' => $id]);
+          switch ($value) {
 
+            case 'color':
+              return $row[$value];
+              break;
+            case 'url':
+              return $row[$value];
+              break;
+            
+          }
+     }//$tabl = coat
+     if ('dna'===$tabl){
+     $row = R::getRow( 'SELECT * FROM dna WHERE dog_id = :id',
+       [':id' => $id]);
+          switch ($value) {
+
+            case 'url_id':
+              return $row[$value];
+              break;
+            case 'hr':
+              return $row[$value];
+              break;
+            case 'ww':
+              return $row[$value];
+              break;
+            case 'ff':
+              return $row[$value];
+              break;
+            case 'bb':
+              return $row[$value];
+              break;
+            case 'mm':
+              return $row[$value];
+              break;
+            case 'tt':
+              return $row[$value];
+              break;
+            case 'aa':
+              return $row[$value];
+              break;
+            
+          }
+     }//$tabl = coat
 }
 /*                                   *************************    данные Для бридинга готовой собаки**********  */
 function Start($id_m,$id_d){
