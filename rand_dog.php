@@ -26,9 +26,9 @@ require "includes/functions.php";
 
       $all= "<br>".$Hr."<br>".$W."<br>".$F."<br>".$B."<br>".$T."<br>".$M;
     //echo $all;
- 	f_get_image($Hr,$W,$F,$B,$T,$M);
- 	?>
- <img src="<?php echo $_POST['url']?>">
+      $url=bdika_color ($Hr,$W,$F,$B,$T,$M);
+     ?>
+    <img src = "<?php echo $url; ?>">
 </div>
 <div style="background: blue; text-align: center; height: 350px; width: 350px; float: right; margin-right: 180px; ">
 	<?php 
@@ -42,12 +42,12 @@ require "includes/functions.php";
   	$T=f_rand_col('TT','Tt','tt');
   	$M=f_rand_col('MM','Mm','mm');
 
-      $all= "<br>".$Hr."<br>".$W."<br>".$F."<br>".$B."<br>".$T."<br>".$M;
+    $all= "<br>".$Hr."<br>".$W."<br>".$F."<br>".$B."<br>".$T."<br>".$M;
     //echo $all;
- 	f_get_image($Hr,$W,$F,$B,$T,$M);
- 	?>
- <img src="<?php echo $_POST['url']?>">
-</div> 
+      $url=bdika_color ($Hr,$W,$F,$B,$T,$M);
+     ?>
+    <img src = "<?php echo $url; ?>">
+</div>
 <form action="rand_dog.php" method="POST">
 <button type="submit" class="knopka" name="rand">Еще варианты</button>
 </form>

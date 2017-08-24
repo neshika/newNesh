@@ -23,28 +23,22 @@ require "includes/functions.php";
 		<a class="buttons" href='/login.php'>Да</a>
 		<a class="buttons" href='rand_dog.php'>НЕТ</a>
 		<?php
-		/*<form method="POST" action="/login.php">
-			<button type="submit" class="knopka">ДА</button>
-		</form>
-		<form method="POST" action="/signup.php">
-			<button type="submit" class="knopka">НЕТ</button>
-		</form>*/
-	//echo "<br>" . f_bdika_sex();	//дает рандомный пол
+		
 /** Содаем рандомную собаку и выводим на экран **/	
-  	$Hr=f_rand_col('HrHr','Hrhr','hrhr');
-  	$W=f_rand_col('WW','Ww','ww');
-  	$F=f_rand_col('FF','Ff','ff');
-  	$B=f_rand_col('BB','Bb','bb');
-  
-  	$T=f_rand_col('TT','Tt','tt');
-  	$M=f_rand_col('MM','Mm','mm');
+         	$Hr=f_rand_col('HrHr','Hrhr','hrhr');
+         	$W=f_rand_col('WW','Ww','ww');
+         	$F=f_rand_col('FF','Ff','ff');
+         	$B=f_rand_col('BB','Bb','bb');
+         
+         	$T=f_rand_col('TT','Tt','tt');
+         	$M=f_rand_col('MM','Mm','mm');
 
-      $all= "<br>".$Hr."<br>".$W."<br>".$F."<br>".$B."<br>".$T."<br>".$M;
-    //echo $all;
- 	f_get_image($Hr,$W,$F,$B,$T,$M);
- 	?>
- <img src="<?php echo $_POST['url']?>" width="45%"><?php
-	}?>
+             $all= "<br>".$Hr."<br>".$W."<br>".$F."<br>".$B."<br>".$T."<br>".$M;
+             echo $all . '<br>';
+        	$url=bdika_color ($Hr,$W,$F,$B,$T,$M);
+        	
+       }?>
+       <img src = "<?php echo $url; ?>" width="50%">
 	<!--<div id="my_text">Здесь мы изучаем блоки и CSS</div> -->
 	<p class="text_effect">Ваша удача рядом</p>
 	</div>

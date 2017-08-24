@@ -9,7 +9,7 @@ require "/libs/up.php";
         $owner=ret_owner(); //сохраняем название владельца в переменную из куки
 
 /*Получаем запросом  навание питомника, при условии что владелец идентифицируется по куку Сессии*/
-        $kennel = R::getCell('SELECT kennel FROM animals WHERE owner = :owner',
+        $kennel = R::getCell('SELECT kennel FROM users WHERE login = :owner',
         [':owner' => $owner]);
         ?> <p class="kennel"><?php echo "<br>Питомник: " . '"' . $kennel . '"';
         echo "<br>Владелец: " . $_SESSION['logged_user']->login;
@@ -20,7 +20,14 @@ require "/libs/up.php";
         $coins = print_money($owner);
          echo "<br>Количество собак: " . $count;
          echo "<br>Денежный запас: " .  $coins;
-        
+         $vip=Rand(1,5);
+          if('1'==$vip){
+          echo '</br> Вас посетила удача. К вам пришел бог. ' . '</br>';
+          $vip=ret_url_from_dna('vip');
+          ?><img src="<?php echo $vip;?>" width="10%"><?php
+
+        }
+
 /*создаем форму с кнопками по сортировке собак на виды*/      
       ?>
 
@@ -51,19 +58,18 @@ require "/libs/up.php";
                 echo "<br><hr><a>";
 
 /*сохранение данных о голости собаки + вязки/щенки*/
-                $tip=find_where('animals', $key,'hr');
+               // $tip=find_where('animals', $key,'hr');
                 $lit=find_where('animals', $key,'litter');
                 $pup=find_where('animals', $key,'puppy');
                 $pol=find_where('animals', $key,'sex');
 /*выводим на экран имя собаки как ссылку*/
-                echo '<a href="/name.php?id=' . $key . '">'?>
+                echo '<a href="/name.php?id=' . $key . '">';?>
 
-
-                <img src="<?php echo print_pic($key)?>" width="10%" float="left"></a>
+                <img src="<?php echo from_id_to_url($key);?>" width="10%" float="left"></a>
                 <div><?php   //  вывод на экран количество вязок и щенков
                         echo 'имя: ' . $value;
                         echo '<br> пол : ' . $pol;
-                        echo '<br> тип : ' . $tip;
+                      //  echo '<br> тип : ' . $tip;
                         echo '<a href="/lit&pup.php?id=' . $key . '">' . "<br> вязки/дети: ". $lit .'/'. $pup;?>
                     
                 </div><?php
@@ -91,16 +97,17 @@ require "/libs/up.php";
                 echo "<br><hr><a>";
 
 /*сохранение данных о голости собаки + вязки/щенки*/
-                $tip=find_where('animals', $key,'hr');
+                //$tip=find_where('animals', $key,'hr');
                 $lit=find_where('animals', $key,'litter');
                 $pup=find_where('animals', $key,'puppy');
 /*выводим имена сук как ссылки на страничку собаки*/
                 echo '<a href="/name.php?id=' . $key . '">'; ?>
 <!-- выводим картинку собаки -->
-                <img src="<?php echo print_pic($key)?>" width="10%"> </a>
+
+                <img src="<?php echo from_id_to_url($key);?>" width="10%"> </a>
                 <div>  <?php //вывод на экран количесва вязок и щенков у сук
                         echo 'имя: ' . $value;
-                        echo '<br> тип : ' . $tip;
+                        //echo '<br> тип : ' . $tip;
                         echo '<a href="/lit&pup.php?id=' . $key . '">' . "<br> вязки/дети: ". $lit .'/'. $pup;  ?>
                     
                  </div><?php
@@ -127,16 +134,17 @@ require "/libs/up.php";
                   foreach ($item as $key => $value) {
                       echo "<br><hr><a>";
 /*сохранение данных о голости собаки + вязки/щенки*/
-                      $tip=find_where('animals', $key,'hr');
+                     // $tip=find_where('animals', $key,'hr');
                       $lit=find_where('animals', $key,'litter');
                       $pup=find_where('animals', $key,'puppy');
 
 /*выводим имена кобелей как ссылки на страничку собаки*/
                       echo '<a href="/name.php?id=' . $key . '">'; ?>
-                      <img src="<?php echo print_pic($key)?>" width="10%"> </a>
+
+                      <img src="<?php echo from_id_to_url($key);?>" width="10%"> </a>
                  <div>
                       <?php echo 'имя: ' . $value;
-                            echo '<br> тип : ' . $tip;
+                           // echo '<br> тип : ' . $tip;
                             echo '<a href="/lit&pup.php?id=' . $key . '">' . "<br> вязки/дети: ". $lit .'/'. $pup;  ?>
                    
                   </div><?php
@@ -144,8 +152,6 @@ require "/libs/up.php";
               echo "<br />";
             }   //foreach($array as $item)
           }   //if( isset($_POST['male']) )
-
-
 
 //функция вызывающая футер сайта
 require "/libs/down.php";

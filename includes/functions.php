@@ -34,6 +34,7 @@ function print_all(){
               echo "<br><br>";
             }
 }
+
 /**************************** функция печатает на экран статы и ГП*************************/
 function detalis($id){
 
@@ -116,6 +117,22 @@ function insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,
 
     $id = R::store( $stats );
 }
+/*Функция вносит данные с таблицу статы*/
+function insert_new_dna($dog_id,$url_id,$hr,$ww, $ff,$bb,$mm,$tt,$aa){
+
+   $dna = R::dispense( 'dna' );
+    $dna->dog_id = $dog_id;
+    $dna->url_id = $url_id;
+    $dna->hr = $hr;
+    $dna->ww = $ww;
+    $dna->ff = $ff;
+    $dna->bb = $bb;
+    $dna->mm= $mm;
+    $dna->tt = $tt;
+    $dna->aa = $aa;
+
+    $id = R::store( $dna );
+}
 
 /*Функция вносит изменения имени собаки по ее Id*/
 function insert_data($tabl,$id,$cell,$value){  //$tabl - название таблицы \\ $id-ай ди выбранного\\ $cell-названия столба\\ $value- значение
@@ -172,27 +189,7 @@ function insert_data($tabl,$id,$cell,$value){  //$tabl - название таб
                                case 'status':
                                  return R::exec( 'UPDATE animals SET status=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
-                               case 'ff':
-                                 return R::exec( 'UPDATE animals SET ff=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
-                                 break;
-                               case 'ww':
-                                 return R::exec( 'UPDATE animals SET ww=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
-                                 break;
-                               case 'mm':
-                                 return R::exec( 'UPDATE animals SET mm=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
-                                 break;
-                               case 'tt':
-                                 return R::exec( 'UPDATE animals SET tt=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
-                                 break;
-                               case 'bb':
-                                 return R::exec( 'UPDATE animals SET bb=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
-                                 break;
-                               case 'aa':
-                                 return R::exec( 'UPDATE animals SET aa=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
-                                 break;
-                               case 'hr':
-                                 return R::exec( 'UPDATE animals SET hr=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
-                                 break;
+                              
                                case 'dad':
                                    return R::exec( 'UPDATE animals SET dad=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
@@ -345,6 +342,10 @@ function get_where($tabl, $param, $owner){
 function get_count($item, $owner){
 
     $string=R::getcol('SELECT count FROM owner_items WHERE owner_id =:id and item_id=:item', array(':id'=> $owner, ':item' => $item));
+    //var_dump($string);
+    if (empty($string)){
+      $string[0]='0';
+    }
     return $string[0];
 
 }
@@ -478,7 +479,7 @@ function f_bdika_sex(){
  
  <?php
  function print_pic($id){
- 	return find_where('animals',$id,'url');
+ 	return find_where('animals',$id,'u          rl');
  }
  /*Функция вносит путь до картинки собаки*/
 function insert_url($url,$id){
@@ -896,27 +897,7 @@ function find_where($tabl,$id,$value){
             case 'status':
               return $row[$value];
               break;
-            case 'ff':
-              return $row[$value];
-              break;
-            case 'ww':
-              return $row[$value];
-              break;
-            case 'mm':
-              return $row[$value];
-              break;
-            case 'tt':
-              return $row[$value];
-              break;
-            case 'bb':
-              return $row[$value];
-              break;
-            case 'aa':
-              return $row[$value];
-              break;
-            case 'hr':
-              return $row[$value];
-              break;
+           
             
             case 'gg0dad1':		//прадед по линии мамы
             	return $row[$value];
@@ -1514,3 +1495,198 @@ function new_stats($id_m,$id_d,$id_new){
 }
 
 /******************************************конец функций по изменению стат******************************/
+
+
+
+
+function TT_MM_B_HR1($B,$T,$M){
+  if('b0'==$B){
+    if( ('t1'==$T) && ('m1'==$M) ){
+       echo ' hr1w0f0b0t1m1 шоко c пятнами и крапом';
+        return ret_url_from_dna('hr1w0f0b0t1m1');
+    }
+    if( ('t0'==$T) && ('m1'==$M) ){
+      echo ' hr1w0f0b0t1m1 шоко c пятнами';
+        return ret_url_from_dna('hr1w0f0b0t0m1');
+    }
+    if( ('t1'==$T) && ('m0'==$M) ){
+      echo ' hr1w0f0b0t1m0 шоко c крапом';
+        return ret_url_from_dna('hr1w0f0b0t1m0');
+    }
+    if( ('t0'==$T) && ('m0'==$M) ){
+      echo ' hr1w0f0b0t0m0 шоко';
+        return ret_url_from_dna('hr1w0f0b0t0m0');
+    }
+  }
+  if('b1'==$B){
+     if( ('t1'==$T) && ('m1'==$M) ){
+     echo ' hr1w0f0b0t1m1 черный c пятнами и крапом';
+        return ret_url_from_dna('hr1w0f0b1t1m1');
+    }
+    if( ('t0'==$T) && ('m1'==$M) ){
+      echo ' hr1w0f0b0t1m1 черный c пятнами';
+      return ret_url_from_dna('hr1w0f0b1t0m1');
+    }
+    if( ('t1'==$T) && ('m0'==$M) ){
+    echo ' hr1w0f0b0t0m0 черный c крапом';
+      return ret_url_from_dna('hr1w0f0b1t1m0');
+    }
+    if( ('t0'==$T) && ('m0'==$M) ){
+     echo ' hr1w0f0b0t0m0 черный';
+      return ret_url_from_dna('hr1w0f0b1t0m0');
+    }
+  }
+
+}//end function TT_MM_B_HR0($B,$T,$M){
+
+// функция пишет в строку hr1w0f0b1t0m0
+function do_dna($Hr,$W,$F,$B,$T,$M){
+   ('hrhr'==$Hr ? $Hr='hr1' : $Hr='hr0');
+    ('ww'==$W ? $W='w0' : $W='w1');
+    ('ff'==$F ? $F='f0' : $F='f1');
+    ('bb'==$B ? $B='b0' : $B='b1');
+    ('tt'==$T ? $T='t0' : $T='t1');
+    ('mm'==$M ? $M='m0' : $M='m1');
+
+    $dna=$Hr . $W . $F . $B . $T . $M;
+
+       return $dna;
+}
+
+function ret_id_from_url($url){
+
+ $string =R::getCol('SELECT id FROM coat WHERE url = :url',
+        [':url' => $url]);
+
+   return $string[0];
+
+}
+function ret_url_from_dna($dna){ //color = hr0w0f0b1m1 = $dna
+  $array = R::getAssoc ('SELECT * FROM coat WHERE color =:co', array(':co'=> $dna));
+ //debug($array);
+  $id=array_rand($array);//выбирает рандомное значение из массива
+    
+    return find_where('coat',$id,'url');
+}
+//end  function ret_id_from_dna($dna){
+
+function from_id_to_url($id){  //получаем ссылку на картинку в зависимости от номер URL(animals')
+                $url_id=find_where('animals',$id,'url');
+                $url_pic=find_where('coat',$url_id,'url');
+                return $url_pic;
+}
+
+function  bdika_color($Hr,$W,$F,$B,$T,$M){ //возвращает url /pic/clear/white_sh_03.png
+    // $Hr='hrhr';   //голая
+    // $Hr='Hrhr';   //пух
+    // $W='WW';
+    // $F='FF';
+    // $B='bB';
+    // $T='tt';
+    // $M='mm';
+    
+    ('hrhr'==$Hr ? $Hr='hr1' : $Hr='hr0');
+    ('ww'==$W ? $W='w0' : $W='w1');
+    ('ff'==$F ? $F='f0' : $F='f1');
+    ('bb'==$B ? $B='b0' : $B='b1');
+    ('tt'==$T ? $T='t0' : $T='t1');
+    ('mm'==$M ? $M='m0' : $M='m1');
+
+  if('hr1'==$Hr){   //голая
+   // echo 'голая';
+    if('w0'==$W){
+         // echo ' не белая';
+      if('f0'==$F){
+          //echo ' не рыжая';
+        if('b0'==$B)    //шоколад
+          $my_dog=TT_MM_B_HR1($B,$T,$M);
+
+        if('b1'==$B)    //черная
+          $my_dog=TT_MM_B_HR1($B,$T,$M);
+
+      }
+      if('f1'==$F){ //рыжая
+        if('m1'==$M){ //с пятнами
+         echo ' hr1w0f1t0m0 рыжая c пятнами';
+          $my_dog=ret_url_from_dna('hr1w0f1t0m1');
+        }
+          if('m0'==$M){ //без пятен
+          echo ' hr1w0f1t0m0 рыжая';
+            $my_dog=ret_url_from_dna('hr1w0f1t0m0');
+          }
+      }
+
+      }
+        if('w1'==$W){ //белая
+          if('b0'==$B){ //шоко белая
+      echo ' hr1w0b0t0m0 белая/шоко';
+        $my_dog=ret_url_from_dna('hr1w0b0t0m0');
+      }
+      if('b1'==$B){ //черно/белая
+       echo ' hr1w0b1t0m0 белая/черный';
+        $my_dog=ret_url_from_dna('hr1w0b1t0m0');
+      }
+    }
+  }
+
+
+  if('hr0'==$Hr){   //пух
+    // echo 'пух';
+  
+    if('w0'==$W){
+        //не белая
+      if('f0'==$F){
+          //не рыжая
+        if('b0'==$B){
+          //шоко
+          if('m1'==$M){
+           echo 'hr0w0f0b0m1 шоколад с пятнами';
+            $my_dog=ret_url_from_dna('hr0w0f0b0m1');
+          }
+          if('m0'==$M){
+           echo 'hr0w0f0b0m0 шоко';
+            $my_dog=ret_url_from_dna('hr0w0f0b0m0');
+          }
+        }
+        if('b1'==$B){
+          //черный
+            if('m1'==$M){
+           echo 'hr0w0f0b1m1 черный с пятнами';
+            $my_dog=ret_url_from_dna('hr0w0f0b1m1');
+            }
+          if('m0'==$M){
+          echo 'hr0w0f0b1m0 черныq';
+            $my_dog=ret_url_from_dna('hr0w0f0b1m0');
+          }
+
+        }
+      }
+
+      elseif('f1'==$F){
+        if('m1'==$M){
+            echo 'hr0w0f1m1 рыжий с пятнами';
+            $my_dog=ret_url_from_dna('hr0w0f1m1');
+        }
+        if('m0'==$M){
+            echo 'hr0w0f1m0 рыжий';
+            $my_dog=ret_url_from_dna('hr0w0f1m0');
+
+        }
+      }
+
+    }
+    elseif('w1'==$W){
+      if('b0'==$B){
+         echo 'hr0w1b0 белая/шоко';
+          $my_dog=ret_url_from_dna('hr0w1b0');
+      }
+      if('b1'==$B){
+         echo 'hr0w1b1 белая/черный';
+          $my_dog=ret_url_from_dna('hr0w1b1');
+      }
+    }
+
+  }
+  //var_dump($my_dog);
+  return $my_dog;
+} //end function bdika_color
