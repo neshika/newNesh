@@ -117,7 +117,24 @@ function insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,
 
     $id = R::store( $stats );
 }
-/*Функция вносит данные с таблицу статы*/
+
+function insert_2_new_dogs($name,$sex,$race,$owner,$kennel,$birth,$url_id){
+
+    $new = R::dispense('animals');
+    $new->name = $name;
+    $new->sex = $sex;
+    $new->race = $race;
+    $new->breeder = $owner;
+    $new->owner = $owner;
+    $new->kennel = $kennel;
+    $new->birth = $birth;
+    $new->status = '1';
+    $new->url = $url_id;
+
+    $id = R::store( $new );
+
+}
+/*Функция вносит данные с таблицу Генетический код*/
 function insert_new_dna($dog_id,$url_id,$hr,$ww, $ff,$bb,$mm,$tt,$aa){
 
    $dna = R::dispense( 'dna' );
