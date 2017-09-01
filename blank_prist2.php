@@ -101,18 +101,19 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
   if (empty($errors)){
     //все хорошо, регистрируем 
     /*  создаем базу через REdBeen*/
-    echo "создаем базу";
+    echo "<br>создаем пользователя";
     $user = R::dispense('users');
     $user->login = $data ['login'];
     $user->email = $data ['email'];
     $user->kennel = $data ['kennel'];
     $user->f_time = date('d.m.Y', time() - 86400);
+   
 
 
     $user->password = password_hash($data ['password'], PASSWORD_DEFAULT); //зашифровываем пароль
     R::store ($user);
     
-                
+        echo "<br>создаем питомник";         
         $ken = R::dispense('kennels');
         $ken->name_k = $data ['kennel'];
         $ken->owner_k = $data ['login'];
@@ -145,15 +146,29 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
                  
          R::store ($ken);
 
+
+          echo "<br>создаем собак";
+
          $name='Без имени';
          $race='КХС';
-$mydate=$date('d.m.Y', time() - 86400);
-$owner=$data['login'];
-$kennel=$data['kennel'];
+          $mydate=date('d.m.Y', time() - 86400);
+          $owner=$data['login'];
+          $kennel=$data['kennel'];
+          
+          $url1_id=ret_id_from_url($_SESSION['url1']);
+          $url2_id=ret_id_from_url($_SESSION['url2']);
+          $id1=insert_2_new_dogs($name,$sex,$race,$owner,$kennel,$mydate,$url1_id);
+          $id2=insert_2_new_dogs($name,$sex2,$race,$data['login'],$data['kennel'],$mydate,$url2_id);
+       
 
- insert_2_new_dogs($name,$sex,$race,$owner,$kennel,$mydate,$url1);
- //insert_2_new_dogs($name,$sex2,$race,$data['login'],$data['kennel'],$mydate,$url2);
- //insert_2_new_dogs($name,$sex2,$race,$data['login'],$data['kennel'],$date('d.m.Y', time() - 86400),$url2);
+       $aa1=f_rand_col('AA','Aa','aa');
+       $aa2=f_rand_col('AA','Aa','aa');
+
+
+       
+        echo "<br>вносим генетический код";
+        insert_new_dna($id1,$url1_id,$_SESSION['hr1'],$_SESSION['ww1'], $_SESSION['ff1'],$_SESSION['bb1'],$_SESSION['mm1'],$_SESSION['tt1'],$aa1);
+        insert_new_dna($id2,$url2_id,$_SESSION['hr2'],$_SESSION['ww2'], $_SESSION['ff2'],$_SESSION['bb2'],$_SESSION['mm2'],$_SESSION['tt2'],$aa2);
 
 
     echo '<div style="color:green;">Добро пожаловать, все успешно!</div>';  

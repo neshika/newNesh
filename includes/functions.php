@@ -132,6 +132,7 @@ function insert_2_new_dogs($name,$sex,$race,$owner,$kennel,$birth,$url_id){
     $new->url = $url_id;
 
     $id = R::store( $new );
+    return $id;
 
 }
 /*Функция вносит данные с таблицу Генетический код*/
