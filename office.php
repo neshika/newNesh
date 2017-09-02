@@ -1,21 +1,24 @@
-		<?php
+<?php
+require "db.php";
 		//подключение файлов
-		/*require "/html/header.html";
+		require "/html/header.html";
 		require "/html/nav.html";
 		require "/html/aside.html";
-		*/
-		require "/libs/up.php";
+		
+
+		require "includes/functions.php";
+
+		//var_dump($_POST);
 
 		echo 'Добро пожаловать, ' . $_SESSION['logged_user']->login . ' .';
 				//date('d.m.Y', time() - 86400);
 		echo ' Сегодня: ' . date('d.m.Y');
 
-
 		$id=get_id($_SESSION['logged_user']->login);
 		$l_time=find_where('users', $id,'l_time');
-				$now=date('d.m.Y');  //2017-08-03
+				$now=date('Y-m-d');  //2017-08-03
 				$visits=find_where('users',$id,'visits');
-			   // echo '<br>' . $visits .$now . $l_time;
+			   echo '<br>' . $visits .$now . $l_time;
 
 				if($now!=$l_time){
 				 // echo 'разые';
@@ -28,7 +31,8 @@
 				
 
 				?><h3><li>Последние новости</li></h3>
-				<?php if (isset($_POST['comment'])) { //если в форме NewDog включена кнопка отправки имени собаки
+				<?php 
+					if (isset($_POST['comment'])) { //если в форме NewDog включена кнопка отправки имени собаки
 						//echo 'Поле было заполнено';
 					echo 'родился малыш: ';
 					echo $a = $_POST['comment'];
@@ -36,7 +40,30 @@
 					insert_data('animals',$_SESSION['id_new'],'name',$_POST['comment']);
 					  //  insert_name($_SESSION['id_new'],$_POST['comment']);
 
-				} ?> 
+					} 
+					if ( find_where('users', $id,'f_time') == $now ) {
+						
+						echo 'необходимо дать имя новым собакам!';
+						//$count = R::count( 'animals', 'owner = :owner && status = 1',[':owner' => $owner]);
+
+						$array[] = R::getAssoc('SELECT id FROM animals WHERE owner = :owner && status = 1' ,[':owner' => $_SESSION['logged_user']->login]);
+        				
+        				
+        				//debug($array);
+        				 foreach($array as $item) {
+              					foreach ($item as $key => $value) {
+              						 echo '<a href="/name.php?id=' . $key . '">';?>
+
+               						<img src="<?php echo from_id_to_url($key);?>" width="5%" float="left"></a><?php
+
+              					}
+              			}
+						
+					}
+
+
+
+				?> 
 				<h3><li>Важные события: </li></h3>
 
 
@@ -63,30 +90,6 @@
 			 $owner=$_SESSION['logged_user']->login;
 
 
-		// $dog_id='2';
-		// $Hr=find_where('dna',$dog_id,'hr');   //голая
-		// $W=find_where('dna',$dog_id,'ww');
-		// $F=find_where('dna',$dog_id,'ff');
-		// $B=find_where('dna',$dog_id,'bb');
-		// $T=find_where('dna',$dog_id,'tt');
-		// $M=find_where('dna',$dog_id,'mm');
-		// echo '<br>' . $dog_id  . $Hr . $W . $F . $B . $T . $M;
-// function ret_id_from_dna($dna){
-// 	$array = R::getAssoc ('SELECT * FROM coat WHERE color =:co', array(':co'=> $dna));
-// 	debug($array);
-// 	$id=array_rand($array);//выбирает рандомное значение из массива
-		
-// 	return find_where('coat',$id,'url');
-// }
-// //end  function ret_id_from_dna($dna){
-
-
-
-
-
-$dna=$Hr . $W . $F . $B . $T . $M;
-
-echo '<br>$dna ' . $dna;
 
 		// if (isset($_POST['Choose'])){
 		//   //var_dump($_POST['select']);
@@ -151,52 +154,52 @@ echo '<br>$dna ' . $dna;
 </tr>
 <?php  
 
-$array = R::getAll( 'SELECT * FROM stats ORDER BY total' );
-foreach($array as $item) {
-  foreach ($item as $key => $value) {
-	 if('dog_id'==$key){
-	   $string =R::getCol('SELECT name FROM animals WHERE id = :id',
-		[':id' => $value]);
-								  $name=$string[0];   //выДает имя
+// $array = R::getAll( 'SELECT * FROM stats ORDER BY total' );
+// foreach($array as $item) {
+//   foreach ($item as $key => $value) {
+// 	 if('dog_id'==$key){
+// 	   $string =R::getCol('SELECT name FROM animals WHERE id = :id',
+// 		[':id' => $value]);
+// 								  $name=$string[0];   //выДает имя
 
 								  
 
-								  $string =R::getCol('SELECT sex FROM animals WHERE id = :id',
-								   [':id' => $value]);
-								  $sex=$string[0];  //возвращает пол
-								}
-								if('dog_id'==$key){
-								  $id=$value;     //ID собаки
-								}
-								if('speed'==$key){
-								  $sp=$value;     //скорость
-								}
-								if('agility'==$key){
-								  $agl=$value;    //уворот
-								}
-								if('teach'==$key){
-								  $tch=$value;    //обучение
-								}
-								if('jump'==$key){
-								  $jmp=$value;    //прыжки
-								}
-								if('scent'==$key){
-								  $scnt=$value;   //обоняние
-								}
-								if('find'==$key){
-								  $fnd=$value;    //поиск
-								}
-								if('total'==$key){
-								  $ttl=$value;    //итого
-								}
-								if('mutation'==$key){
-								  $mut=$value;    //мутация
-								}
+// 								  $string =R::getCol('SELECT sex FROM animals WHERE id = :id',
+// 								   [':id' => $value]);
+// 								  $sex=$string[0];  //возвращает пол
+// 								}
+// 								if('dog_id'==$key){
+// 								  $id=$value;     //ID собаки
+// 								}
+// 								if('speed'==$key){
+// 								  $sp=$value;     //скорость
+// 								}
+// 								if('agility'==$key){
+// 								  $agl=$value;    //уворот
+// 								}
+// 								if('teach'==$key){
+// 								  $tch=$value;    //обучение
+// 								}
+// 								if('jump'==$key){
+// 								  $jmp=$value;    //прыжки
+// 								}
+// 								if('scent'==$key){
+// 								  $scnt=$value;   //обоняние
+// 								}
+// 								if('find'==$key){
+// 								  $fnd=$value;    //поиск
+// 								}
+// 								if('total'==$key){
+// 								  $ttl=$value;    //итого
+// 								}
+// 								if('mutation'==$key){
+// 								  $mut=$value;    //мутация
+// 								}
 
-						   }  
-						  // tabl($name,$sex,$sp,$agl,$tch,$jmp,$scnt,$fnd,$ttl,$mut);  
+// 						   }  
+// 						  // tabl($name,$sex,$sp,$agl,$tch,$jmp,$scnt,$fnd,$ttl,$mut);  
 
-					   }
+// 					   }
 
 					   ?>
 				   </colgroup>

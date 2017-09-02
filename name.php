@@ -5,12 +5,16 @@ require "/libs/up.php";
       //echo $MYDOG;
       
       $owner=ret_owner();
-      $var = find_where('animals',$id,'hr');;
+      $var = find_where('dna',$id,'hr');
       print_hr($var);
       
 
 /*<h1 style="font-size: 120%; font-family: Verdana, Arial, Helvetica, sans-serif; 
   color: #336">Заголовок</h1>*/
+  if ( isset($_POST['newName']) ){ 
+
+    insert_data('animals',$id,'name',$_POST['name1']);
+  }
 ?>
 
 <!-- ******************** вывод питомника / имя собаки и картинка пола  *****************-->    
@@ -27,7 +31,7 @@ require "/libs/up.php";
           </ul>
 <!-- ******************** вывод доп меню собаки  вид \\ Дата рождения \\ окрас    *****************-->       
         <ul style="background: white; width: 40%; float: right;">
-          <li>тип:  <?php echo find_where('animals',$id,'hr');?></li>
+          <li>тип:  <?php echo find_where('dna',$id,'hr');?></li>
           <li>дата рождения:  <?php echo find_where('animals',$id,'birth');?></li>
           <li>Щенков: <?php echo find_where('animals', $id,'puppy');?></li>
        </ul>
@@ -39,12 +43,12 @@ require "/libs/up.php";
 <?php 
      
      
-      $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-        [':id' => $id]);
-      f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
+     // $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
+      //  [':id' => $id]);
+      //f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
       //insert_url($_POST['url'],$id); //вставляет ссылку на картинку в базу
 ?>
-       <img src="<?php echo $_POST['url']?>"> 
+       <img src = "<?php echo from_id_to_url($id) ?>"> 
       
       </div>
  <!-- ******************** вывод статы собаки  *****************--> 
@@ -128,13 +132,19 @@ require "/libs/up.php";
       
       
       <a class="buttons" <?php echo '<a href="/lit&pup.php?id=' . $id . '">'?>Родословная</a>
+      <a class="buttons" <?php echo '<a href="/kennel.php">'?>в питомник</a>
+      <p>
+    <p><strong>Сменить имя:</strong></p>
+    <input type="text" name="name1">
+    <input id="button" name="newName" type="submit" value="Новое имя" class = "knopka">
+
                            
     </form>
   <form method="POST" action = "/matting.php">
       <div align="right"><input id="button" name="knopka" type="submit" value="Вязка" class = "knopka">
       </div>
       <?php $_SESSION['Dog'] = $id; var_dump($_SESSION['Dog']); ?>
-      <a class="buttons" <?php echo '<a href="/kennel.php">'?>в питомник</a>
+      
   </form>
 
 </div class="right_sidebar" >

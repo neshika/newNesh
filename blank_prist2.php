@@ -8,7 +8,10 @@ require "includes/functions.php";
 <link rel="stylesheet" href="/css/radio.css" type="text/css" />
 <form action="rand_dog.php" method="POST">
 <button type="submit" class="knopka" name="rand">назад</button>
-</form>
+ </form>
+ <form action="index.php" method="POST">
+    <button type="submit" class="knopka" name="singup">Войти</button>
+    </form>
 
 <?php
 
@@ -37,6 +40,7 @@ echo '<br>';
      
      ?>
     <img src = "<?php echo $_SESSION['url1']; ?>">
+  
 <?php
   echo '<hr>';
   echo '<br>';
@@ -66,8 +70,7 @@ echo '<br>';
 
     ?>
 <img src = "<?php echo $_SESSION['url2']; ?>">
-
-
+ 
 <?php
 
 $data = $_POST;
@@ -124,30 +127,7 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
         $ken->date = date('d.m.Y', time() - 86400);
         $ken->email = $data ['email'];
         $ken->dogs = '2';
-            //if (1==$data['list']){       //$data['list']  - C;
-              // $ken->suf = '1';
-               //$ken->name_suff = 'c';
-            //}
-                
-            // if (2==$data['list'])
-            //                //$data['list']  - CO;
-            // {
-            //     $ken->suf = '1';
-            //    $ken->name_suff = 'со';
-            // }
-            //     if (3==$data['list'])
-            //             //$data['list']  - ИЗ;
-            //     {
-            //         $ken->suf = '1';
-            //    $ken->name_suff = 'из';
-            //     }
-            //  if (4==$data['list'])
-            //              //$data['list']  - ОТ;
-             //{
-               //  $ken->suf = '1';
-               //$ken->name_suff = 'от';
-             //}
-                 
+          
          R::store ($ken);
 
 
@@ -163,8 +143,7 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
           $url2_id=ret_id_from_url($_SESSION['url2']);
           $id1=insert_2_new_dogs($name,$sex,$race,$owner,$kennel,$mydate,$url1_id);
           $id2=insert_2_new_dogs($name,$sex2,$race,$data['login'],$data['kennel'],$mydate,$url2_id);
-       
-
+    
        $aa1=f_rand_col('AA','Aa','aa');
        $aa2=f_rand_col('AA','Aa','aa');
 
@@ -179,13 +158,7 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
     $_SESSION['logged_user']->login=$data['login'];
    
   
-
-    ?>
-    <form action="index.php" method="POST">
-    <button type="submit" class="knopka" name="login">Войти</button>
-    </form>
-    <?php
-  
+ 
 
   } else{
                          

@@ -4,12 +4,19 @@ require "db.php";
 require "includes/functions.php";
 /** Проверяет залогинен ли польззователь Если да, дает выбр действий **/
 
+	//var_dump($_POST);
+	
 	if ( isset($_SESSION['logged_user']) ){ 
 		include_once "html/index_session.html";
-	 	echo "Привет, " . $_SESSION['logged_user']->login . '!  Чем займемся?';
-	 	if ('admin'==$_SESSION['logged_user']->login){?>
+
+ 	echo "Привет, " . $_SESSION['logged_user']->login . '!  Чем займемся?';
+	 	if ('admin'==$_SESSION['logged_user']->login)
+	 		{?>
 	 		<a class="buttons" href="admin/admin.php" >В админку</a>
-	 <?php }else{?>
+	 		<?php }else{
+
+	 		?>
+
 	 			<a class="buttons" href="/office.php" >В офис</a>
 				<a class="buttons" href="/logout.php" >Выйти</a>
 	<?php }
