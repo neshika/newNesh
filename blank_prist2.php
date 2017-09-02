@@ -1,7 +1,11 @@
 <?php 
 require "db.php";
 require "includes/functions.php";
+
 ?>
+<meta http-equiv='Content-Type' content='text/html; charset=utf8'>
+<link rel="stylesheet" href="/css/style.css" type="text/css" />
+<link rel="stylesheet" href="/css/radio.css" type="text/css" />
 <form action="rand_dog.php" method="POST">
 <button type="submit" class="knopka" name="rand">назад</button>
 </form>
@@ -172,7 +176,16 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
 
 
     echo '<div style="color:green;">Добро пожаловать, все успешно!</div>';  
-                                                            
+    $_SESSION['logged_user']->login=$data['login'];
+   
+  
+
+    ?>
+    <form action="index.php" method="POST">
+    <button type="submit" class="knopka" name="login">Войти</button>
+    </form>
+    <?php
+  
 
   } else{
                          
