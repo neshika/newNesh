@@ -132,6 +132,8 @@ function put_money($owner){
 // 	//$bean = R::load($id, $name);
 // 	//$id = R::store($bean); // int
 // }
+
+
 /*Функция вносит данные с таблицу статы*/
 function insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,$scent_new,$find_new,$total_new,$mutation){
    $stats = R::dispense( 'stats' );

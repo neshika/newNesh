@@ -153,6 +153,18 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
         insert_new_dna($id1,$url1_id,$_SESSION['hr1'],$_SESSION['ww1'], $_SESSION['ff1'],$_SESSION['bb1'],$_SESSION['mm1'],$_SESSION['tt1'],$aa1);
         insert_new_dna($id2,$url2_id,$_SESSION['hr2'],$_SESSION['ww2'], $_SESSION['ff2'],$_SESSION['bb2'],$_SESSION['mm2'],$_SESSION['tt2'],$aa2);
 
+        echo "<br>вносим новые статы";
+        $speed_new=find_where('stats',1,'speed');
+        $agility_new=find_where('stats',1,'agility');
+        $teach_new=find_where('stats',1,'teach');
+        $jump_new=find_where('stats',1,'jump');
+        $scent_new=find_where('stats',1,'scent');
+        $find_new=find_where('stats',1,'find');
+        $total_new=find_where('stats',1,'total');
+        $mutation=find_where('stats',1,'mutation');
+        insert_new_stats($id1,$speed_new,$agility_new,$teach_new, $jump_new,$scent_new,$find_new,$total_new,$mutation);
+        insert_new_stats($id2,$speed_new,$agility_new,$teach_new, $jump_new,$scent_new,$find_new,$total_new,$mutation);
+
 
     echo '<div style="color:green;">Добро пожаловать, все успешно!</div>';  
     $_SESSION['logged_user']->login=$data['login'];

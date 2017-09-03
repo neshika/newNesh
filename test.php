@@ -141,7 +141,7 @@ require "db.php";
 
 //                     }
 
-                      
+    echo  $speed_new=find_where('stats',1,'speed');                  
 
   ?> 
 
