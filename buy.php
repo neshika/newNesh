@@ -89,9 +89,9 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
         <img src = "<?php echo $url; ?>" width="300" >
         <table width="100" cellpadding="2" cellspacing="0" border="1" >
               <colgroup width="150">
-              <colgroup span="9" align="center" width="10">
-              <col span="5">
-              <col span="4">
+                  <colgroup span="9" align="center" width="10">
+                  <col span="5">
+                  <col span="4">
               </colgroup>
               <tr border="1"> 
                      <td>пол</td><td><?php echo $sex; ?></td>
@@ -117,7 +117,9 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
               <tr border="1"> 
                      <td>Итого</td><td><?php echo $ttl; ?></td>
               </tr>
-              </colgroup></table>
+              </colgroup>
+        </table>
+      </div>
 
        
       

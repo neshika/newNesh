@@ -38,23 +38,53 @@ function print_all(){
 /**************************** функция печатает на экран статы и ГП*************************/
 function detalis($id){
 
-          echo '<br>Статы: ' . find_where('animals',$id,'name');
-          echo '<br>Скорость:_____ ' . find_where('stats',$id,'speed');
-          echo '<br>Уворот:_______ ' . find_where('stats',$id,'agility');
-          echo '<br>Обучение:_____ ' . find_where('stats',$id,'teach');
-          echo '<br>Прыжки:______ ' . find_where('stats',$id,'jump');
-          echo '<br>Обоняние:_____ ' . find_where('stats',$id,'scent');
-          echo '<br>Поиск:________ ' . find_where('stats',$id,'find');
-          echo '<br>Итого:________ ' . find_where('stats',$id,'total');
-          echo '<br>ГП: ' . find_where('animals',$id,'sex');;
-          echo '<br>hr:_____ ' . find_where('animals',$id,'hr');
-          echo '<br>aa:_____ ' . find_where('animals',$id,'aa');
-          echo '<br>bb:_____ ' . find_where('animals',$id,'bb');
-          echo '<br>tt:______ ' . find_where('animals',$id,'tt');
-          echo '<br>mm:____ ' . find_where('animals',$id,'mm');
-          echo '<br>ww:____ ' . find_where('animals',$id,'ww');
-          echo '<br>ff:______ ' . find_where('animals',$id,'ff');
+?>
+          <div align="left">
+        <img src = "<?php echo $url; ?>" width="300" >
+        <table width="100" cellpadding="2" cellspacing="0" border="1" >
+              <colgroup width="150">
+                  <colgroup span="9" align="center" width="10">
+                  <col span="5">
+                  <col span="4">
+              </colgroup>
+              <tr border="1"> 
+                     <td>имя</td><td><b><?php echo find_where('animals',$id,'name'); ?></b></td>
+                     <td>пол</td><td><b><?php echo find_where('animals',$id,'sex'); ?></b></td>
+              </tr>
+              <tr border="1"> 
+                     <td>Скорость</td><td><?php echo find_where('stats',$id,'speed'); ?></td>
+                     <td>вид</td><td><?php echo find_where('dna',$id,'hr'); ?></td>
+              </tr>
+              <tr border="1"> 
+                     <td>Уворот</td><td><?php echo find_where('stats',$id,'agility'); ?></td>
+                      <td>белый</td><td><?php echo find_where('dna',$id,'ww'); ?></td>
+              </tr>
+              <tr border="1"> 
+                     <td>Обучение</td><td><?php echo find_where('stats',$id,'teach'); ?></td>
+                     <td>рыжий</td><td><?php echo find_where('dna',$id,'ff'); ?></td>
+              </tr>
+              <tr border="1"> 
+                     <td>Прыжки</td><td><?php echo find_where('stats',$id,'jump'); ?></td>
+                      <td>черный</td><td><?php echo find_where('dna',$id,'bb'); ?></td>
+              </tr>
+              <tr border="1"> 
+                     <td>Обоняние</td><td><?php echo find_where('stats',$id,'scent'); ?></td>
+                     <td>пятна</td><td><?php echo find_where('dna',$id,'mm'); ?></td>
+              </tr>
+              <tr border="1"> 
+                     <td>Поиск</td><td><?php echo find_where('stats',$id,'find'); ?></td>
+                     <td>крап</td><td><?php echo find_where('dna',$id,'tt'); ?></td>
+              </tr>
+              <tr border="1"> 
+                     <td>Итого</td><td><?php echo find_where('stats',$id,'total'); ?></td>
+                     <td>aa</td><td><?php echo find_where('dna',$id,'aa'); ?></td>
+                     
+              </tr>
+              </colgroup>
+        </table>
+      </div>
 
+<?php
 
 }
 /**************************** функция печатает на экран дерево(родственников)*************************/

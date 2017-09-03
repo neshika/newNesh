@@ -30,8 +30,7 @@ require "db.php";
              }
              $owner=$_SESSION['logged_user']->login;
 
-
-
+             
         // if (isset($_POST['Choose'])){
         //   //var_dump($_POST['select']);
         //   if (1==$_POST['select']){
