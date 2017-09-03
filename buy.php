@@ -37,13 +37,13 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
 
       
        $sex=f_bdika_sex();
-      $spd=Rand(89,100);
-      $agl=Rand(89,100);
-      $tch=Rand(89,100);
-      $jmp=Rand(89,100);
-      $nuh=Rand(89,100);
-      $fnd=Rand(89,100);
-      $ttl=Rand(89,100);
+      $spd=Rand(9,11);
+      $agl=Rand(9,11);
+      $tch=Rand(9,11);
+      $jmp=Rand(9,11);
+      $nuh=Rand(9,11);
+      $fnd=Rand(9,11);
+      $ttl=Rand(9,11);
 
       $owner=ret_owner();
       // session_start(); 

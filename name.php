@@ -5,8 +5,8 @@ require "/libs/up.php";
       //echo $MYDOG;
       
       $owner=ret_owner();
-      $var = find_where('dna',$id,'hr');
-      print_hr($var);
+     // $var = find_where('dna',$id,'hr');
+     
       
 
 /*<h1 style="font-size: 120%; font-family: Verdana, Arial, Helvetica, sans-serif; 
@@ -18,7 +18,7 @@ require "/libs/up.php";
 ?>
 
 <!-- ******************** вывод питомника / имя собаки и картинка пола  *****************-->    
-          <div style="background: white; height: 80px; width: 1170px;"> <h3 align="center"><?php echo find_where('animals',$id,'kennel');?> <?php echo find_where('animals',$id,'name');?><?php echo ret_pic($id);?></h3>
+          <div style="background: white; height: 80px; width: 1170px;"> <h3 align="center"><?php echo '"' . find_where('animals',$id,'kennel') . '" ';?> <?php echo find_where('animals',$id,'name');?><?php echo ret_pic($id);?></h3>
            </div>
           
 <!-- ******************** вывод доп меню собаки  заводчик / хозяин  *****************-->  
@@ -31,7 +31,7 @@ require "/libs/up.php";
           </ul>
 <!-- ******************** вывод доп меню собаки  вид \\ Дата рождения \\ окрас    *****************-->       
         <ul style="background: white; width: 40%; float: right;">
-          <li>тип:  <?php echo find_where('dna',$id,'hr');?></li>
+          <li>тип:  <?php echo  print_hr(find_where('dna',$id,'hr'));?></li>
           <li>дата рождения:  <?php echo find_where('animals',$id,'birth');?></li>
           <li>Щенков: <?php echo find_where('animals', $id,'puppy');?></li>
        </ul>

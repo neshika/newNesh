@@ -311,8 +311,8 @@ function ret_hr($id){
 }
 /*Функция пишет тип собаки по русски в зависимоти от Генетического типа*/
 function print_hr($var){
-	if ($var=='Hrhr') return 'голая';
-	else return 'пуховая';
+	if ($var=='Hrhr') return 'пуховая';
+	else return 'голая';
 }
 /*Функция считает голая или пух в зависимоти от родителей*/
 function gol_pooh($on,$ona){
