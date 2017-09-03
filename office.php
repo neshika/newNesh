@@ -19,7 +19,7 @@ require "db.php";
 		$l_time=find_where('users', $id,'l_time');
 				$now=date('d.m.Y');  //03.08.2017
 				$visits=find_where('users',$id,'visits');
-				echo '<br>' . $visits . '<br>now ' .$now .'<br>f_time '. $f_time;
+				echo '<br>' . $visits . '<br>now ' .$now .'<br>f_time '. find_where('users', $id,'f_time');
 
 				if($now!=$l_time){
 				 // echo 'разые';

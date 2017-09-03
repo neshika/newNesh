@@ -171,7 +171,7 @@ $data = $_POST;
             Еще раз пароль*:<input type="password" name="password2" value="<?php echo @$data['password2']; ?>">
          </p><hr>
 		
-        <p> Название питомника/заводской приставки*: <input type="test" name="kennel"  maxlength="15"><br><br>
+        <p> Название питомника/заводской приставки*: <input type="test" name="kennel"  maxlength="20"><br><br>
            <!-- Префикс: <input type="radio" name="pref" value="Nosuf">   
             Суффикс:  <input type="radio" name="pref" value ="suf" onclick="document.getElementById('qw').style.display=(this.checked)?'block':'none';" >
                  <p id="qw" style="display:none;" >

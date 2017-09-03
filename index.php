@@ -27,8 +27,10 @@ require "includes/functions.php";
 		<img src="/pic/def.png" class="def_pic">
 		<br>
 		
-		<a class="buttons" href='/login.php'>Да</a>
-		<a class="buttons" href='rand_dog.php'>НЕТ</a>
+
+  		<a class="buttons" href='/login.php'>Да</a>
+		<a class="buttons" href='rand_dog.php '>НЕТ</a>
+
 		<?php
 		
 /** Содаем рандомную собаку и выводим на экран **/	
