@@ -1,9 +1,10 @@
 <?php
 require "/libs/up.php";
-      $id = $_GET['id']; 
+      $id = $_GET['id'];
+
       //$GLOBALS ['MYDOG'] = 12;
       //echo $MYDOG;
-      
+
       $owner=ret_owner();
      // $var = find_where('dna',$id,'hr');
      
@@ -15,6 +16,7 @@ require "/libs/up.php";
 
     insert_data('animals',$id,'name',$_POST['name1']);
   }
+
 ?>
 
 <!-- ******************** вывод питомника / имя собаки и картинка пола  *****************-->    
@@ -122,6 +124,7 @@ require "/libs/up.php";
     </main>
 
 <?php endif;
+
 ?></div>
     <!-- --------------------------------------  class="right_sidebar"  ----------------------------- -->   
 
@@ -140,6 +143,10 @@ require "/libs/up.php";
 
                            
     </form>
+    <form method="POST" action = "/office.php">
+      <div align="right"><input id="button" name="shelter" type="submit" value="отдать в приют" class = "knopka"></div>
+      <?php $_SESSION['Dog'] = $id; ?>
+  </form>
   <form method="POST" action = "/matting.php">
       <div align="right"><input id="button" name="knopka" type="submit" value="Вязка" class = "knopka">
       </div>

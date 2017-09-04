@@ -53,7 +53,7 @@ require "db.php";
         				
         				$array[] = R::getAssoc('SELECT id FROM animals WHERE owner = :owner && status = 1' ,[':owner' => $_SESSION['logged_user']->login]);
         				//debug($array);
-        				 foreach($array as $item) {
+        				         foreach($array as $item) {
               					foreach ($item as $key => $value) {
               						if ( 'Без имени'==find_where('animals', $key,'name') ){
               							echo '<br>необходимо дать имя новой собаке: ';
@@ -64,9 +64,10 @@ require "db.php";
                						}
               					}
               					
-              			}
+              			           }
 						
 					}
+
 
 
 
@@ -75,5 +76,13 @@ require "db.php";
 
 				
 <?php
+                     if ( isset($_POST['shelter']) ){ 
+                          echo 'собака продана!';
 
+
+                          ?><img src="<?php echo from_id_to_url($_SESSION['Dog']);?>" width="5%"><?php
+
+                           insert_data('animals',$_SESSION['Dog'],'owner','shelter');
+ 
+                     }
 			   require '/libs/down.php';
