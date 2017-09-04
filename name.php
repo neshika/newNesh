@@ -48,7 +48,7 @@ require "/libs/up.php";
       //f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
       //insert_url($_POST['url'],$id); //вставляет ссылку на картинку в базу
 ?>
-       <img src = "<?php echo from_id_to_url($id) ?>"> 
+       <img src = "<?php echo from_id_to_url($id); ?>"> 
       
       </div>
  
@@ -77,20 +77,18 @@ require "/libs/up.php";
             <?php 
                   $id_m=find_where('animals',$id,'mum');
                   if ('нет данных'!==$id_m){
-                        $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-                        [':id' => $id_m]);
-                        f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
-                        ?><img src="<?php echo $_POST['url']?>"><?php
+                       // $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
+                       // [':id' => $id_m]);
+                        //f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
+                        ?><img src="<?php echo from_id_to_url($id_m);?>"><?php
                   }else
                     echo 'нет данных о предках'; ?>
         
             <!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
               <details>
                     <summary>Генетический код</summary> 
-                    <?php print_all_d($id_m);?>
-                    <summary>Статы|spd|agl| tech | jmp |scnt| fnd| Ttl |Mut|</summary> 
-                    <?php print_stats_d($id_m);  ?>
-               </details>
+                    <?php print_all_d($id_m); detalis($id_m);?>
+              </details>
        </details>
  <?php endif;    ?>
      </div class="content_mum">
@@ -104,20 +102,18 @@ require "/libs/up.php";
               <?php 
                     $id_d=find_where('animals',$id,'dad');
                     if ('нет данных'!==$id_d){
-                        $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-                              [':id' => $id_d]);
-                        f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
-                        ?><img src="<?php echo $_POST['url']?>">  <?php
+                       // $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
+                             // [':id' => $id_d]);
+                        //f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
+                        ?><img src="<?php echo from_id_to_url($id_d);?>">  <?php
                     }else
                       echo 'нет данных о предках'; ?>
 
 
                   <!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
               <details>
-                  <summary>Генетический код</summary> 
-                    <?php print_all_d($id_d);?>
-                    <summary>Статы| spd | agl | tech | jmp | scnt| fnd | Ttl |Mut|</summary> 
-                    <?php print_stats_d($id_d); ?> 
+                    <summary>Генетический код</summary> 
+                    <?php print_all_d($id_d); detalis($id_d);?>
               </details>
         </details>
     
