@@ -10,13 +10,13 @@
 if(!isset($_POST['buy']) ){        //если кнопка не нажата
 
        $_SESSION['hr']=$Hr=f_rand_col('HrHr','Hrhr','hrhr');
-       $W=f_rand_col('WW','Ww','ww');
-       $F=f_rand_col('FF','Ff','ff');
-       $B=f_rand_col('BB','Bb','bb');
+       $_SESSION['ww']=$W=f_rand_col('WW','Ww','ww');
+       $_SESSION['ff']=$F=f_rand_col('FF','Ff','ff');
+       $_SESSION['bb']=$B=f_rand_col('BB','Bb','bb');
   
-       $T=f_rand_col('TT','Tt','tt');
-       $M=f_rand_col('MM','Mm','mm');
-       $A=f_rand_col('AA','AA','aa');
+       $_SESSION['tt']=$T=f_rand_col('TT','Tt','tt');
+       $_SESSION['mm']=$M=f_rand_col('MM','Mm','mm');
+       $_SESSION['aa']=$A=f_rand_col('AA','AA','aa');
 
       $all= "<br>".$Hr."<br>".$W."<br>".$F."<br>".$B."<br>".$T."<br>".$M;
    // echo $all;
@@ -25,7 +25,7 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
       $url=bdika_color ($Hr,$W,$F,$B,$T,$M);
 
 // морем картинки из базы
-      $url_id=ret_id_from_url($url);
+     $_SESSION['url_id'] = $url_id=ret_id_from_url($url);
       $_SESSION['url'] = $url;
    //   echo 'id ' . $url_id;
 
@@ -63,25 +63,7 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
 
 
 
-
-
-    // echo $count = R::count( 'animals', 'owner = :owner && status = 1',
-             // [':owner' => $owner]);
-    // $dog_id=$count+1;
-/////////////////////////////////////////////////////////////создает temp собаку в таблице DNA
-    // $id=1;
-   //  $dog_id=0;             
-      //insert_new_dna('1',$url_id,$Hr,$W, $F,$B,$M,$T,$A);
-     R::exec( 'UPDATE dna SET url_id=:url_id WHERE id = :id ', array(':url_id'=> $url_id, ':id' => $id));
-     R::exec( 'UPDATE dna SET hr=:Hr WHERE id = :id ', array(':Hr'=> $Hr, ':id' => $id));
-     R::exec( 'UPDATE dna SET dog_id=:dog_id WHERE id = :id ', array(':dog_id'=> $dog_id, ':id' => $id));
-     R::exec( 'UPDATE dna SET ww=:ww WHERE id = :id ', array(':ww'=> $W, ':id' => $id));
-     R::exec( 'UPDATE dna SET ff=:ff WHERE id = :id ', array(':ff'=> $F, ':id' => $id));
-     R::exec( 'UPDATE dna SET bb=:bb WHERE id = :id ', array(':bb'=> $B, ':id' => $id));
-     R::exec( 'UPDATE dna SET mm=:mm WHERE id = :id ', array(':mm'=> $M, ':id' => $id));
-     R::exec( 'UPDATE dna SET tt=:tt WHERE id = :id ', array(':tt'=> $T, ':id' => $id));
-     R::exec( 'UPDATE dna SET aa=:aa WHERE id = :id ', array(':aa'=> $A, ':id' => $id));
-/////////////////////////////////////////////////////////////конец создает temp собаку         
+        
       ?>
 <div>
 
@@ -132,17 +114,26 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
 } 
 ////////////////////////////////////////////////////////////////////////////////////
       if( isset($_POST['buy']) ){  //если нажата кнопка ЭкупитьЭ
-              echo 'Проверьте покупку в питомнике! <br> Вы купили отличную собаку! <br> ';
+              echo 'Проверьте покупку в питомнике! <br> Дайте собаке имя!<br> ';
              
-             //insert_new_stats($id_new,$spd,$agl,$tch,$jmp,$nuh,$fnd,$ttl,$mut);
-              // $url_id=find_where('dna','0','url_id');
-              //   $url_pic=find_where('coat',$url_id,'url');
+             $date=date('d.m.Y');
 
-              // echo find_where('stats','0','total');
+             echo '<br>вносим в базу собаку';
+             $_SESSION['dog_id']=insert_2_new_dogs('Без имени',$_SESSION['sex'],'КХС',$_SESSION['own'],find_where('users',get_id($_SESSION['own']),'kennel'),$date,$_SESSION['url_id']);
 
-              // echo $_SESSION['sex'] ;
-              //echo $_SESSION['hr'];
-              ?><img src = "<?php echo $_SESSION['url']; ?>">
+             var_dump($_SESSION['dog_id']);
+
+             echo '<br>вносим статы';
+             insert_new_stats($_SESSION['dog_id'],find_where('stats','0','speed'),find_where('stats','0','agility'),find_where('stats','0','teach'),find_where('stats','0','jump'),find_where('stats','0','scent'),find_where('stats','0','find'),find_where('stats','0','total'),find_where('stats','0','mutation'));
+            
+              echo '<br>вносим DNA';
+
+              insert_new_dna($_SESSION['dog_id'],$_SESSION['url_id'],$_SESSION['hr'],$_SESSION['ww'], $_SESSION['ff'],$_SESSION['bb'],$_SESSION['mm'],$_SESSION['tt'],$_SESSION['aa']);
+
+
+
+              echo '<a href="/name.php?id=' . $_SESSION['dog_id'] . '">';?>
+              <img src = "<?php echo $_SESSION['url']; ?>"></a>
 
               <?php
        }
