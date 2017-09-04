@@ -113,7 +113,7 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
     $user->login = $data ['login'];
     $user->email = $data ['email'];
     $user->kennel = $data ['kennel'];
-    $user->f_time = date('d.m.Y', time() - 86400);
+    $user->f_time = date('d.m.Y');
    
 
 
@@ -124,7 +124,7 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
         $ken = R::dispense('kennels');
         $ken->name_k = $data ['kennel'];
         $ken->owner_k = $data ['login'];
-        $ken->date = date('d.m.Y', time() - 86400);
+        $ken->date = date('d.m.Y');
         $ken->email = $data ['email'];
         $ken->dogs = '2';
           
@@ -135,7 +135,7 @@ if (isset ($data['do_sighup'])){  //если кнопка нажата
 
          $name='Без имени';
          $race='КХС';
-          $mydate=date('d.m.Y', time() - 86400);
+          $mydate=date('d.m.Y');
           $owner=$data['login'];
           $kennel=$data['kennel'];
           

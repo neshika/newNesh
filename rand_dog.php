@@ -49,10 +49,13 @@ require "includes/functions.php";
     <img src = "<?php echo $url; ?>">
 </div>
 <form action="rand_dog.php" method="POST">
-<button type="submit" class="knopka" name="rand">Еще варианты</button>
+<button type="submit" class="knopka" name="rand">еще варианты</button>
 </form>
 <form action="blank_prist.php" method="POST">
-<button type="submit" class="knopka" name="rand">Отлично</button>
+<button type="submit" class="knopka" name="rand">отлично</button>
+</form>
+<form action="index.php" method="POST">
+<button type="submit" class="knopka" name="back">назад</button>
 </form>
 </body>
 </html>
