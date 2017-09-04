@@ -17,7 +17,7 @@ require "/libs/up.php";
                 //echo '<a href="/name.php?id=' . $key . '">';?>
 
                 <img src="<?php echo from_id_to_url($key);?>" width="10%" float="left">
-                <?
+                <?php
                 detalis($key);
                 }    
             echo "<br/>";
