@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 03 2017 г., 23:04
+-- Время создания: Сен 05 2017 г., 00:15
 -- Версия сервера: 5.5.53
 -- Версия PHP: 5.5.38
 
@@ -62,7 +62,17 @@ CREATE TABLE `animals` (
 
 INSERT INTO `animals` (`id`, `name`, `sex`, `race`, `breeder`, `owner`, `kennel`, `birth`, `now`, `mum`, `dad`, `g1dad`, `g1mum`, `g0dad`, `g0mum`, `gg1dad1`, `gg1mum2`, `gg1dad3`, `gg1mum4`, `gg0dad1`, `gg0mum2`, `gg0dad3`, `gg0mum4`, `status`, `puppy`, `litter`, `url`) VALUES
 (1, 'Рыжий', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', '02.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 33),
-(2, 'Шока', 'сука', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', '02.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 11);
+(2, 'Шока', 'сука', 'КХС', 'nesh', 'shelter', 'Чарующий соблазн', '02.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 11),
+(3, 'Пуха', 'сука', 'КХС', 'test', 'shelter', 'Тестики', '03.09.2017', '00.00.0000', 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 44),
+(4, 'Белек', 'кобель', 'КХС', 'test', 'test', 'Тестики', '03.09.2017', '00.00.0000', 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 21),
+(5, 'куплен', 'кобель', 'КХС', 'test', 'shelter', 'Тестики', '04.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 54),
+(6, 'Без имени', 'кобель', 'КХС', 'test', 'shelter', 'Тестики', '04.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 44),
+(7, 'Шокнутый', 'кобель', 'КХС', 'test', 'test', 'Тестики', '04.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 14),
+(8, 'Без имени', 'сука', 'КХС', 'test', 'shelter', 'Тестики', '04.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 14),
+(9, 'Без имени', 'кобель', 'КХС', 'test', 'shelter', 'Тестики', '04.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 31),
+(10, 'Рыжик', 'кобель', 'КХС', 'test', 'test', 'Тестики', '04.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 31),
+(11, 'Белочка', 'сука', 'КХС', 'test', 'shelter', 'Тестики', '04.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 49),
+(12, 'Черначяяваыуа', 'сука', 'КХС', 'test', 'test', 'Тестики', '04.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 27);
 
 -- --------------------------------------------------------
 
@@ -160,8 +170,15 @@ CREATE TABLE `dna` (
 --
 
 INSERT INTO `dna` (`id`, `dog_id`, `url_id`, `hr`, `ww`, `ff`, `bb`, `mm`, `tt`, `aa`) VALUES
-(1, 1, 33, 'hrhr', 'ww', 'Ff', 'bb', 'Mm', 'Tt', 'aa'),
-(2, 2, 11, 'hrhr', 'ww', 'ff', 'bb', 'mm', 'tt', 'aa');
+(1, 0, 45, 'Hrhr', 'ww', 'Ff', 'bb', 'Mm', 'tt', 'aa'),
+(2, 2, 11, 'hrhr', 'ww', 'ff', 'bb', 'mm', 'tt', 'aa'),
+(3, 3, 44, 'Hrhr', 'ww', 'Ff', 'bb', 'mm', 'Tt', 'aa'),
+(4, 4, 21, 'hrhr', 'Ww', 'ff', 'bb', 'mm', 'Tt', 'aa'),
+(5, 8, 14, 'hrhr', 'ww', 'ff', 'bb', 'mm', 'tt', 'AA'),
+(6, 9, 31, 'hrhr', 'ww', 'Ff', 'Bb', 'mm', 'tt', 'aa'),
+(7, 10, 31, 'hrhr', 'ww', 'Ff', 'Bb', 'mm', 'tt', 'aa'),
+(8, 11, 49, 'Hrhr', 'Ww', 'ff', 'bb', 'mm', 'tt', 'aa'),
+(9, 12, 27, 'hrhr', 'ww', 'ff', 'Bb', 'Mm', 'tt', 'AA');
 
 -- --------------------------------------------------------
 
@@ -203,7 +220,8 @@ CREATE TABLE `kennels` (
 --
 
 INSERT INTO `kennels` (`id`, `name_k`, `owner_k`, `date`, `dogs`, `litters`, `email`) VALUES
-(29, 'Чарующий соблазн', 'nesh', '02.09.2017', 2, NULL, 'stepanova@mail.ru');
+(29, 'Чарующий соблазн', 'nesh', '02.09.2017', 2, NULL, 'stepanova@mail.ru'),
+(30, 'Тестики', 'test', '03.09.2017', 2, NULL, 'test@test');
 
 -- --------------------------------------------------------
 
@@ -287,10 +305,17 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `dog_id`, `speed`, `agility`, `teach`, `jump`, `scent`, `find`, `total`, `mutation`) VALUES
-(1, 0, 11, 10, 9, 11, 11, 10, 11, 0),
+(1, 0, 9, 10, 10, 10, 11, 10, 10, 0),
 (2, 1, 10, 10, 10, 10, 10, 10, 60, 0),
 (29, 1, 10, 10, 10, 10, 10, 10, 60, 0),
-(30, 2, 10, 10, 10, 10, 10, 10, 60, 0);
+(30, 2, 10, 10, 10, 10, 10, 10, 60, 0),
+(31, 3, 10, 10, 10, 10, 10, 10, 60, 0),
+(32, 4, 10, 10, 10, 10, 10, 10, 60, 0),
+(33, 8, 10, 10, 10, 10, 10, 10, 60, 0),
+(34, 9, 10, 10, 9, 11, 10, 9, 9, 0),
+(35, 10, 10, 10, 9, 11, 10, 9, 9, 0),
+(36, 11, 11, 11, 11, 11, 10, 11, 11, 0),
+(37, 12, 11, 11, 11, 11, 11, 11, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -316,7 +341,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `email`, `password`, `kennel`, `f_time`, `l_time`, `online`, `sign`, `visits`) VALUES
-(1, 'nesh', 'stepanova@mail.ru', '$2y$10$pinvDspcODn0zxHMfyEUoufayxxNfwrQoqHGX2.Ky1I.fB7FnDan.', 'Чарующий соблазн', '03.09.2017', '03.09.2017', 0, 0, 1);
+(1, 'nesh', 'stepanova@mail.ru', '$2y$10$pinvDspcODn0zxHMfyEUoufayxxNfwrQoqHGX2.Ky1I.fB7FnDan.', 'Чарующий соблазн', '03.09.2017', '04.09.2017', 0, 0, 3),
+(2, 'test', 'test@test', '$2y$10$Vy0Am7CkZj5SYrzoNR26W.XsiO21HWtuQezqns20CfpcqAqdlm7D.', 'Тестики', '04.09.2017', '04.09.2017', 1, 0, 2);
 
 --
 -- Индексы сохранённых таблиц
@@ -393,7 +419,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `animals`
 --
 ALTER TABLE `animals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT для таблицы `coat`
 --
@@ -403,7 +429,7 @@ ALTER TABLE `coat`
 -- AUTO_INCREMENT для таблицы `dna`
 --
 ALTER TABLE `dna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT для таблицы `items`
 --
@@ -413,17 +439,17 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT для таблицы `kennels`
 --
 ALTER TABLE `kennels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT для таблицы `stats`
 --
 ALTER TABLE `stats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
