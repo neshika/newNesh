@@ -9,9 +9,7 @@ require "/libs/up.php";
                 echo "<br><hr><a>";
 
 /*сохранение данных о голости собаки + вязки/щенки*/
-               // $tip=find_where('animals', $key,'hr');
-                $lit=find_where('animals', $key,'litter');
-                $pup=find_where('animals', $key,'puppy');
+               
                 $pol=find_where('animals', $key,'sex');
 /*выводим на экран имя собаки как ссылку*/
                 //echo '<a href="/name.php?id=' . $key . '">';?>

@@ -27,7 +27,7 @@ require "/libs/up.php";
         <div style="background: yellow; height: 80px; width: 1170px;"> 
           <ul style="background: white; width: 45%; float: left;">
             <li>Заводчик: <?php echo find_where('animals',$id,'breeder');?></li>
-            <li>Хозяин: <?php echo $owner;?></li>
+            <li>Хозяин: <?php echo find_where('animals',$id,'owner');?></li>
             <li>Вязок: <?php echo find_where('animals', $id,'litter');?></li>
 
           </ul>

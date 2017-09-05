@@ -43,7 +43,8 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
       $jmp=Rand(9,11);
       $nuh=Rand(9,11);
       $fnd=Rand(9,11);
-      $ttl=Rand(9,11);
+      $ttl=($spd+$agl+$tch+$jmp+$nuh+$fnd);
+      $ttl=number_format ($ttl , $decimals = 1 ,$dec_point = "." , $thousands_sep = " " );
 
       $owner=ret_owner();
       // session_start(); 

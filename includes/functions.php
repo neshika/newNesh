@@ -136,6 +136,7 @@ function put_money($owner){
 
 /*Функция вносит данные с таблицу статы*/
 function insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,$scent_new,$find_new,$total_new,$mutation){
+  $total_new=number_format ($total_new , $decimals = 1 ,$dec_point = "." , $thousands_sep = " " );
    $stats = R::dispense( 'stats' );
     $stats->dog_id = $id_new;
     $stats->speed = $speed_new;

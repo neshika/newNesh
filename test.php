@@ -141,7 +141,7 @@ require "db.php";
 
 //                     }
 
-    echo  $speed_new=find_where('stats',1,'speed');                  
+    echo  number_format (12.33333 , $decimals = 1 ,$dec_point = "." , $thousands_sep = " " );                  
 
   ?> 
 
