@@ -4,6 +4,7 @@ require "/libs/up.php";
 
 function bdika_pol($id_dog){  //проверяем пол выбранной собаки, чтобы вывести противоположных партнеров
   $owner = find_where('animals',$id_dog,'owner'); 
+  //echo $owner;
  
           if ('сука' === find_where('animals',$id_dog,'sex')){
 
@@ -44,26 +45,24 @@ $id_dog= $_SESSION['Dog'];// выгружаем из памяти id собак�
 /**********************выводим на экран имя собаки как ссылку*********************************/
                ?>
                 <form method="post" action="breedding.php">
-                <?php $_SESSION['para']=$id_dog;?>
-                <?php echo '<a href="/name.php?id=' . $key . '">' . "$value";  //$value - имя собаки // $key = id ?>
-                
-                <details>
-                        <summary> Статы и ГК</summary> 
-                            <?php  detalis($key); ?>
-                    </details> 
-
-                <div style="background: black; height: 150px; width: 150px;">
-                    <div style="display:none;" class="radio_buttons">
-                          <input type="radio" NAME="ONONA" VALUE="<?=$key?>" class="knopka" checked />
-                          <label for="radio4">Вяжем</label>
-                
-                    </div>
-                    <img src="<?php echo from_id_to_url($key);?>" width="100%" >
-                  </a> 
+                      <?php $_SESSION['para']=$id_dog;?>
+                      <?php echo '<a href="/name.php?id=' . $key . '">' . "$value";  //$value - имя собаки // $key = id ?>
+                      
+                          <details>
+                              <summary> Статы и ГК</summary> 
+                                  <?php  detalis($key); ?>
+                          </details> 
+                          </a> 
+                      <div style="background: black; height: 150px; width: 150px;">
+                          <div style="display:none;" class="radio_buttons">
+                                <input type="radio" NAME="ONONA" VALUE="<?=$key?>" class="knopka" checked />
+                                <label for="radio4">Вяжем</label>
+                      
+                          </div>
+                          <img src="<?php echo from_id_to_url($key);?>" width="100%" >
+                        
                     
-
-
-                </div>
+                      </div>
                 <input type="submit" class="knopka" value="Вяжем">
                 </form> 
                 <?php

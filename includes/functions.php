@@ -126,13 +126,17 @@ function put_money($owner){
    
 
 }
-// /*Функция вносит изменения имени собаки по ее Id*/
-// function insert_name($id,$name){
-// 	 R::exec( 'UPDATE animals SET name=:name WHERE id = :id ', array(':name'=> $name, ':id' => $id));
-// 	//$bean = R::load($id, $name);
-// 	//$id = R::store($bean); // int
-// }
+/*Функция добавления количества вязок для папы и мамы*/
+function add_litters($id_m,$id_d){
 
+  echo $lit_m=find_where('animals',$id_m,'litter');
+  echo $lit_d=find_where('animals',$id_d,'litter');
+  $lit_m += 1;
+  $lit_d += 1;
+
+  insert_data('animals',$id_m,'litter',$lit_m);
+  insert_data('animals',$id_d,'litter',$lit_d);
+}
 
 /*Функция вносит данные с таблицу статы*/
 function insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,$scent_new,$find_new,$total_new,$mutation){
@@ -386,7 +390,7 @@ function gol_pooh($on,$ona){
  /*Функция возвращает данные противоположного пола при вязке*/
 function get_where($tabl, $param, $owner){
 
-   	return R::getAssoc ('SELECT id,name FROM animals WHERE sex =:pol and breeder=:own', array(':pol'=> $param, ':own' => $owner));
+   	return R::getAssoc ('SELECT id,name FROM animals WHERE sex =:pol and owner=:own', array(':pol'=> $param, ':own' => $owner));
 
 }
  /*Функция возвращает количество итемов у нанного владельца*/
@@ -564,111 +568,10 @@ function insert_url($url,$id){
     //var_dump($row['url']);
     $_POST['url']=$row['url'];
 
-			// $need='';
-			// $anwer="pic/" . $array . ".png";
- 		
- 		// if (strrpos($array , 'r_')){     //ЕСЛИ hrhr пуховая
- 		// 	$anwer="pic/hrhr/" . $array . ".png";
- 		 		
- 		// }elseif(strrpos($array , $need)){    //ЕСЛИ голая собака 
-   //   // $num=Rand(1,5);
-   //   // $anwer="pic/clear/" . $array . "_0" . $num. ".png";
- 		// 	$anwer="pic/" . $array . ".png";
-
- 		// }else{
- 		// 	$need='MM';
- 			
- 		// //echo "<br>need  " . $need;
- 		// 	if (strrpos($array , $need)) $anwer=ret_need($array, $need);
- 		// 	$need='TT';
- 			
- 		// //echo "<br>need  " . $need;
- 		// 	if (strrpos($array , $need)) $anwer=ret_need($array, $need);
- 		// 	$need='TM';
- 			
- 		// //echo "<br>need  " . $need;
- 		// 	if (strrpos($array , $need)) $anwer=ret_need($array, $need);
- 		// }
- 		
- 		
- 		// $_POST['url']= $anwer;
- 		//var_dump($_POST['url']);
+	
 }
 
 
-
-
-
- 
-// $GLOBALS['b'] = $GLOBALS['a'] + $GLOBALS['b'];
- //$GLOBALS["$hr_black"]
-
-//пуховые виды ====================================================
-	//черный пух
-	$hr_black='<img src="pic/hrhr/hr_black.png">';
-	$hr_blackMM='<img src="pic/hrhr/hr_blackMM.png">';
-
-	//рыжий пух
-	$hr_orange='<img src="pic/hrhr/hr_orange.png">';
-	$hr_orangeMM='<img src="pic/hrhr/hr_orangeMM.png">';
-
-	//шоко пух
-	$hr_shoko='<img src="pic/hrhr/hr_shoko.png">';
-	$hr_shokoMM='<img src="pic/hrhr/hr_shokoMM.png">';
-
-	//белый пух
-	$hr_white='<img src="pic/hrhr/hr_white.png">';
-	$hr_white_sh='<img src="pic/hrhr/hr_white_sh.png">';
-
-
-
-
-//echo 'проверка пятен и крапа';
-	//голые виды ====================================================
-//orange
-	$orangeMM='<img src="pic/MM/OrangeMM.png"';
-	$orange='<img src="pic/Orange.png">';
-
-	//black
-	$black='<img src="pic/black.png">';
-	$blackTTMM='<img src="pic/TTMM/blackTTMM.png">';
-	$blackMM='<img src="pic/MM/blackMM.png">';
-	$blackTT='<img src="pic/TT/blackTT.png">';
-
-	//shoko
-
-	$shoko='<img src="pic/shoko.png">';
-	$shokoTTMM='<img src="pic/TTMM/shokoTTMM.png">';
-	$shokoMM='<img src="pic/MM/shokoMM.png">';
-	$shokoTT='<img src="pic/TT/shokoTT.png">';
-
-	//white
-	$witeTTMM='<img src="pic/TTMM/whiteTTMM.png">';
-	$white='<img src="pic/white.png">';
-
-/*	//orange
-	$orangeMM='<img src="pic/orange/OrangeMM.png"';
-	$orange='<img src="pic/orange/Orange.png">';
-
-	//black
-	$black='<img src="pic/black/black.png">';
-	$blackTTMM='<img src="pic/white/blackTTMM.png">';
-	$blackMM='<img src="pic/white/blackMM.png">';
-	$blackTT='<img src="pic/white/blackTT.png">';
-
-	//shoko
-
-	$shoko='<img src="pic/shoko/shoko.png">';
-	$shokoTTMM='<img src="pic/white/shokoTTMM.png">';
-	$shokoMM='<img src="pic/white/shokoMM.png">';
-	$shokoTT='<img src="pic/white/shokoTT.png">';
-
-	//white
-	$witeTTMM='<img src="pic/white/whiteTTMM.png">';
-	$white='<img src="pic/white/white.png">';
-
-
-*/
 
 
 /////////////////////////////////////////////////1.пуховки hrhr///////////////////////////////////////////
@@ -1170,24 +1073,24 @@ $dogs_m =  R::getAssoc('SELECT *  FROM animals WHERE id = :id',
 foreach ($dogs_m as $dog) {
 	//echo $dog['name'];
 	//echo $dog['tt'];
-	$TT_m=$dog['tt'];
-	$AA_m=$dog['aa'];
-	$BB_m=$dog['bb'];
-	$MM_m=$dog['mm'];
-	$WW_m=$dog['ww'];
-	$FF_m=$dog['ff'];
-	$hr_ona=$dog['hr'];
+	//$TT_m=$dog['tt'];
+	//$AA_m=$dog['aa'];
+	//$BB_m=$dog['bb'];
+	//$MM_m=$dog['mm'];
+	//$WW_m=$dog['ww'];
+	//$FF_m=$dog['ff'];
+	//$hr_ona=$dog['hr'];
 	$race_m=$dog['race'];
 	$breeder_m=$dog['breeder'];
 	$owner_m=$dog['owner'];
 	$kennel_m=$dog['kennel'];
 	$puppy=$dog['puppy'];
-	$litter=$dog['litter'];
-	$litter += 1;
+	//$litter=$dog['litter'];
+	//$litter += 1;
 	$puppy += 1;
 	/*величить кол-во вязок у мамы*/
 	insert_data('animals',$id_m,'puppy',$puppy);
-	insert_data('animals',$id_m,'litter',$litter);
+	//insert_data('animals',$id_m,'litter',$litter);
 //echo '<br>предки мамы: ';
 	
   $G0dad=$dog['dad'];   //отец матери для щенка дед
@@ -1206,20 +1109,20 @@ $dogs_d =  R::getAssoc('SELECT *  FROM animals WHERE id = :id',
 foreach ($dogs_d as $dog) {
 	//echo $dog['name'];
 	//echo $dog['tt'];
-	$TT_d=$dog['tt'];
-	$AA_d=$dog['aa'];
-	$BB_d=$dog['bb'];
-	$MM_d=$dog['mm'];
-	$WW_d=$dog['ww'];
-	$FF_d=$dog['ff'];
-	$hr_on=$dog['hr'];
+	// $TT_d=$dog['tt'];
+	// $AA_d=$dog['aa'];
+	// $BB_d=$dog['bb'];
+	// $MM_d=$dog['mm'];
+	// $WW_d=$dog['ww'];
+	// $FF_d=$dog['ff'];
+	// $hr_on=$dog['hr'];
 	$puppy=$dog['puppy'];
-	$litter=$dog['litter'];
-	$litter += 1;
+	//$litter=$dog['litter'];
+	//$litter += 1;
 	$puppy += 1;
 	/*величить кол-во вязок у папы*/
 	insert_data('animals',$id_d,'puppy',$puppy);
-	insert_data('animals',$id_d,'litter',$litter);
+	//insert_data('animals',$id_d,'litter',$litter);
 //echo '<br>предки папы: ';
 	$G1dad=$dog['dad'];
 	$G1mum=$dog['mum'];
@@ -1230,19 +1133,19 @@ foreach ($dogs_d as $dog) {
 	
 }
 
-//echo '<br>даем окрас!';
-$tt_new = breedding($TT_d,$TT_m,'TT','tt','Tt');
-//echo "<br> tt_new: " . $tt_new;
-$aa_new = breedding($AA_d,$AA_m,'AA','aa','Aa');
-//echo "<br> aa_new: " . $aa_new;
-$bb_new = breedding($BB_d,$BB_m,'BB','bb','Bb');
-//echo "<br> bb_new: " . $bb_new;
-$mm_new = breedding($MM_d,$MM_m,'MM','mm','Mm');
-//echo "<br> mm_new: " . $mm_new;
-$ww_new = breedding($WW_d,$WW_m,'WW','ww','Ww');
-//echo "<br> ww_new: " . $ww_new;
-$ff_new = breedding($FF_d,$FF_m,'FF','ff','Ff');
-//echo "<br> ff_new: " . $ff_new;
+// //echo '<br>даем окрас!';
+// $tt_new = breedding($TT_d,$TT_m,'TT','tt','Tt');
+// //echo "<br> tt_new: " . $tt_new;
+// $aa_new = breedding($AA_d,$AA_m,'AA','aa','Aa');
+// //echo "<br> aa_new: " . $aa_new;
+// $bb_new = breedding($BB_d,$BB_m,'BB','bb','Bb');
+// //echo "<br> bb_new: " . $bb_new;
+// $mm_new = breedding($MM_d,$MM_m,'MM','mm','Mm');
+// //echo "<br> mm_new: " . $mm_new;
+// $ww_new = breedding($WW_d,$WW_m,'WW','ww','Ww');
+// //echo "<br> ww_new: " . $ww_new;
+// $ff_new = breedding($FF_d,$FF_m,'FF','ff','Ff');
+// //echo "<br> ff_new: " . $ff_new;
 
 
 //echo '<br> рандомный пол!';
@@ -1252,9 +1155,9 @@ $pol=f_bdika_sex();
 //var_dump($hr_ona);
 
 
-//echo '=================';
-$hr_new=gol_pooh($hr_on,$hr_ona);
-//echo '=================';
+// //echo '=================';
+// $hr_new=gol_pooh($hr_on,$hr_ona);
+// //echo '=================';
 $birth=date("d.m.Y");
 
 //////////////////////////////////////////////////////////// обновление данных во всей таблице по столбцу
@@ -1271,12 +1174,7 @@ $dogs->kennel=$kennel_m;
 $dogs->birth=$birth;
 $dogs->now='0';
 
-$dogs->aa=$aa_new;
-$dogs->bb=$bb_new;
-$dogs->ww=$ww_new;
-$dogs->tt=$tt_new;
-$dogs->mm=$mm_new;
-$dogs->ff=$ff_new;
+
 
 $dogs->id='';
 $dogs->mum=$id_m;
@@ -1310,7 +1208,7 @@ $dogs->gg0mum4=$GG0mum4;
 
 
 $dogs->sex=$pol;
-$dogs->hr=$hr_new;
+
 
 $dogs->status='1';
 
@@ -1319,6 +1217,87 @@ $dogs->status='1';
 
 //Сохраняем, первичный ключ id создается автоматически
 $id = R::store( $dogs );
+
+$id_temp=$id;
+//======================================  Создаем данные из DNA ============================
+echo '$id_m ' . $id_m;
+$dogs_m =  R::getAssoc('SELECT * FROM dna WHERE dog_id = :id',
+        [':id' => $id_m]);
+
+debug($dogs_m);
+
+foreach ($dogs_m as $dog) {
+
+  echo $TT_m=$dog['tt'];
+  echo $AA_m=$dog['aa'];
+  echo $BB_m=$dog['bb'];
+  echo $MM_m=$dog['mm'];
+  echo $WW_m=$dog['ww'];
+  echo $FF_m=$dog['ff'];
+  echo $hr_ona=$dog['hr'];
+}
+echo '<br>';
+
+echo '$id_d ' . $id_d;
+$dogs_d =  R::getAssoc('SELECT *  FROM dna WHERE dog_id = :id',
+        [':id' => $id_d]);
+
+debug($dogs_d);
+
+foreach ($dogs_d as $dog) {
+
+  echo $TT_d=$dog['tt'];
+  echo $AA_d=$dog['aa'];
+  echo $BB_d=$dog['bb'];
+  echo $MM_d=$dog['mm'];
+  echo $WW_d=$dog['ww'];
+  echo $FF_d=$dog['ff'];
+  echo $hr_on=$dog['hr'];
+}
+
+
+
+//echo '=================';
+$hr_new=gol_pooh($hr_on,$hr_ona);
+//echo '=================';
+
+
+
+echo '<br>даем окрас!';
+$tt_new = breedding($TT_d,$TT_m,'TT','tt','Tt');
+//echo "<br> tt_new: " . $tt_new;
+$aa_new = breedding($AA_d,$AA_m,'AA','aa','Aa');
+//echo "<br> aa_new: " . $aa_new;
+$bb_new = breedding($BB_d,$BB_m,'BB','bb','Bb');
+//echo "<br> bb_new: " . $bb_new;
+$mm_new = breedding($MM_d,$MM_m,'MM','mm','Mm');
+//echo "<br> mm_new: " . $mm_new;
+$ww_new = breedding($WW_d,$WW_m,'WW','ww','Ww');
+//echo "<br> ww_new: " . $ww_new;
+$ff_new = breedding($FF_d,$FF_m,'FF','ff','Ff');
+// "<br> ff_new: " . $ff_new;
+
+
+$dogs=R::dispense( 'dna' );
+
+$dogs->dog_id=$id_temp;
+$dogs->aa=$aa_new;
+$dogs->bb=$bb_new;
+$dogs->ww=$ww_new;
+$dogs->tt=$tt_new;
+$dogs->mm=$mm_new;
+$dogs->ff=$ff_new;
+$dogs->hr=$hr_new;
+
+$url=bdika_color ($hr_new,$ww_new,$ff_new,$bb_new,$tt_new,$mm_new);
+
+
+$dogs->url_id=ret_id_from_url($url);
+
+$id = R::store( $dogs );
+
+$id=$id_temp;
+
 return $id;
 
 }

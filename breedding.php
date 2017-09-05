@@ -16,6 +16,7 @@ error_reporting(E_ALL);
 <title>Cимулятор заводчика</title>
 </head>
 <body>
+
  <?php
  
 
@@ -36,10 +37,19 @@ error_reporting(E_ALL);
 ?>  
 <div id="all_breed">
 
+<div>
+<form method="POST" action="/NewDog.php">
+    <input type="submit" name="nazvanie_knopki" value="Вяжем" class="knopka"/>
+</form>
+<form method="POST" action="/kennel.php">
+    <input type="submit" name="exit" value="Вернуться" class="knopka"/>
+</form>
+</div>
+
     <div id="left_breed">
         
     <?php echo '<br><br><br><br>Мама: ' . var_dump($id_m) . '<br>';?>
-        <img src="<?php echo print_pic($id_m)?>">
+        <img src="<?php echo from_id_to_url($id_m)?>">
         <?php detalis($id_m);
         f_tree($id_m);
         ?>
@@ -48,13 +58,13 @@ error_reporting(E_ALL);
     </div>
     <div id="right_breed">
           <?php echo '<br><br><br><br>Папа: ' . var_dump($id_d);?>
-         <img src="<?php echo print_pic($id_d)?>">
+         <img src="<?php echo from_id_to_url($id_d)?>">
          <?php detalis($id_d);
          f_tree($id_d);
           ?>
          <br>      
 
-  </div> 
+    </div> 
 </div>
  <?php 
 
@@ -70,12 +80,8 @@ $_SESSION['id_d']=$id_d;
           ?><h3 style="color:red"><?php echo '<br>При вязки близкородственных партнеров возможны ухудшения качеств и получение мутаций! Будьте осторожнее!';?></h3><?php
         }
 ?>
-<form method="POST" action="/NewDog.php">
-    <input type="submit" name="nazvanie_knopki" value="Вяжем" class="knopka"/>
-    </form>
-<form method="POST" action="/kennel.php">
-    <input type="submit" name="exit" value="Вернуться" class="knopka"/>
-</form>
+
+
 </body>
 </html>
 

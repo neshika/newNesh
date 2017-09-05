@@ -25,18 +25,20 @@ $id_d=$_SESSION['id_d'];
       echo "<br>Малыш:";
       var_dump($id_new);
 
-       $row_new = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-       [':id' => $id_new]);
-
-      f_get_image($row_new['hr'],$row_new['ww'],$row_new['ff'],$row_new['bb'] ,$row_new['tt'],$row_new['mm']);
-      ?><img src="<?php echo $_POST['url'];?>"><?php
-      insert_url($_POST['url'],$id_new); //вставляет ссылку на картинку в базу
+      insert_url(find_where('dna',$id_new,'url_id'),$id_new); //вставляет ссылку на картинку в базу
 
 
-      print_all_d($id_new); 
-     
+      ?><img src="<?php echo from_id_to_url($id_new);?>"><?php
+
+    
      /***************функция по получению стат в зависимости от отца и матери************/
      new_stats($id_m,$id_d,$id_new);
+     
+     add_litters($id_m,$id_d);
+
+     detalis($id_new);
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//внесни данные об увеличении вязок мама и папа
 
      $_SESSION['id_new'] = $id_new;
 
