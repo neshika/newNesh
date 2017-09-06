@@ -390,7 +390,7 @@ function gol_pooh($on,$ona){
  /*Функция возвращает данные противоположного пола при вязке*/
 function get_where($tabl, $param, $owner){
 
-   	return R::getAssoc ('SELECT id,name FROM animals WHERE sex =:pol and owner=:own', array(':pol'=> $param, ':own' => $owner));
+   	return R::getAssoc ('SELECT id,name FROM animals WHERE sex =:pol and owner=:own and status=1', array(':pol'=> $param, ':own' => $owner));
 
 }
  /*Функция возвращает количество итемов у нанного владельца*/

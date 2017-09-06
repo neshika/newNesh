@@ -5,10 +5,11 @@ require "/libs/up.php";
 function bdika_pol($id_dog){  //проверяем пол выбранной собаки, чтобы вывести противоположных партнеров
   $owner = find_where('animals',$id_dog,'owner'); 
   //echo $owner;
- 
+      
           if ('сука' === find_where('animals',$id_dog,'sex')){
 
               $array [] = get_where('animals', 'кобель', $owner);
+              
             }else{
             
               $array [] = get_where('animals', 'сука', $owner);
@@ -38,6 +39,7 @@ $id_dog= $_SESSION['Dog'];// выгружаем из памяти id собак�
       $array = bdika_pol($id_dog);?>
       <h3 align="center"><?php echo 'Партнеры: ';?></h3><?php
    /***************************вывожу на экран возможных парнтеров в зависимости от пола*************************/ 
+   debug($array);
    foreach($array as $item) {
               foreach ($item as $key => $value) {
                   
