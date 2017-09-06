@@ -86,7 +86,7 @@ require "/libs/up.php";
 
 
         if( isset($_POST['female']) ){
-            $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && sex LIKE "сука"' ,
+            $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && sex LIKE "сука" && status = 1' ,
             [':owner' => $owner]);  
 /*картинка сук*/
             ?>
@@ -125,7 +125,7 @@ require "/libs/up.php";
 
 
         if( isset($_POST['male']) ){
-              $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && sex LIKE "кобель"' ,
+              $array[] = R::getAssoc('SELECT id,name FROM animals WHERE owner = :owner && sex LIKE "кобель" && status = 1' ,
               [':owner' => $owner]);
               ?>
               <img src = "/pic/male.png" alt = "мальчики" width="10%">   <?php
