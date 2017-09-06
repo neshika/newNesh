@@ -44,11 +44,18 @@ $id_dog= $_SESSION['Dog'];// выгружаем из памяти id собак�
               foreach ($item as $key => $value) {
                   
                 echo "<hr><br>";
+                echo '<br>основной: ' . $id_dog;
+                echo '<br>партнер: ' . $key;
+
+                $contact=ret_str_contact($key,$id_dog);  
+                echo $contact;
 /**********************выводим на экран имя собаки как ссылку*********************************/
                ?>
                 <form method="post" action="breedding.php">
-                      <?php $_SESSION['para']=$id_dog;?>
-                      <?php echo '<a href="/name.php?id=' . $key . '">' . "$value";  //$value - имя собаки // $key = id ?>
+                      <?php $_SESSION['para']=$id_dog;
+                      echo '<a href="/name.php?id=' . $key . '">' . "$value";  //$value - имя собаки // $key = id 
+
+                      ?>
                       
                           <details>
                               <summary> Статы и ГК</summary> 

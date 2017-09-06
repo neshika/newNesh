@@ -1071,26 +1071,17 @@ function Start($id_m,$id_d){
 $dogs_m =  R::getAssoc('SELECT *  FROM animals WHERE id = :id',
         [':id' => $id_m]);  
 foreach ($dogs_m as $dog) {
-	//echo $dog['name'];
-	//echo $dog['tt'];
-	//$TT_m=$dog['tt'];
-	//$AA_m=$dog['aa'];
-	//$BB_m=$dog['bb'];
-	//$MM_m=$dog['mm'];
-	//$WW_m=$dog['ww'];
-	//$FF_m=$dog['ff'];
-	//$hr_ona=$dog['hr'];
+
 	$race_m=$dog['race'];
 	$breeder_m=$dog['breeder'];
 	$owner_m=$dog['owner'];
 	$kennel_m=$dog['kennel'];
 	$puppy=$dog['puppy'];
-	//$litter=$dog['litter'];
-	//$litter += 1;
+	
 	$puppy += 1;
 	/*величить кол-во вязок у мамы*/
 	insert_data('animals',$id_m,'puppy',$puppy);
-	//insert_data('animals',$id_m,'litter',$litter);
+	
 //echo '<br>предки мамы: ';
 	
   $G0dad=$dog['dad'];   //отец матери для щенка дед
@@ -1107,22 +1098,13 @@ foreach ($dogs_m as $dog) {
 $dogs_d =  R::getAssoc('SELECT *  FROM animals WHERE id = :id',
         [':id' => $id_d]);  
 foreach ($dogs_d as $dog) {
-	//echo $dog['name'];
-	//echo $dog['tt'];
-	// $TT_d=$dog['tt'];
-	// $AA_d=$dog['aa'];
-	// $BB_d=$dog['bb'];
-	// $MM_d=$dog['mm'];
-	// $WW_d=$dog['ww'];
-	// $FF_d=$dog['ff'];
-	// $hr_on=$dog['hr'];
+
 	$puppy=$dog['puppy'];
-	//$litter=$dog['litter'];
-	//$litter += 1;
+	
 	$puppy += 1;
 	/*величить кол-во вязок у папы*/
 	insert_data('animals',$id_d,'puppy',$puppy);
-	//insert_data('animals',$id_d,'litter',$litter);
+	
 //echo '<br>предки папы: ';
 	$G1dad=$dog['dad'];
 	$G1mum=$dog['mum'];
@@ -1133,31 +1115,10 @@ foreach ($dogs_d as $dog) {
 	
 }
 
-// //echo '<br>даем окрас!';
-// $tt_new = breedding($TT_d,$TT_m,'TT','tt','Tt');
-// //echo "<br> tt_new: " . $tt_new;
-// $aa_new = breedding($AA_d,$AA_m,'AA','aa','Aa');
-// //echo "<br> aa_new: " . $aa_new;
-// $bb_new = breedding($BB_d,$BB_m,'BB','bb','Bb');
-// //echo "<br> bb_new: " . $bb_new;
-// $mm_new = breedding($MM_d,$MM_m,'MM','mm','Mm');
-// //echo "<br> mm_new: " . $mm_new;
-// $ww_new = breedding($WW_d,$WW_m,'WW','ww','Ww');
-// //echo "<br> ww_new: " . $ww_new;
-// $ff_new = breedding($FF_d,$FF_m,'FF','ff','Ff');
-// //echo "<br> ff_new: " . $ff_new;
-
 
 //echo '<br> рандомный пол!';
 $pol=f_bdika_sex();
-//echo '=================';
-//var_dump($hr_on);
-//var_dump($hr_ona);
 
-
-// //echo '=================';
-// $hr_new=gol_pooh($hr_on,$hr_ona);
-// //echo '=================';
 $birth=date("d.m.Y");
 
 //////////////////////////////////////////////////////////// обновление данных во всей таблице по столбцу
@@ -1179,13 +1140,6 @@ $dogs->now='0';
 $dogs->id='';
 $dogs->mum=$id_m;
 $dogs->dad=$id_d;
-
-//echo '<br> $G1dad: ' . $G1dad;
-//echo '<br> $G1mum: ' . $G1mum;
-//echo '<br> $G0dad: ' . $G0dad;
-//echo '<br> $G0mum: ' . $G0mum;
-
-
 
 
 /*по линии отца */
@@ -1323,7 +1277,35 @@ function get_stats($id_m, $id_d, $value, $mutation, $plus){
 
         return $temp;
 }
+function ret_str_contact($partner,$dog){
+  //echo $partner . ' ' . find_where('animals',$dog,'dad');
+  //echo $partner . ' ' . find_where('animals',$dog,'mum');
 
+  if( $partner==find_where('animals',$dog,'dad') ){
+
+      return ' отец!';
+  }
+  if( $partner==find_where('animals',$dog,'mum') ){
+
+      return ' мать!';
+  }
+  if( ( $partner==find_where('animals',$dog,'g1dad') ) || ( $partner==find_where('animals',$dog,'g0dad') ) ){
+
+      return ' дед!';
+  }
+  if( ( $partner==find_where('animals',$dog,'g1mum') ) || ( $partner==find_where('animals',$dog,'g0mum') ) ){
+
+      return ' бабка!';
+  }
+  if( ( $partner==find_where('animals',$dog,'gg0dad1') ) || ( $partner==find_where('animals',$dog,'gg0dad3') ) || ( $partner==find_where('animals',$dog,'gg1dad1') ) || ( $partner==find_where('animals',$dog,'gg1dad3') )){
+
+      return ' прадед!';
+  }
+  if( ( $partner==find_where('animals',$dog,'gg0mum2') ) || ( $partner==find_where('animals',$dog,'gg1mum2') ) || ( $partner==find_where('animals',$dog,'gg0mum4') ) || ( $partner==find_where('animals',$dog,'gg1mum4') )){
+
+      return ' пробабка!';
+  }
+}
 
 /**********************  Проверка шанса мутаций в зависимости от родства партнеров****************/
 function check_mutation($id_m,$id_mum,$id_g1mum,$id_g0mum,$id_gg1mum2,$id_gg0mum2,$id_gg1mum4,$id_gg0mum4,
@@ -1498,26 +1480,7 @@ function new_stats($id_m,$id_d,$id_new){
         $find_new= get_stats($id_m, $id_d, 'find', $mutation, $plus);
         $total_new= get_stats($id_m, $id_d, 'total', $mutation, $plus);
      
-     /*   echo '<br>' . $speed_new;
-        echo '/' .  $agility_new;
-        echo '/' .  $teach_new;
-        echo '/' . $jump_new;
-        echo '/' .  $scent_new;
-        echo '/' .   $find_new;
-        echo '/' . $total_new;
-    */
-       /* insert_data('stats',$id_new,'speed',$speed_new);
-        insert_data('stats',$id_new,'agility',$agility_new);
-        insert_data('stats',$id_new,'teach',$teach_new);
-        insert_data('stats',$id_new,'jump',$jump_new);
-        insert_data('stats',$id_new,'scent',$scent_new);
-        insert_data('stats',$id_new,'find',$find_new);
-        insert_data('stats',$id_new,'total',$total_new);
-        insert_data('stats',$id_new,'mutation',$mutation);
-        */
-
-
-
+    
        insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,$scent_new,$find_new,$total_new,$mutation);
 
 
