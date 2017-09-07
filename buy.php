@@ -52,6 +52,7 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
        $_SESSION['own'] = $owner;
 
 
+//  вставляем статы
 
      R::exec( 'UPDATE stats SET dog_id=:dog_id WHERE id = :id ', array(':dog_id'=> $dog_id, ':id' => $id));
      R::exec( 'UPDATE stats SET speed=:speed WHERE id = :id ', array(':speed'=> $spd, ':id' => $id));
@@ -62,8 +63,20 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
      R::exec( 'UPDATE stats SET find=:find WHERE id = :id ', array(':find'=> $fnd, ':id' => $id));
      R::exec( 'UPDATE stats SET total=:total WHERE id = :id ', array(':total'=> $ttl, ':id' => $id));
 
+//вставляем DNA
 
+     R::exec( 'UPDATE dna SET dog_id=:dog_id WHERE id = :id ', array(':dog_id'=> $dog_id, ':id' => $id));
+     R::exec( 'UPDATE dna SET url_id=:url_id WHERE id = :id ', array(':url_id'=> $_SESSION['url_id'], ':id' => $id));
+     R::exec( 'UPDATE dna SET hr=:hr WHERE id = :id ', array(':hr'=> $_SESSION['hr'], ':id' => $id));
+     R::exec( 'UPDATE dna SET ww=:ww WHERE id = :id ', array(':ww'=> $_SESSION['ww'], ':id' => $id));
+     R::exec( 'UPDATE dna SET ff=:ff WHERE id = :id ', array(':ff'=> $_SESSION['ff'], ':id' => $id));
+     R::exec( 'UPDATE dna SET bb=:bb WHERE id = :id ', array(':bb'=> $_SESSION['bb'], ':id' => $id));
+     R::exec( 'UPDATE dna SET mm=:mm WHERE id = :id ', array(':mm'=> $_SESSION['mm'], ':id' => $id));
+     R::exec( 'UPDATE dna SET tt=:tt WHERE id = :id ', array(':tt'=> $_SESSION['tt'], ':id' => $id));
+     R::exec( 'UPDATE dna SET aa=:aa WHERE id = :id ', array(':aa'=> $_SESSION['aa'], ':id' => $id));
 
+     $_SESSION['price']=pricing($sex, '0');
+     echo '<br> Цена: ' . $_SESSION['price'];
         
       ?>
 <div>

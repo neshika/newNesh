@@ -45,7 +45,7 @@ require "/libs/up.php";
  
       if( isset($_POST['money']) ){
        put_money($owner);
-      echo print_money($owner);
+      //echo print_money($owner);
      }
      
        if( isset($_POST['all_dogs']) ){

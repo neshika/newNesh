@@ -108,6 +108,114 @@ function f_tree($id){
           echo '<br>прадед(по бабке): ' . find_where('animals',$id,'gg1dad3');
           echo '<br>прабабка(по бабке): ' . find_where('animals',$id,'gg1mum4');
 }
+
+/*****************цена подсчета собаки*****************************/
+
+function pricing($sex, $dog_id){  //пол собаки и ее id  / возвращает сумму в цифрах
+
+//echo '<br>' . $dog_id;
+//echo '<br>' . $sex;
+$cost=0;
+
+$array[]=R::getRow( 'SELECT * FROM dna WHERE dog_id = :dog_id',
+       [':dog_id' => $dog_id]);
+//debug($array);
+
+  if('кобель'==$sex){
+    //echo '<br>male';
+    foreach($array as $item) {
+          foreach ($item as $id => $value) {  //id индекс, value - значение 
+
+        //  если индекс равен наименованию, напечатать его значение
+             if('hr'==$id){    //hrhr-пух  Hrhr-голая
+              //echo '<br>1' . $value;
+                  if('Hrhr'==$value){
+                    //echo ' Голый^ ';
+                    $cost=35000;
+                    foreach ($item as $id => $value) {  //id индекс, value - значение 
+
+                            if('bb'==$id){  //если шоколадный голый
+                              
+                                if('bb'==$value){
+                                    $cost=55000;
+                                }
+                            }
+                    }
+
+                   
+                  }
+                   if('hrhr'==$value){
+                    //echo ' Пуховый^ ';
+                    $cost=10000;
+                    foreach ($item as $id => $value) {  //id индекс, value - значение 
+
+                            if('bb'==$id){
+                                if('bb'==$value){ //если шоколадный пух
+                                    $cost=35000;
+                                }
+                            }
+                    }
+                  }
+
+            } //if('hr'==$id)
+           
+      } //foreach ($item as $id => $value)
+    
+
+    }  //foreach($array as $item)
+  } //if('кобель'==$sex)
+
+
+
+
+  if('сука'==$sex){
+    //echo '<br>famale';
+        foreach($array as $item) {
+          foreach ($item as $id => $value) {  //id индекс, value - значение 
+
+        //  если индекс равен наименованию, напечатать его значение
+             if('hr'==$id){    //hrhr-пух  Hrhr-голая
+              //echo '<br>2' . $value;
+                  if('Hrhr'==$value){
+                   // echo ' Голый^ ';
+                    $cost=45000;
+                    foreach ($item as $id => $value) {  //id индекс, value - значение 
+
+                            if('bb'==$id){  //если шоколадный голый
+                              
+                                if('bb'==$value){
+                                    $cost=75000;
+                                }
+                            }
+                    }
+
+                   
+                  }
+                   if('hrhr'==$value){
+                    //echo ' Пуховый^ ';
+                    $cost=25000;
+                    foreach ($item as $id => $value) {  //id индекс, value - значение 
+
+                            if('bb'==$id){
+                                if('bb'==$value){ //если шоколадный пух
+                                    $cost=40000;
+                                }
+                            }
+                    }
+                  }
+
+            } //if('hr'==$id)
+           
+      } //foreach ($item as $id => $value)
+    
+
+    }  //foreach($array as $item)
+} //if('сука'==$sex)   
+       
+
+return number_format ($cost , $decimals = 0,$dec_point = "." , $thousands_sep = " " ); // формат 10 000        
+
+}
 /***************получает сумму денег по имени владельца************/
 function print_money($owner){
    $id=get_id($owner);
@@ -120,10 +228,36 @@ function print_money($owner){
 function put_money($owner){
   $id=get_id($owner);
   $coins = get_count('1', $id);
-  $coins = $coins + 1;
+  $coins = $coins + 50000;
 
  R::exec( 'UPDATE owner_items SET count= :coins WHERE owner_id = :id AND item_id = :item', array(':coins' => $coins,':item'=> '1', ':id' => $id));
    
+
+}
+/*                                             *************************    данные по параметру                 */
+ /*Функция возвращает данные противоположного пола при вязке*/
+function get_where($tabl, $param, $owner){
+
+    return R::getAssoc ('SELECT id,name FROM animals WHERE sex =:pol and owner=:own and status=1', array(':pol'=> $param, ':own' => $owner));
+
+}
+ /*Функция возвращает количество итемов у нанного владельца*/
+function get_count($item, $owner){
+
+    $string=R::getcol('SELECT count FROM owner_items WHERE owner_id =:id and item_id=:item', array(':id'=> $owner, ':item' => $item));
+    //var_dump($string);
+    if (empty($string)){
+      $string[0]='0';
+    }
+    return $string[0];
+
+}
+function get_id($login){
+
+    $string =R::getCol('SELECT id FROM users WHERE login = :log',
+        [':log' => $login]);
+
+   return $string[0];
 
 }
 /*Функция добавления количества вязок для папы и мамы*/
@@ -386,32 +520,7 @@ function gol_pooh($on,$ona){
 	}
 
 }
-/*                                             *************************    данные по параметру                 */
- /*Функция возвращает данные противоположного пола при вязке*/
-function get_where($tabl, $param, $owner){
 
-   	return R::getAssoc ('SELECT id,name FROM animals WHERE sex =:pol and owner=:own and status=1', array(':pol'=> $param, ':own' => $owner));
-
-}
- /*Функция возвращает количество итемов у нанного владельца*/
-function get_count($item, $owner){
-
-    $string=R::getcol('SELECT count FROM owner_items WHERE owner_id =:id and item_id=:item', array(':id'=> $owner, ':item' => $item));
-    //var_dump($string);
-    if (empty($string)){
-      $string[0]='0';
-    }
-    return $string[0];
-
-}
-function get_id($login){
-
-    $string =R::getCol('SELECT id FROM users WHERE login = :log',
-        [':log' => $login]);
-
-   return $string[0];
-
-}
 /*                                             *************************    данные по ID                 */
 
  /*Функция возвращает данные по собаке по ее ID*/
@@ -1578,7 +1687,7 @@ function  bdika_color($Hr,$W,$F,$B,$T,$M){ //возвращает url /pic/clear
     // $T='tt';
     // $M='mm';
     
-    ('hrhr'==$Hr ? $Hr='hr1' : $Hr='hr0');
+    ('Hrhr'==$Hr ? $Hr='hr1' : $Hr='hr0');  //hr1 - голая    hr0 - пух
     ('ww'==$W ? $W='w0' : $W='w1');
     ('ff'==$F ? $F='f0' : $F='f1');
     ('bb'==$B ? $B='b0' : $B='b1');
