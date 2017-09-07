@@ -216,6 +216,28 @@ $array[]=R::getRow( 'SELECT * FROM dna WHERE dog_id = :dog_id',
 return number_format ($cost , $decimals = 0,$dec_point = "." , $thousands_sep = " " ); // формат 10 000        
 
 }
+
+function bdika_balance($owner,$price){  //проверяет хватает ли денег если все ок возвращает TRUE
+  //***************************  if(bdika_balance($owner,$price)) ОК  else echo 'не хватает денег'************************
+
+  
+  //echo '<br>' . $owner;
+  //echo '<br>' . $price;
+
+  //echo '<br>' . get_id($owner);
+
+  //echo '<br>' . get_count('1', get_id($owner));   //выдает количество денег у юзера
+
+  if($price>get_count('1', get_id($owner))){
+    return false;
+  }
+  return true;
+
+}
+
+
+
+
 /***************получает сумму денег по имени владельца************/
 function print_money($owner){
    $id=get_id($owner);
@@ -242,9 +264,9 @@ function get_where($tabl, $param, $owner){
 
 }
  /*Функция возвращает количество итемов у нанного владельца*/
-function get_count($item, $owner){
+function get_count($item, $owner_id){
 
-    $string=R::getcol('SELECT count FROM owner_items WHERE owner_id =:id and item_id=:item', array(':id'=> $owner, ':item' => $item));
+    $string=R::getcol('SELECT count FROM owner_items WHERE owner_id =:id and item_id=:item', array(':id'=> $owner_id, ':item' => $item));
     //var_dump($string);
     if (empty($string)){
       $string[0]='0';

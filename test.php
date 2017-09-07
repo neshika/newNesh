@@ -44,7 +44,13 @@ $dog_id=0;
 $sex='сука';
 
 
-echo pricing($sex, $dog_id);
+$price=pricing($sex, $dog_id);
+
+if(bdika_balance($owner,$price)) echo 'ok';
+
+ 
+
+
 
                require '/libs/down.php';
  ?>
