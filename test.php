@@ -37,7 +37,6 @@ require "db.php";
 
 
 
-
 echo '<br>Тестируем! ';
 
 $dog_id=0;
@@ -46,7 +45,11 @@ $sex='сука';
 
 $price=pricing($sex, $dog_id);
 
-if(bdika_balance($owner,$price)) echo 'ok';
+//if(bdika_balance($owner,$price)) 
+  //buying($owner,10000);
+
+
+
 
  
 

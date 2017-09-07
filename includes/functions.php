@@ -213,7 +213,7 @@ $array[]=R::getRow( 'SELECT * FROM dna WHERE dog_id = :dog_id',
 } //if('сука'==$sex)   
        
 
-return number_format ($cost , $decimals = 0,$dec_point = "." , $thousands_sep = " " ); // формат 10 000        
+return $cost;      
 
 }
 
@@ -246,14 +246,36 @@ function print_money($owner){
          return $coins;
 }
 
-/***************увеличивает сумму денег  на 50 000 ************/
-function put_money($owner){
+/***************увеличивает сумму денег  на сумму  $price************/
+function put_money($owner,$price){
   $id=get_id($owner);
   $coins = get_count('1', $id);
-  $coins = $coins + 50000;
+  $coins = $coins + $price;
 
  R::exec( 'UPDATE owner_items SET count= :coins WHERE owner_id = :id AND item_id = :item', array(':coins' => $coins,':item'=> '1', ':id' => $id));
    
+
+}
+
+/***************уменьшает сумму денег  на сумму  $price ************/
+function buying($owner,$price){
+  $id=get_id($owner);
+
+  echo '<br>$owner ' . $owner;
+
+  //number_format ($price , $decimals = 0,$dec_point = "." , $thousands_sep = " " ); // формат 10 000  
+  echo '<br>$price ' . $price;
+
+ // echo '<br>get_id($owner) ' . get_id($owner);
+
+  $money=get_count('1', $id);
+  $money=$money-$price;
+   
+echo '<br>$money ' . $money;
+  //echo number_format ($money , $decimals = 0,$dec_point = "." , $thousands_sep = " " ); // формат 10 000 ;
+ R::exec( 'UPDATE owner_items SET count= :coins WHERE owner_id = :id AND item_id = :item', array(':coins' => $money,':item'=> '1', ':id' => $id));
+
+
 
 }
 /*                                             *************************    данные по параметру                 */

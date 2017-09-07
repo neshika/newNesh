@@ -1,10 +1,9 @@
 <?php
 
        require "/libs/up.php";
-   
+   $owner=ret_owner();
 ?>
-<h1 align="center">Доска объявлений</h1>
-<h3 align="center">Актуальное предложение</h3>
+
 <?php
 
 if(!isset($_POST['buy']) ){        //если кнопка не нажата
@@ -46,7 +45,7 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
       $ttl=($spd+$agl+$tch+$jmp+$nuh+$fnd);
       $ttl=number_format ($ttl , $decimals = 1 ,$dec_point = "." , $thousands_sep = " " );
 
-      $owner=ret_owner();
+      
       // session_start(); 
        $_SESSION['sex'] = $sex;
        $_SESSION['own'] = $owner;
@@ -76,9 +75,14 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
      R::exec( 'UPDATE dna SET aa=:aa WHERE id = :id ', array(':aa'=> $_SESSION['aa'], ':id' => $id));
 
      $_SESSION['price']=pricing($sex, '0');
-     echo '<br> Цена: ' . $_SESSION['price'];
+     echo '<br> Цена: ' . number_format (pricing($sex, '0') , $decimals = 0,$dec_point = "." , $thousands_sep = " " ); // формат 10 000  ;
+
         
       ?>
+<h1 align="center">Доска объявлений</h1>
+<h3 align="center">Актуальное предложение</h3>
+<h3 align="center">средства: <?php echo print_money($owner);?></h3>
+
 <div>
 
        <div align="left">
@@ -122,12 +126,27 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
           
 <form action="/buy.php" method="POST">
        <button type="submit" class="knopka" name="buy">Купить</button>
+       <a class="buttons" href="/kennel.php" >в питомник</a>
       
 </form>
 <?php
 } 
 ////////////////////////////////////////////////////////////////////////////////////
       if( isset($_POST['buy']) ){  //если нажата кнопка ЭкупитьЭ
+
+     
+    
+
+
+        //var_dump(bdika_balance($_SESSION['own'],$_SESSION['price']));
+        if( bdika_balance($_SESSION['own'],$_SESSION['price']) ){
+              buying($_SESSION['own'],$_SESSION['price']);
+ ?>
+              <h1 align="center">Доска объявлений</h1>
+              <h3 align="center">средства: <?php echo print_money($owner);?></h3>
+
+<?php
+
               echo 'Проверьте покупку в питомнике! <br> Дайте собаке имя!<br> ';
              
              $date=date('d.m.Y');
@@ -150,8 +169,18 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
               <img src = "<?php echo $_SESSION['url']; ?>"></a>
 
               <?php
-       }
+          }//if(bdika_balance($owner,$price))
+          else {
+            echo 'Не достаточно средств для покупки!';
+        ?>
+            <a class="buttons" href="/buy.php" >в магазин</a>
+
+        <?php            
+
+          }
+       }//if( isset($_POST['buy']) )
 
 ////////////////////////////////////////////////////////////////////////////////////
 ?>
+
  </div>
