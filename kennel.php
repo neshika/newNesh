@@ -19,7 +19,7 @@ require "/libs/up.php";
         [':owner' => $owner]);
         $coins = print_money($owner);
          echo "<br>Количество собак: " . $count;
-         echo "<br>Денежный запас: " .  $coins;
+         ?><br><img src = "<?php echo print_item(1);?>"> <?php echo  $coins;
          $vip=Rand(1,5);
           if('1'==$vip){
           echo '</br> Вас посетила удача. К вам пришел бог. ' . '</br>';

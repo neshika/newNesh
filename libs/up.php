@@ -21,6 +21,8 @@ include_once "html/aside.html";
 */
 require "/html/header.html";
 require "/html/nav.html";
+    print_money($_SESSION['logged_user']->login);
+
 require "/html/aside.html";
 
 ?><div class="content">

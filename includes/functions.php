@@ -34,6 +34,10 @@ function print_all(){
               echo "<br><br>";
             }
 }
+//  возвращает путь до иконки нужного предмета по ID
+function print_item($item_id){
+  return find_where('items',$item_id,'icons');
+}
 
 /**************************** функция печатает на экран статы и ГП*************************/
 function detalis($id){
@@ -1183,7 +1187,21 @@ function find_where($tabl,$id,$value){
               break;
             
           }
-     }//$tabl = coat
+     }//$tabl = items
+     if ('items'===$tabl){
+     $row = R::getRow( 'SELECT * FROM items WHERE id = :id',
+       [':id' => $id]);
+          switch ($value) {
+
+            case 'name':
+              return $row[$value];
+              break;
+            case 'icons':
+              return $row[$value];
+              break;
+            
+          }
+     }//$tabl = items
      if ('dna'===$tabl){
      $row = R::getRow( 'SELECT * FROM dna WHERE dog_id = :id',
        [':id' => $id]);

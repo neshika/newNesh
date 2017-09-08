@@ -32,8 +32,9 @@ require "db.php";
                </form>
 <hr>
   
-<?php  
+  <img src = "<?php echo print_item($item_id);?> ">
 
+<?php  
 
 
 
@@ -44,8 +45,10 @@ $sex='сука';
 
 
 
-echo $price=pricing($sex, $dog_id);
-put_money($owner,$price);
+// echo $price=pricing($sex, $dog_id);
+// put_money($owner,$price);
+
+
 
 //if(bdika_balance($owner,$price)) 
   //buying($owner,$price);
