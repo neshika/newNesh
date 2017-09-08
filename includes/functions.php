@@ -35,9 +35,35 @@ function print_all(){
             }
 }
 //  возвращает путь до иконки нужного предмета по ID
-function print_item($item_id){
+function ret_item($item_id){
   return find_where('items',$item_id,'icons');
 }
+//  рисует предмет и его количство
+function print_item($login,$item_id){
+ // echo $owner_id=get_id($login);
+
+  ?><img src = "<?php echo ret_item($item_id);?>"> 
+  <?php echo  print_money($login);
+}
+
+
+
+
+
+
+
+//***************** В О З Р А С Т
+
+function ret_age($dog_id){
+   $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',[':id' => $id]);
+      
+   debug($row);
+    
+    $age_id=$row['age_id'];
+
+    return find_where('ages',$age_id,'age');
+}
+
 
 /**************************** функция печатает на экран статы и ГП*************************/
 function detalis($id){
@@ -243,8 +269,8 @@ function bdika_balance($owner,$price){  //проверяет хватает ли
 
 
 /***************получает сумму денег по имени владельца************/
-function print_money($owner){
-   $id=get_id($owner);
+function print_money($login){
+   $id=get_id($login);
          $coins = get_count('1', $id);
          $coins=number_format ($coins , $decimals = 0 ,$dec_point = "." , $thousands_sep = " " ); //number_format — Форматирует число с разделением групп
          return $coins;
@@ -438,6 +464,9 @@ function insert_data($tabl,$id,$cell,$value){  //$tabl - название таб
                                  break;
                                case 'birth':
                                  return R::exec( 'UPDATE animals SET birth=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                                 case 'kennel':
+                                 return R::exec( 'UPDATE animals SET age_id=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
                                case 'kennel':
                                  return R::exec( 'UPDATE animals SET kennel=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
@@ -1072,6 +1101,9 @@ function find_where($tabl,$id,$value){
             case 'birth':
               return $row[$value];
               break;
+            case 'age_id':
+              return $row[$value];
+              break;
             case 'kennel':
               return $row[$value];
               break;
@@ -1187,7 +1219,7 @@ function find_where($tabl,$id,$value){
               break;
             
           }
-     }//$tabl = items
+     }//$tabl = coat
      if ('items'===$tabl){
      $row = R::getRow( 'SELECT * FROM items WHERE id = :id',
        [':id' => $id]);
@@ -1233,7 +1265,22 @@ function find_where($tabl,$id,$value){
               break;
             
           }
-     }//$tabl = coat
+     }//$tabl = dna
+
+     if ('ages'===$tabl){
+     $row = R::getRow( 'SELECT * FROM ages WHERE id = :id',
+       [':id' => $id]);
+          switch ($value) {
+
+            case 'age':
+              return $row[$value];
+              break;
+            case 'text':
+              return $row[$value];
+              break;
+            
+          }
+     }//$tabl = items
 }
 /*                                   *************************    данные Для бридинга готовой собаки**********  */
 function Start($id_m,$id_d){

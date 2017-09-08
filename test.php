@@ -6,6 +6,7 @@ require "db.php";
         require "/html/aside.html";
         
 ?><div class="content">
+
 <?php
         require "includes/functions.php";
 
@@ -32,32 +33,57 @@ require "db.php";
                </form>
 <hr>
   
-  <img src = "<?php echo print_item($item_id);?> ">
+<a href="" title="есть"> <img src = "<?php echo ret_item(3);// миска?>"></a>
+<a href="" title="пить"> <img src = "<?php echo ret_item(4);// вода?>"></a>
+<a href="" title="добавка"> <img src = "<?php echo ret_item(5);// добавка?>"></a>
+
+
+<br>
+<hr>
+<button> <img alt="" src="/Pic/food_mini.png" style="vertical-align:middle; height:50px;" />еда</button>
+
+<button> <img alt="" src="/Pic/water.png" style="vertical-align:middle; height:50px;" />пить</button>
+
+<button> <img alt="" src="/Pic/badd_mini.png" style="vertical-align:middle; height:50px;
+" />добавка</button>
+<br>
+<button><img alt="" src="/Pic/food_mini.png" style="vertical-align:middle; height:50px;" />еда</button>
+
+<button> <img alt="" src="/Pic/water.png" style="vertical-align:middle; height:50px;" />пить</button>
+
+<button> <img alt="" src="/Pic/badd_mini.png" style="vertical-align:middle; height:50px;
+" />добавка</button>
+<br>
+<button> <img alt="" src="/Pic/food_mini.png" style="vertical-align:middle; height:50px;" />еда</button>
+
+<button> <img alt="" src="/Pic/water.png" style="vertical-align:middle; height:50px;" />пить</button>
+
+<button> <img alt="" src="/Pic/badd_mini.png" style="vertical-align:middle; height:50px;
+" />добавка</button>
+
 
 <?php  
 
 
 
+
+
 echo '<br>Тестируем! ';
 
-$dog_id=33;
-$sex='сука';
+$id='39';
+
+ret_age($id);
+//************функция возвращает возраст собаки
+
+$id=43;
+
+    // $dna = R::dispense( $tabl );
+    // $dna->id = $id;
+    // $dna->$cell = $value;
+    // R::store( $dna );
 
 
-
-// echo $price=pricing($sex, $dog_id);
-// put_money($owner,$price);
-
-
-
-//if(bdika_balance($owner,$price)) 
-  //buying($owner,$price);
-
-
-
-
- 
-
+    echo ret_age($id);
 
 
                require '/libs/down.php';

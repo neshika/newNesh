@@ -81,7 +81,7 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
       ?>
 <h1 align="center">Доска объявлений</h1>
 <h3 align="center">Актуальное предложение</h3>
-<h3 align="center">средства: <?php echo print_money($owner);?></h3>
+<h3 align="center"><?php print_item($owner,1);?></h3>
 
 <div>
 
@@ -143,7 +143,7 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
               buying($_SESSION['own'],$_SESSION['price']);
  ?>
               <h1 align="center">Доска объявлений</h1>
-              <h3 align="center">средства: <?php echo print_money($owner);?></h3>
+              <h3 align="center"><?php print_item($owner,1);?></h3>
 
 <?php
 
