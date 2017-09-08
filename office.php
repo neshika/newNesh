@@ -77,12 +77,27 @@ require "db.php";
 				
 <?php
                      if ( isset($_POST['shelter']) ){ 
-                          echo 'собака продана!';
+                          echo 'Cобака продана!';
 
 
                           ?><img src="<?php echo from_id_to_url($_SESSION['Dog']);?>" width="5%"><?php
-
+                            //echo $_SESSION['Dog'];
+                           // echo $_SESSION['logged_user']->login;
+                           // echo $id;
+                          //******************************вносит в базу владелец становиться - SHELTER********************//
                            insert_data('animals',$_SESSION['Dog'],'owner','shelter');
+
+                           //******************************получает пол собаки по id********************//
+                            $sex=find_where('animals',$id,'sex');
+
+                            //**********************  высчитываем стоимость в зависимости от параметров**************** //
+                         $price=pricing($sex, $_SESSION['Dog']);
+                         //**************************  уменьшаем стоимость на 50 % ***************** //
+
+                         $price=$price/2;
+                          put_money($_SESSION['logged_user']->login,$price);
+
+                          echo '<br>Выручка составила: ' . $price;
  
                      }
 			   require '/libs/down.php';

@@ -39,14 +39,16 @@ require "db.php";
 
 echo '<br>Тестируем! ';
 
-$dog_id=0;
+$dog_id=33;
 $sex='сука';
 
 
-$price=pricing($sex, $dog_id);
+
+echo $price=pricing($sex, $dog_id);
+put_money($owner,$price);
 
 //if(bdika_balance($owner,$price)) 
-  //buying($owner,10000);
+  //buying($owner,$price);
 
 
 
