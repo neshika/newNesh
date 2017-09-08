@@ -22,6 +22,8 @@ error_reporting(E_ALL);
 
  $temp=(int)$_SESSION['para'];
  $temp2=(int)$_POST['ONONA'];
+
+ $_SESSION['owner']=find_where('animals', $temp,'owner');
  
   if ('сука' === find_where('animals',$temp,'sex')){
             $id_m = $temp;
@@ -38,9 +40,14 @@ error_reporting(E_ALL);
 <div id="all_breed">
 
 <div>
-<form method="POST" action="/NewDog.php">
-    <input type="submit" name="nazvanie_knopki" value="Вяжем" class="knopka"/>
-</form>
+<?php if(bdika_balance($_SESSION['owner'],5000)){ //проверка остатка средств на вязку. если хватает активна кнопка "ВЯЗКА" ?>
+            <form method="POST" action="/NewDog.php">
+                <input type="submit" name="nazvanie_knopki" value="Вяжем" class="knopka"/>
+            </form>
+<?php }else 
+      echo 'не достаточно средст для вязки!';
+
+?>
 <form method="POST" action="/kennel.php">
     <input type="submit" name="exit" value="Вернуться" class="knopka"/>
 </form>
@@ -71,6 +78,8 @@ error_reporting(E_ALL);
 
 $_SESSION['id_m']=$id_m;
 $_SESSION['id_d']=$id_d;
+
+
 
 ?>
  <?php
