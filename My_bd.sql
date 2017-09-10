@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 08 2017 г., 23:30
+-- Время создания: Сен 10 2017 г., 10:22
 -- Версия сервера: 5.5.53
 -- Версия PHP: 5.5.38
 
@@ -233,7 +233,7 @@ CREATE TABLE `dna` (
 --
 
 INSERT INTO `dna` (`id`, `dog_id`, `url_id`, `hr`, `ww`, `ff`, `bb`, `mm`, `tt`, `aa`) VALUES
-(1, 0, 37, 'Hrhr', 'ww', 'ff', 'bb', 'Mm', 'tt', 'aa'),
+(1, 0, 46, 'hrhr', 'ww', 'ff', 'bb', 'mm', 'tt', 'aa'),
 (2, 2, 11, 'hrhr', 'ww', 'ff', 'bb', 'mm', 'tt', 'aa'),
 (3, 3, 44, 'Hrhr', 'ww', 'Ff', 'bb', 'mm', 'Tt', 'aa'),
 (4, 4, 21, 'hrhr', 'Ww', 'ff', 'bb', 'mm', 'Tt', 'aa'),
@@ -376,7 +376,7 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `dog_id`, `speed`, `agility`, `teach`, `jump`, `scent`, `find`, `total`, `mutation`) VALUES
-(1, 0, 9, 11, 9, 9, 10, 9, 57, 0),
+(1, 0, 11, 9, 11, 11, 10, 11, 63, 0),
 (2, 1, 10, 10, 10, 10, 10, 10, 60, 0),
 (29, 1, 10, 10, 10, 10, 10, 10, 60, 0),
 (30, 2, 10, 10, 10, 10, 10, 10, 60, 0),
@@ -434,7 +434,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `email`, `password`, `kennel`, `f_time`, `l_time`, `online`, `sign`, `visits`) VALUES
-(1, 'nesh', 'stepanova@mail.ru', '$2y$10$pinvDspcODn0zxHMfyEUoufayxxNfwrQoqHGX2.Ky1I.fB7FnDan.', 'Чарующий соблазн', '03.09.2017', '08.09.2017', 1, 0, 7),
+(1, 'nesh', 'stepanova@mail.ru', '$2y$10$pinvDspcODn0zxHMfyEUoufayxxNfwrQoqHGX2.Ky1I.fB7FnDan.', 'Чарующий соблазн', '03.09.2017', '09.09.2017', 1, 0, 8),
 (2, 'test', 'test@test', '$2y$10$Vy0Am7CkZj5SYrzoNR26W.XsiO21HWtuQezqns20CfpcqAqdlm7D.', 'Тестики', '04.09.2017', '05.09.2017', 0, 0, 3);
 
 --
