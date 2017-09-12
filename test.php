@@ -70,21 +70,7 @@ require "db.php";
 
 echo '<br>Тестируем! ';
 
-$id='39';
-
-ret_age($id);
-//************функция возвращает возраст собаки
-
-$id=43;
-
-    // $dna = R::dispense( $tabl );
-    // $dna->id = $id;
-    // $dna->$cell = $value;
-    // R::store( $dna );
 
 
-    echo ret_age($id);
-
-
-               require '/libs/down.php';
+ require '/libs/down.php';
  ?>

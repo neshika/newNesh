@@ -48,7 +48,13 @@ $id_dog= $_SESSION['Dog'];// выгружаем из памяти id собак�
                 echo '<br>партнер: ' . $key;
 
                 $contact=ret_str_contact($key,$id_dog);  
-                echo $contact;
+                if(!empty($contact))
+                  echo $contact;
+
+
+                  $contact=ret_str_contact($id_dog,$key);
+                if(!empty($contact))
+                   echo ' Партнер - ' . $contact;
 /**********************выводим на экран имя собаки как ссылку*********************************/
                ?>
                 <form method="post" action="breedding.php">

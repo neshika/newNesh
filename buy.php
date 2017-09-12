@@ -30,8 +30,8 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
 
      // echo "<br>" . f_bdika_sex();      //дает рандомный пол
 /////////////////////////////////////////////////////////////создает temp собаку в stats
-       $id=1;
-       $dog_id=0; 
+      $id=1;
+      $dog_id=0; 
 
 
       
@@ -51,19 +51,31 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
        $_SESSION['own'] = $owner;
 
 
-//  вставляем статы
-
-     R::exec( 'UPDATE stats SET dog_id=:dog_id WHERE id = :id ', array(':dog_id'=> $dog_id, ':id' => $id));
-     R::exec( 'UPDATE stats SET speed=:speed WHERE id = :id ', array(':speed'=> $spd, ':id' => $id));
-     R::exec( 'UPDATE stats SET agility=:agility WHERE id = :id ', array(':agility'=> $agl, ':id' => $id));
-     R::exec( 'UPDATE stats SET teach=:teach WHERE id = :id ', array(':teach'=> $tch, ':id' => $id));
-     R::exec( 'UPDATE stats SET jump=:jump WHERE id = :id ', array(':jump'=> $jmp, ':id' => $id));
-     R::exec( 'UPDATE stats SET scent=:scent WHERE id = :id ', array(':scent'=> $nuh, ':id' => $id));
-     R::exec( 'UPDATE stats SET find=:find WHERE id = :id ', array(':find'=> $fnd, ':id' => $id));
-     R::exec( 'UPDATE stats SET total=:total WHERE id = :id ', array(':total'=> $ttl, ':id' => $id));
+echo 'вставляем DNA';
 
 //вставляем DNA
-
+     $new = R::dispense('dna');
+     echo '<br>$new->id' . $new->id;
+   if (0==($new->id)){
+ // echo '<br> start';
+    // $new->id = '1';
+      $new->dog_id = $dog_id;
+       
+        $new->url_id = $_SESSION['url_id'];
+        $new->hr = $_SESSION['hr'];
+        $new->ww = $_SESSION['ww'];
+        $new->ff = $_SESSION['ff'];
+        $new->bb = $_SESSION['bb'];
+        $new->mm = $_SESSION['mm'];
+        $new->tt = $_SESSION['tt'];
+        $new->aa = $_SESSION['aa'];
+        R::store( $new );
+   }
+   else{
+     
+       
+   
+   // R::exec( 'UPDATE dna SET id=1');
      R::exec( 'UPDATE dna SET dog_id=:dog_id WHERE id = :id ', array(':dog_id'=> $dog_id, ':id' => $id));
      R::exec( 'UPDATE dna SET url_id=:url_id WHERE id = :id ', array(':url_id'=> $_SESSION['url_id'], ':id' => $id));
      R::exec( 'UPDATE dna SET hr=:hr WHERE id = :id ', array(':hr'=> $_SESSION['hr'], ':id' => $id));
@@ -74,9 +86,44 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
      R::exec( 'UPDATE dna SET tt=:tt WHERE id = :id ', array(':tt'=> $_SESSION['tt'], ':id' => $id));
      R::exec( 'UPDATE dna SET aa=:aa WHERE id = :id ', array(':aa'=> $_SESSION['aa'], ':id' => $id));
 
-     $_SESSION['price']=pricing($sex, '0');
-     echo '<br> Цена: ' . number_format (pricing($sex, '0') , $decimals = 0,$dec_point = "." , $thousands_sep = " " ); // формат 10 000  ;
+    }
 
+//  вставляем статы
+       
+        $new = R::dispense('stats');
+       echo '<br>2$new->id' . $new->id;
+
+
+        if (0==($new->id)){
+          
+          $new->dog_id = $dog_id;
+       
+        $new->speed = $spd;
+        $new->agility = $agl;
+        $new->teach = $tch;
+        $new->jump = $jmp;
+        $new->scent = $nuh;
+        $new->find = $fnd;
+        $new->total = $ttl;
+        R::store( $new );
+      }
+      else{
+       
+   
+     R::exec( 'UPDATE stats SET dog_id=:dog_id WHERE id = :id ', array(':dog_id'=> $dog_id, ':id' => $id));
+     R::exec( 'UPDATE stats SET speed=:speed WHERE id = :id ', array(':speed'=> $spd, ':id' => $id));
+     R::exec( 'UPDATE stats SET agility=:agility WHERE id = :id ', array(':agility'=> $agl, ':id' => $id));
+     R::exec( 'UPDATE stats SET teach=:teach WHERE id = :id ', array(':teach'=> $tch, ':id' => $id));
+     R::exec( 'UPDATE stats SET jump=:jump WHERE id = :id ', array(':jump'=> $jmp, ':id' => $id));
+     R::exec( 'UPDATE stats SET scent=:scent WHERE id = :id ', array(':scent'=> $nuh, ':id' => $id));
+     R::exec( 'UPDATE stats SET find=:find WHERE id = :id ', array(':find'=> $fnd, ':id' => $id));
+     R::exec( 'UPDATE stats SET total=:total WHERE id = :id ', array(':total'=> $ttl, ':id' => $id));
+      }
+
+
+
+     $_SESSION['price']=pricing($sex, '0');
+    
         
       ?>
 <h1 align="center">Доска объявлений</h1>
@@ -122,7 +169,7 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
       </div>
 
        
-      
+      <h3><?php echo '<br> Цена: ' . number_format (pricing($sex, '0') , $decimals = 0,$dec_point = "." , $thousands_sep = " " ); // формат 10 000  ;?></h3>
           
 <form action="/buy.php" method="POST">
        <button type="submit" class="knopka" name="buy">Купить</button>

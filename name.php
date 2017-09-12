@@ -16,11 +16,15 @@ require "/libs/up.php";
 
     insert_data('animals',$id,'name',$_POST['name1']);
   }
+   if ( isset($_POST['add_age']) ){ 
+
+    add_age($_SESSION['Dog']);
+  }
 
 ?>
 
 <!-- ******************** вывод питомника / имя собаки и картинка пола  *****************-->    
-          <div style="background: white; height: 80px; width: 1170px;"> <h3 align="center"><?php echo '"' . find_where('animals',$id,'kennel') . '" ';?> <?php echo find_where('animals',$id,'name');?><?php echo ret_pic($id);?></h3>
+          <div style="background: white; height: 80px; width: 1170px;"> <h3 align="center"><?php echo find_where('animals',$id,'name');?><?php echo ' "' . find_where('animals',$id,'kennel') . '" ';?> <?php echo ret_pic($id);?></h3>
            </div>
           
 <!-- ******************** вывод доп меню собаки  заводчик / хозяин  *****************-->  
@@ -34,7 +38,7 @@ require "/libs/up.php";
 <!-- ******************** вывод доп меню собаки  вид \\ Дата рождения \\ окрас    *****************-->       
         <ul style="background: white; width: 40%; float: right;">
           <li>тип:  <?php echo  print_hr(find_where('dna',$id,'hr'));?></li>
-          <li>дата рождения:  <?php echo find_where('animals',$id,'birth');?></li>
+          <li>возраст:  <?php echo ret_age($id);?></li>
           <li>Щенков: <?php echo find_where('animals', $id,'puppy');?></li>
        </ul>
       </div>
@@ -145,6 +149,10 @@ require "/libs/up.php";
     </form>
     <form method="POST" action = "/office.php">
       <div align="right"><input id="button" name="shelter" type="submit" value="отдать в приют" class = "knopka"></div>
+      <?php $_SESSION['Dog'] = $id; ?>
+  </form>
+  <form method="POST">
+      <div align="right"><input id="button" name="add_age" type="submit" value="растим" class = "knopka"></div>
       <?php $_SESSION['Dog'] = $id; ?>
   </form>
   <form method="POST" action = "/matting.php">

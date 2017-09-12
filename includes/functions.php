@@ -1,4 +1,22 @@
 <?php
+// ***************  ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ *********************  //
+
+$_GLOBAL['name']='ВАсилий';
+$_GLOBAL['age']='15';
+
+
+
+
+// ***********************************************************
+
+
+function globals(){
+   echo '<br> Глобальные переменные:';
+    $array=$_GLOBAL;
+    foreach ($array as $key => $value) {
+         echo '<br>[' . $key . '] ' . $value;
+    }    
+}
 function test(){
 	echo 'подключен файл functions.php';
 }
@@ -52,16 +70,29 @@ function print_item($login,$item_id){
 
 
 
-//***************** В О З Р А С Т
+//***************** В О З Р А С Т  ****************************
 
+// Функция возвращает возраст по id собаки
 function ret_age($dog_id){
-   $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',[':id' => $id]);
+   $age_id = R::getCol( 'SELECT age_id FROM animals WHERE id = :id',[':id' => $dog_id]);  //получаем цыфру возраста из табл animals
       
-   debug($row);
     
-    $age_id=$row['age_id'];
+   //var_dump($age_id);
 
-    return find_where('ages',$age_id,'age');
+    return find_where('ages',$age_id[0],'age'); // находим аналог(2 месяца) этой цыфры в таблице ages и выводим текст возраста
+}
+
+// функция увеличивает возраст собаки
+function add_age($dog_id){
+
+   $age_id = R::getCol( 'SELECT age_id FROM animals WHERE id = :id',[':id' => $dog_id]); //получаем цыфру возраста из табл animals
+     
+     $age_id=$age_id[0] + '1';  //увеличивает на 1 пункт
+    // echo '  $age_id ' . $age_id . '  $dog_id  ' . $dog_id;
+     
+     insert_data('animals',$dog_id,'age_id', $age_id);  //вставляем новые данные в таблицу по id 
+   
+
 }
 
 
@@ -465,7 +496,7 @@ function insert_data($tabl,$id,$cell,$value){  //$tabl - название таб
                                case 'birth':
                                  return R::exec( 'UPDATE animals SET birth=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
-                                 case 'kennel':
+                                 case 'age_id':
                                  return R::exec( 'UPDATE animals SET age_id=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
                                case 'kennel':
@@ -1523,6 +1554,7 @@ function ret_str_contact($partner,$dog){
 
       return ' пробабка!';
   }
+  else return '';
 }
 
 /**********************  Проверка шанса мутаций в зависимости от родства партнеров****************/
