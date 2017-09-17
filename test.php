@@ -40,23 +40,25 @@ require "db.php";
 
 <br>
 <hr>
-<button> <img alt="" src="/Pic/food_mini.png" style="vertical-align:middle; height:50px;" />еда</button>
+<button> <img alt="" src="/Pic/food_mini.png" style="vertical-align:middle; height:50px;" />кушать</button>
 
 <button> <img alt="" src="/Pic/water.png" style="vertical-align:middle; height:50px;" />пить</button>
 
-<button> <img alt="" src="/Pic/badd_mini.png" style="vertical-align:middle; height:50px;
-" />добавка</button>
 <br>
-<button><img alt="" src="/Pic/food_mini.png" style="vertical-align:middle; height:50px;" />еда</button>
 
-<button> <img alt="" src="/Pic/water.png" style="vertical-align:middle; height:50px;" />пить</button>
 
-<button> <img alt="" src="/Pic/badd_mini.png" style="vertical-align:middle; height:50px;
-" />добавка</button>
+<button><img alt="" src="/Pic/comp.png" style="vertical-align:middle; height:50px;"/> чесать</button>
+
+<button> <img alt="" src="/Pic/walk.png" style="vertical-align:middle; height:50px;" />  гулять</button>
+
 <br>
-<button> <img alt="" src="/Pic/food_mini.png" style="vertical-align:middle; height:50px;" />еда</button>
 
-<button> <img alt="" src="/Pic/water.png" style="vertical-align:middle; height:50px;" />пить</button>
+<button> <img alt="" src="/Pic/zzz.png" style="vertical-align:middle; height:50px;
+" />с о н</button>
+
+<button> <img alt="" src="/Pic/up.png" style="vertical-align:middle; height:50px;" />рост</button>
+
+<br>
 
 <button> <img alt="" src="/Pic/badd_mini.png" style="vertical-align:middle; height:50px;
 " />добавка</button>
@@ -69,6 +71,12 @@ require "db.php";
 
 
 echo '<br>Тестируем! ';
+
+$sex='сука';
+$dog_id=1;
+echo '<br>' . pricing($sex, $dog_id);
+
+
 
  $vip=ret_url_from_dna('vip03');
           ?><img src="<?php echo $vip;?>"><?php

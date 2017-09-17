@@ -3,7 +3,8 @@
 
 $_GLOBAL['name']='ВАсилий';
 $_GLOBAL['age']='15';
-
+//***** multipliers мнодители характеристик ****// 
+$_GLOBAL['buy_stats']='100';
 
 
 
@@ -273,6 +274,11 @@ $array[]=R::getRow( 'SELECT * FROM dna WHERE dog_id = :dog_id',
     }  //foreach($array as $item)
 } //if('сука'==$sex)   
        
+$mult=find_where('stats',$dog_id,'total');
+echo $mult;
+$mult=$mult*100;
+
+$cost=$cost+$mult;
 
 return $cost;      
 
