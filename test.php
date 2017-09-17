@@ -70,6 +70,8 @@ require "db.php";
 
 echo '<br>Тестируем! ';
 
+ $vip=ret_url_from_dna('vip03');
+          ?><img src="<?php echo $vip;?>"><?php
 
 
  require '/libs/down.php';

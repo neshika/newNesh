@@ -72,9 +72,17 @@ p {и в конце параграфов}*/
  
 .left_sidebar{
     width: 200px;
-    height: 800px;
+    height: 200px;
     float: left;
-    /*background: #FAFABF;*/
+    background: #FAFABF;
+    padding: 3px;
+    border: 1px groove #9868CE;
+}
+.left_sidebar{
+    width: 200px;
+    height: auto;
+    float: left;
+    background: #FAFABF;
     padding: 3px;
     border: 1px groove #9868CE;
 }

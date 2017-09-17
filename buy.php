@@ -54,24 +54,24 @@ if(!isset($_POST['buy']) ){        //если кнопка не нажата
 echo 'вставляем DNA';
 
 //вставляем DNA
-     $new = R::dispense('dna');
-     echo '<br>$new->id' . $new->id;
-   if (0==($new->id)){
- // echo '<br> start';
-    // $new->id = '1';
-      $new->dog_id = $dog_id;
+ //     $new = R::dispense('dna');
+ //     echo '<br>$new->id' . $new->id;
+ //   if (0==($new->id)){
+ // // echo '<br> start';
+ //    // $new->id = '1';
+ //      $new->dog_id = $dog_id;
        
-        $new->url_id = $_SESSION['url_id'];
-        $new->hr = $_SESSION['hr'];
-        $new->ww = $_SESSION['ww'];
-        $new->ff = $_SESSION['ff'];
-        $new->bb = $_SESSION['bb'];
-        $new->mm = $_SESSION['mm'];
-        $new->tt = $_SESSION['tt'];
-        $new->aa = $_SESSION['aa'];
-        R::store( $new );
-   }
-   else{
+ //        $new->url_id = $_SESSION['url_id'];
+ //        $new->hr = $_SESSION['hr'];
+ //        $new->ww = $_SESSION['ww'];
+ //        $new->ff = $_SESSION['ff'];
+ //        $new->bb = $_SESSION['bb'];
+ //        $new->mm = $_SESSION['mm'];
+ //        $new->tt = $_SESSION['tt'];
+ //        $new->aa = $_SESSION['aa'];
+ //        R::store( $new );
+ //   }
+ //   else{
      
        
    
@@ -86,28 +86,28 @@ echo 'вставляем DNA';
      R::exec( 'UPDATE dna SET tt=:tt WHERE id = :id ', array(':tt'=> $_SESSION['tt'], ':id' => $id));
      R::exec( 'UPDATE dna SET aa=:aa WHERE id = :id ', array(':aa'=> $_SESSION['aa'], ':id' => $id));
 
-    }
+   // }
 
 //  вставляем статы
        
-        $new = R::dispense('stats');
-       echo '<br>2$new->id' . $new->id;
+      //   $new = R::dispense('stats');
+      //  echo '<br>2$new->id' . $new->id;
 
 
-        if (0==($new->id)){
+      //   if (0==($new->id)){
           
-          $new->dog_id = $dog_id;
+      //     $new->dog_id = $dog_id;
        
-        $new->speed = $spd;
-        $new->agility = $agl;
-        $new->teach = $tch;
-        $new->jump = $jmp;
-        $new->scent = $nuh;
-        $new->find = $fnd;
-        $new->total = $ttl;
-        R::store( $new );
-      }
-      else{
+      //   $new->speed = $spd;
+      //   $new->agility = $agl;
+      //   $new->teach = $tch;
+      //   $new->jump = $jmp;
+      //   $new->scent = $nuh;
+      //   $new->find = $fnd;
+      //   $new->total = $ttl;
+      //   R::store( $new );
+      // }
+      // else{
        
    
      R::exec( 'UPDATE stats SET dog_id=:dog_id WHERE id = :id ', array(':dog_id'=> $dog_id, ':id' => $id));
@@ -118,7 +118,7 @@ echo 'вставляем DNA';
      R::exec( 'UPDATE stats SET scent=:scent WHERE id = :id ', array(':scent'=> $nuh, ':id' => $id));
      R::exec( 'UPDATE stats SET find=:find WHERE id = :id ', array(':find'=> $fnd, ':id' => $id));
      R::exec( 'UPDATE stats SET total=:total WHERE id = :id ', array(':total'=> $ttl, ':id' => $id));
-      }
+    //  }
 
 
 
@@ -168,7 +168,7 @@ echo 'вставляем DNA';
         </table>
       </div>
 
-       
+       <?php echo $_SESSION['bb']; ?>
       <h3><?php echo '<br> Цена: ' . number_format (pricing($sex, '0') , $decimals = 0,$dec_point = "." , $thousands_sep = " " ); // формат 10 000  ;?></h3>
           
 <form action="/buy.php" method="POST">
