@@ -7,7 +7,9 @@ require "/libs/up.php";
 
       $owner=ret_owner();
      // $var = find_where('dna',$id,'hr');
-     
+            $vitality=12 . '%';
+             $hp=3 . '%';
+             $joy=100 . '%';
       
 
 /*<h1 style="font-size: 120%; font-family: Verdana, Arial, Helvetica, sans-serif; 
@@ -28,7 +30,7 @@ require "/libs/up.php";
            </div>
           
 <!-- ******************** вывод доп меню собаки  заводчик / хозяин  *****************-->  
-        <div style="background: yellow; height: 80px; width: 1170px;"> 
+    <div style="background: yellow; height: 80px; width: 1170px;"> 
           <ul style="background: white; width: 45%; float: left;">
             <li>Заводчик: <?php echo find_where('animals',$id,'breeder');?></li>
             <li>Хозяин: <?php echo find_where('animals',$id,'owner');?></li>
@@ -41,22 +43,45 @@ require "/libs/up.php";
           <li>возраст:  <?php echo ret_age($id);?></li>
           <li>Щенков: <?php echo find_where('animals', $id,'puppy');?></li>
        </ul>
-      </div>
+    </div>
 <!-- ******************** вывод картинки собаки по id  *****************-->
-     <div style="background: white; text-align: center; height: 350px; width: 350px; margin-left: 410px;">
+ 
+
+<table width="1170" cellpadding="3" cellspacing="0">
+   <colgroup width="390">
+  <tr>
+      <td><input style="float: left;  margin-left: 30px;" id="button" name="knopka" type="submit" value="есть" class = "knopka">
+          <input style="float: right;  margin-right: 30px;" id="button" name="knopka" type="submit" value="пить" class = "knopka">
+          <br>
+          <input style="float: left;  margin-left: 30px;" id="button" name="knopka" type="submit" value="чесать" class = "knopka">
+          <input style="float: right;  margin-right: 30px;" id="button" name="knopka" type="submit" value="гулять" class = "knopka">
+          <br>
+          <input style="float: left;  margin-left: 30px;" id="button" name="knopka" type="submit" value="спать" class = "knopka">
+          <input style="float: right;  margin-right: 30px;" id="button" name="knopka" type="submit" value="растить" class = "knopka">
+
+        
+    </td>
+
+    <td style="border-width: 10px; text-align: center;"><img src="<?php echo from_id_to_url($id);?>">
+   
+    </td> 
+    <td>
+      <input id="button" name="knopka" type="submit" value="добавка" class = "knopka">
+      <input id="button" name="knopka" type="submit" value="спа уход" class = "knopka">
+      <input id="button" name="knopka" type="submit" value="ветеринар" class = "knopka">
+      <input id="button" name="knopka" type="submit" value="тренировки" class = "knopka">
+    </td>
+  </tr>
+</table>
+<div style="margin-left: 450px""><table>
+        <tr><td>Энергия</td><td><div class="meter"><span style="width: <?php echo$vitality;?>"></span></div></td><td><?php echo$vitality;?></td></tr>
+        <tr><td>Здоровье</td><td><div class="meter"><span style="width: <?php echo$hp;?>"></span></div></td><td><?php echo$hp;?></td></tr>
+        <tr><td>Счастье</td><td> <div class="meter"><span style="width: <?php echo$joy;?>"></span></div></td><td><?php echo$joy;?></td></tr>
+
+      </table>
+</div>
 
 
-<?php 
-     
-     
-     // $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
-      //  [':id' => $id]);
-      //f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
-      //insert_url($_POST['url'],$id); //вставляет ссылку на картинку в базу
-?>
-       <img src = "<?php echo from_id_to_url($id); ?>"> 
-      
-      </div>
  
 <!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
 <!-- ******************** вывод статы собаки  *****************--> 
@@ -86,15 +111,20 @@ require "/libs/up.php";
                        // $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
                        // [':id' => $id_m]);
                         //f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
-                        ?><img src="<?php echo from_id_to_url($id_m);?>"><?php
-                  }else
-                    echo 'нет данных о предках'; ?>
-        
-            <!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
+                        ?><img src="<?php echo from_id_to_url($id_m);?>">
+
+<!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
               <details>
                     <summary>Генетический код</summary> 
                     <?php print_all_d($id_m); detalis($id_m);?>
               </details>
+
+
+              <?php
+                  }else
+                    echo 'нет данных о предках'; ?>
+        
+           
        </details>
  <?php endif;    ?>
      </div class="content_mum">
@@ -111,16 +141,20 @@ require "/libs/up.php";
                        // $row = R::getRow( 'SELECT * FROM animals WHERE id = :id',
                              // [':id' => $id_d]);
                         //f_get_image($row['hr'],$row['ww'],$row['ff'],$row['bb'] ,$row['tt'],$row['mm']);
-                        ?><img src="<?php echo from_id_to_url($id_d);?>">  <?php
-                    }else
+                        ?><img src="<?php echo from_id_to_url($id_d);?>">
+
+<!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
+            <details>
+                  <summary>Генетический код</summary> 
+                  <?php print_all_d($id_d); detalis($id_d);?>
+            </details>
+
+
+                      <?php }else
                       echo 'нет данных о предках'; ?>
 
 
-                  <!-- ******************** вывод Генетического кода собаки  скрытый текст*****************--> 
-              <details>
-                    <summary>Генетический код</summary> 
-                    <?php print_all_d($id_d); detalis($id_d);?>
-              </details>
+                  
         </details>
     
     </div>

@@ -101,8 +101,8 @@ function add_age($dog_id){
 function detalis($id){
 
 ?>
-          <div align="left">
-        <img src = "<?php echo $url; ?>" width="300" >
+    <div align="left">
+      <img src = "<?php echo $url; ?>" width="300" >
         <table width="100" cellpadding="2" cellspacing="0" border="1" >
               <colgroup width="150">
                   <colgroup span="9" align="center" width="10">
