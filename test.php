@@ -76,7 +76,7 @@ $sex='сука';
 $dog_id=1;
 echo '<br>' . pricing($sex, $dog_id);
 
-
+globals();
 
  $vip=ret_url_from_dna('vip03');
           ?><img src="<?php echo $vip;?>"><?php

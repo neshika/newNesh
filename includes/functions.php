@@ -1,10 +1,10 @@
 <?php
 // ***************  ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ *********************  //
 
-$_GLOBAL['name']='ВАсилий';
-$_GLOBAL['age']='15';
+$GLOBALS['name']='ВАсилий';
+$GLOBALS['age']='15';
 //***** multipliers мнодители характеристик ****// 
-$_GLOBAL['buy_stats']='100';
+$GLOBALS['buy_stats']='100';
 
 
 
@@ -13,7 +13,7 @@ $_GLOBAL['buy_stats']='100';
 
 function globals(){
    echo '<br> Глобальные переменные:';
-    $array=$_GLOBAL;
+    $array=$GLOBALS;
     foreach ($array as $key => $value) {
          echo '<br>[' . $key . '] ' . $value;
     }    
@@ -276,7 +276,7 @@ $array[]=R::getRow( 'SELECT * FROM dna WHERE dog_id = :dog_id',
        
 $mult=find_where('stats',$dog_id,'total');
 echo $mult;
-$mult=$mult*100;
+$mult=$mult*$GLOBALS['buy_stats'];
 
 $cost=$cost+$mult;
 
