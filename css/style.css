@@ -32,6 +32,9 @@ p.kennel{
     text-align: center;
     
 }
+*[title] {
+color: maroon;
+}
 /**{
 margin:3px;
 padding:0;
