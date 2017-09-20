@@ -7,9 +7,10 @@ require "/libs/up.php";
 
       $owner=ret_owner();
      // $var = find_where('dna',$id,'hr');
-            $vitality=12 . '%';
-             $hp=3 . '%';
-             $joy=100 . '%';
+      //***************  вносим данные о состоянии энергии. Здоровья. счастья из базы************//
+             $_SESSION['vitality']=find_where('animals',$id,'vitality');
+             $_SESSION['hp']=find_where('animals',$id,'hp');;
+             $_SESSION['joy']=find_where('animals',$id,'joy');;
       
 
 /*<h1 style="font-size: 120%; font-family: Verdana, Arial, Helvetica, sans-serif; 
@@ -74,10 +75,9 @@ require "/libs/up.php";
   </tr>
 </table>
 <div style="margin-left: 450px""><table>
-        <tr><td>Энергия</td><td><div class="meter"><span style="width: <?php echo$vitality;?>"></span></div></td><td><?php echo$vitality;?></td></tr>
-        <tr><td>Здоровье</td><td><div class="meter"><span style="width: <?php echo$hp;?>"></span></div></td><td><?php echo$hp;?></td></tr>
-        <tr><td>Счастье</td><td> <div class="meter"><span style="width: <?php echo$joy;?>"></span></div></td><td><?php echo$joy;?></td></tr>
-
+         <tr><td>Энергия</td><td><div class="meter"><span style="width: <?php echo$_SESSION['vitality'] . '%';?>"></span></div></td><td><?php echo$_SESSION['vitality'];?></td></tr>
+            <tr><td>Здоровье</td><td><div class="meter"><span style="width: <?php echo$_SESSION['hp'] . '%';?>"></span></div></td><td><?php echo$_SESSION['hp'];?></td></tr>
+            <tr><td>Счастье</td><td> <div class="meter"><span style="width: <?php echo$_SESSION['joy'] . '%';?>"></span></div></td><td><?php echo$_SESSION['joy'];?></td></tr>
       </table>
 </div>
 

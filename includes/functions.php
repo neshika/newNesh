@@ -502,7 +502,16 @@ function insert_data($tabl,$id,$cell,$value){  //$tabl - название таб
                                case 'birth':
                                  return R::exec( 'UPDATE animals SET birth=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
-                                 case 'age_id':
+                              case 'joy':
+                                 return R::exec( 'UPDATE animals SET joy=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                              case 'hp':
+                                 return R::exec( 'UPDATE animals SET hp=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                              case 'vitality':
+                                 return R::exec( 'UPDATE animals SET vitality=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                              case 'age_id':
                                  return R::exec( 'UPDATE animals SET age_id=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
                                case 'kennel':
@@ -1136,6 +1145,15 @@ function find_where($tabl,$id,$value){
               return $row[$value];
               break;
             case 'birth':
+              return $row[$value];
+              break;
+            case 'joy':
+              return $row[$value];
+              break;
+            case 'hp':
+              return $row[$value];
+              break;
+            case 'vitality':
               return $row[$value];
               break;
             case 'age_id':
