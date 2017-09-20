@@ -511,6 +511,12 @@ function insert_data($tabl,$id,$cell,$value){  //$tabl - название таб
                               case 'vitality':
                                  return R::exec( 'UPDATE animals SET vitality=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
+                              case 'weight':
+                                 return R::exec( 'UPDATE animals SET weight=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
+                              case 'height':
+                                 return R::exec( 'UPDATE animals SET height=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                 break;
                               case 'age_id':
                                  return R::exec( 'UPDATE animals SET age_id=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
@@ -1154,6 +1160,12 @@ function find_where($tabl,$id,$value){
               return $row[$value];
               break;
             case 'vitality':
+              return $row[$value];
+              break;
+            case 'weight':
+              return $row[$value];
+              break;
+              case 'height':
               return $row[$value];
               break;
             case 'age_id':
