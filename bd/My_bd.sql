@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 20 2017 г., 11:01
+-- Время создания: Сен 21 2017 г., 00:51
 -- Версия сервера: 5.5.53
 -- Версия PHP: 5.5.38
 
@@ -65,6 +65,8 @@ CREATE TABLE `animals` (
   `owner` varchar(100) NOT NULL,
   `kennel` varchar(255) NOT NULL,
   `age_id` int(50) NOT NULL DEFAULT '1',
+  `weight` int(11) NOT NULL COMMENT 'вес собаки',
+  `height` int(11) NOT NULL COMMENT 'рост собаки',
   `vitality` int(11) NOT NULL DEFAULT '100',
   `hp` int(11) DEFAULT '100',
   `joy` int(11) NOT NULL DEFAULT '100',
@@ -94,12 +96,12 @@ CREATE TABLE `animals` (
 -- Дамп данных таблицы `animals`
 --
 
-INSERT INTO `animals` (`id`, `name`, `sex`, `race`, `breeder`, `owner`, `kennel`, `age_id`, `vitality`, `hp`, `joy`, `birth`, `now`, `mum`, `dad`, `g1dad`, `g1mum`, `g0dad`, `g0mum`, `gg1dad1`, `gg1mum2`, `gg1dad3`, `gg1mum4`, `gg0dad1`, `gg0mum2`, `gg0dad3`, `gg0mum4`, `status`, `puppy`, `litter`, `url`) VALUES
-(1, '1Шока', 'сука', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 100, 100, 100, '15.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 53),
-(2, 'Маленькая', 'сука', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 45, 90, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 7),
-(3, '3шоколадкин', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 100, 100, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 13),
-(4, '4 кобель', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 100, 100, 100, '17.09.2017', '0', 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 46),
-(5, '5он', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 100, 100, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 13);
+INSERT INTO `animals` (`id`, `name`, `sex`, `race`, `breeder`, `owner`, `kennel`, `age_id`, `weight`, `height`, `vitality`, `hp`, `joy`, `birth`, `now`, `mum`, `dad`, `g1dad`, `g1mum`, `g0dad`, `g0mum`, `gg1dad1`, `gg1mum2`, `gg1dad3`, `gg1mum4`, `gg0dad1`, `gg0mum2`, `gg0dad3`, `gg0mum4`, `status`, `puppy`, `litter`, `url`) VALUES
+(1, '1Шока', 'сука', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 3830, 25, 100, 100, 100, '15.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 53),
+(2, 'Маленькая', 'сука', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 3973, 26, 45, 90, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 7),
+(3, '3шоколадкин', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 4547, 30, 100, 100, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 13),
+(4, '4 кобель', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 4547, 30, 100, 100, 100, '17.09.2017', '0', 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 46),
+(5, '5он', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 4547, 30, 100, 100, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 13);
 
 -- --------------------------------------------------------
 
@@ -211,6 +213,31 @@ INSERT INTO `dna` (`id`, `dog_id`, `url_id`, `hr`, `ww`, `ff`, `bb`, `mm`, `tt`,
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `female`
+--
+
+CREATE TABLE `female` (
+  `wt` int(11) NOT NULL COMMENT 'вес суки',
+  `ht` int(11) NOT NULL COMMENT 'рост суки'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `female`
+--
+
+INSERT INTO `female` (`wt`, `ht`) VALUES
+(3544, 23),
+(3687, 24),
+(3830, 25),
+(3973, 26),
+(4116, 27),
+(4259, 28),
+(4402, 29),
+(4545, 30);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `items`
 --
 
@@ -258,6 +285,29 @@ CREATE TABLE `kennels` (
 INSERT INTO `kennels` (`id`, `name_k`, `owner_k`, `date`, `dogs`, `litters`, `email`) VALUES
 (29, 'Чарующий соблазн', 'nesh', '02.09.2017', 2, NULL, 'stepanova@mail.ru'),
 (30, 'Тестики', 'test', '03.09.2017', 2, NULL, 'test@test');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `male`
+--
+
+CREATE TABLE `male` (
+  `wt` int(11) NOT NULL COMMENT 'вес кобеля',
+  `ht` int(11) NOT NULL COMMENT 'рост кобеля'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `male`
+--
+
+INSERT INTO `male` (`wt`, `ht`) VALUES
+(4245, 28),
+(4396, 29),
+(4547, 30),
+(4698, 31),
+(4849, 32),
+(5000, 33);
 
 -- --------------------------------------------------------
 
@@ -354,7 +404,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `email`, `password`, `kennel`, `f_time`, `l_time`, `online`, `sign`, `visits`) VALUES
-(1, 'nesh', 'stepanova@mail.ru', '$2y$10$pinvDspcODn0zxHMfyEUoufayxxNfwrQoqHGX2.Ky1I.fB7FnDan.', 'Чарующий соблазн', '03.09.2017', '20.09.2017', 1, 0, 14),
+(1, 'nesh', 'stepanova@mail.ru', '$2y$10$pinvDspcODn0zxHMfyEUoufayxxNfwrQoqHGX2.Ky1I.fB7FnDan.', 'Чарующий соблазн', '03.09.2017', '21.09.2017', 1, 0, 15),
 (2, 'test', 'test@test', '$2y$10$Vy0Am7CkZj5SYrzoNR26W.XsiO21HWtuQezqns20CfpcqAqdlm7D.', 'Тестики', '04.09.2017', '10.09.2017', 0, 0, 4);
 
 --
