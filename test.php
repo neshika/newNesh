@@ -143,5 +143,31 @@ $_POST['food']=NULL;
 
 echo '<br>Тестируем! ';
 
+//************** функция выводит рандомный размер в зависимости от пола и  числа(роста)собаки *************//
+ function wtht($sex,$height){
+  echo 'wtht($sex)';
+
+  if('кобель'==$sex){
+    
+    return find_where('male',$height,'wt');
+  }
+  if('сука'==$sex){
+   
+    return find_where('female',$height,'wt');
+  }
+  
+ }
+//********** функция выводит рандомное число в зависимости от пола*********//
+ function wtht_rand($sex){
+  if ('кобель'==$sex)
+    $rand=Rand(28,33);
+  if ('сука'==$sex)
+    $rand=Rand(23,30);
+  return $rand;
+
+}
+$sex='кобель';
+echo wtht($sex,wtht_rand($sex));
+
  require '/libs/down.php';
  ?>

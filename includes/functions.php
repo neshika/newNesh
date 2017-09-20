@@ -382,6 +382,34 @@ function add_litters($id_m,$id_d){
   insert_data('animals',$id_m,'litter',$lit_m);
   insert_data('animals',$id_d,'litter',$lit_d);
 }
+/*****************  НОВАЯ СОБАКА   ******************/
+
+
+//************** функция выводит рандомный размер в зависимости от пола и  числа(роста)собаки *************//
+ function wtht($sex,$height){
+  echo 'wtht($sex)';
+
+  if('кобель'==$sex){
+    
+    return find_where('male',$height,'wt');
+  }
+  if('сука'==$sex){
+   
+    return find_where('female',$height,'wt');
+  }
+  
+ }
+//********** функция выводит рандомное число в зависимости от пола*********//
+ function wtht_rand($sex){
+  if ('кобель'==$sex)
+    $rand=Rand(28,33);
+  if ('сука'==$sex)
+    $rand=Rand(23,30);
+  return $rand;
+
+}
+
+
 
 /*Функция вносит данные с таблицу статы*/
 function insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,$scent_new,$find_new,$total_new,$mutation){
@@ -1347,7 +1375,25 @@ function find_where($tabl,$id,$value){
               break;
             
           }
-     }//$tabl = items
+     }//$tabl = ages
+     if ('male'===$tabl){
+          $row = R::getRow( 'SELECT * FROM male WHERE ht = :id', [':id' => $id]);
+          switch ($value) {
+            case 'wt':
+              return $row[$value];
+              break;
+            
+          }
+      }//$tabl = male
+      if ('female'===$tabl){
+          $row = R::getRow( 'SELECT * FROM female WHERE ht = :id', [':id' => $id]);
+          switch ($value) {
+            case 'wt':
+              return $row[$value];
+              break;
+            
+          }
+      }//$tabl = female
 }
 /*                                   *************************    данные Для бридинга готовой собаки**********  */
 function Start($id_m,$id_d){
