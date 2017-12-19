@@ -24,7 +24,7 @@ require "includes/functions.php";
 		include_once "html/index_NOsession.html";?>
 
 		<div class="image_wrap">
-		<img src="/pic/def.png" class="def_pic">
+		<img src="/Pic/def.png" class="def_pic">
 		<br>
 		
 

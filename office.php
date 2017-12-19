@@ -11,7 +11,7 @@ require "db.php";
 
 		//var_dump($_POST);
 
-		echo 'Добро пожаловать, ' . $_SESSION['logged_user']->login . ' .';
+		echo 'Добро пожаловать, ' . $GLOBALS['name']=$_SESSION['logged_user']->login . ' .';
 				//date('d.m.Y', time() - 86400);
 		echo ' Сегодня: ' . date('d.m.Y');
 

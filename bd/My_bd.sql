@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 21 2017 г., 00:51
+-- Время создания: Дек 19 2017 г., 13:52
 -- Версия сервера: 5.5.53
 -- Версия PHP: 5.5.38
 
@@ -59,6 +59,7 @@ INSERT INTO `ages` (`id`, `age`, `text`) VALUES
 CREATE TABLE `animals` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT 'без имени',
+  `lucky` int(20) NOT NULL COMMENT 'число счастья',
   `sex` varchar(10) NOT NULL,
   `race` varchar(100) NOT NULL,
   `breeder` varchar(100) NOT NULL,
@@ -96,12 +97,12 @@ CREATE TABLE `animals` (
 -- Дамп данных таблицы `animals`
 --
 
-INSERT INTO `animals` (`id`, `name`, `sex`, `race`, `breeder`, `owner`, `kennel`, `age_id`, `weight`, `height`, `vitality`, `hp`, `joy`, `birth`, `now`, `mum`, `dad`, `g1dad`, `g1mum`, `g0dad`, `g0mum`, `gg1dad1`, `gg1mum2`, `gg1dad3`, `gg1mum4`, `gg0dad1`, `gg0mum2`, `gg0dad3`, `gg0mum4`, `status`, `puppy`, `litter`, `url`) VALUES
-(1, '1Шока', 'сука', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 3830, 25, 100, 100, 100, '15.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 53),
-(2, 'Маленькая', 'сука', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 3973, 26, 45, 90, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 7),
-(3, '3шоколадкин', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 4547, 30, 100, 100, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 13),
-(4, '4 кобель', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 4547, 30, 100, 100, 100, '17.09.2017', '0', 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 46),
-(5, '5он', 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 4547, 30, 100, 100, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 13);
+INSERT INTO `animals` (`id`, `name`, `lucky`, `sex`, `race`, `breeder`, `owner`, `kennel`, `age_id`, `weight`, `height`, `vitality`, `hp`, `joy`, `birth`, `now`, `mum`, `dad`, `g1dad`, `g1mum`, `g0dad`, `g0mum`, `gg1dad1`, `gg1mum2`, `gg1dad3`, `gg1mum4`, `gg0dad1`, `gg0mum2`, `gg0dad3`, `gg0mum4`, `status`, `puppy`, `litter`, `url`) VALUES
+(1, 'Шоко', 12, 'сука', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 3830, 25, 100, 100, 100, '15.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 53),
+(2, 'Маленькая', 45, 'сука', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 3973, 26, 45, 90, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 7),
+(3, '3шоколадкин', 85, 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 4547, 30, 100, 100, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 13),
+(4, '4 кобель', 100, 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 4547, 30, 100, 100, 100, '17.09.2017', '0', 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 46),
+(5, '5он', 58, 'кобель', 'КХС', 'nesh', 'nesh', 'Чарующий соблазн', 1, 4547, 30, 100, 100, 100, '17.09.2017', '00.00.0000', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 13);
 
 -- --------------------------------------------------------
 
@@ -203,7 +204,7 @@ CREATE TABLE `dna` (
 --
 
 INSERT INTO `dna` (`id`, `dog_id`, `url_id`, `hr`, `ww`, `ff`, `bb`, `mm`, `tt`, `aa`) VALUES
-(1, 0, 42, 'hrhr', 'ww', 'ff', 'Bb', 'mm', 'Tt', 'aa'),
+(1, 0, 21, 'Hrhr', 'Ww', 'Ff', 'bb', 'Mm', 'tt', 'aa'),
 (9, 1, 53, 'Hrhr', 'ww', 'ff', 'bb', 'mm', 'Tt', 'aa'),
 (24, 2, 7, 'Hrhr', 'ww', 'Ff', 'bb', 'mm', 'tt', 'aa'),
 (30, 3, 13, 'Hrhr', 'ww', 'ff', 'bb', 'mm', 'tt', 'aa'),
@@ -373,7 +374,7 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `dog_id`, `speed`, `agility`, `teach`, `jump`, `scent`, `find`, `total`, `mutation`) VALUES
-(1, 0, 10, 10, 11, 11, 11, 9, 62, 0),
+(1, 0, 10, 9, 9, 10, 10, 10, 58, 0),
 (8, 1, 11, 11, 11, 9, 10, 9, 61, 0),
 (23, 2, 11, 11, 11, 9, 10, 9, 61, 0),
 (29, 3, 11, 11, 11, 9, 10, 9, 61, 0),
@@ -404,7 +405,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `email`, `password`, `kennel`, `f_time`, `l_time`, `online`, `sign`, `visits`) VALUES
-(1, 'nesh', 'stepanova@mail.ru', '$2y$10$pinvDspcODn0zxHMfyEUoufayxxNfwrQoqHGX2.Ky1I.fB7FnDan.', 'Чарующий соблазн', '03.09.2017', '21.09.2017', 1, 0, 15),
+(1, 'nesh', 'stepanova@mail.ru', '$2y$10$pinvDspcODn0zxHMfyEUoufayxxNfwrQoqHGX2.Ky1I.fB7FnDan.', 'Чарующий соблазн', '03.09.2017', '19.12.2017', 1, 0, 21),
 (2, 'test', 'test@test', '$2y$10$Vy0Am7CkZj5SYrzoNR26W.XsiO21HWtuQezqns20CfpcqAqdlm7D.', 'Тестики', '04.09.2017', '10.09.2017', 0, 0, 4);
 
 --

@@ -22,7 +22,7 @@ require "/libs/up.php";
          ?><br><img src = "<?php echo ret_item(1);?>"> <?php echo  $coins;
          $vip=Rand(1,5);
           if('1'==$vip){
-          echo '</br> Вас посетила удача. К вам пришел бог. ' . '</br>';
+          echo '</br> Вас посетила удача. Сегодня у вас родится больше щенков. ' . '</br>';
           $vip=ret_url_from_dna('vip');
           ?><img src="<?php echo $vip;?>" width="10%"><?php
 

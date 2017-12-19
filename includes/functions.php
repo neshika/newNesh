@@ -1,10 +1,11 @@
 <?php
 // ***************  ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ *********************  //
 
-$GLOBALS['name']='ВАсилий';
+$GLOBALS['name']=' ';
 $GLOBALS['age']='15';
-//***** multipliers мнодители характеристик ****// 
+//***** multipliers множители характеристик ****// 
 $GLOBALS['buy_stats']='100';
+$GLOBALS['parama']='0';
 
 
 
@@ -431,6 +432,8 @@ function insert_new_stats($id_new,$speed_new,$agility_new,$teach_new, $jump_new,
 function insert_2_new_dogs($name,$sex,$race,$owner,$kennel,$birth,$url_id){
 
     $new = R::dispense('animals');
+    $lucky=Rand(1,100);
+    $new->lucky = $lucky;
     $new->name = $name;
     $new->sex = $sex;
     $new->race = $race;
@@ -562,6 +565,9 @@ function insert_data($tabl,$id,$cell,$value){  //$tabl - название таб
                                  break;
                                case 'sex':
                                  return R::exec( 'UPDATE animals SET sex=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
+                                  break;
+                              case 'lucky':
+                                 return R::exec( 'UPDATE animals SET lucky=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
                                  break;
                                case 'name':
                                  return R::exec( 'UPDATE animals SET name=:value WHERE id = :id ', array(':value'=> $value, ':id' => $id));
@@ -1214,6 +1220,9 @@ function find_where($tabl,$id,$value){
             case 'sex':
               return $row[$value];
               break;
+            case 'lucky':
+              return $row[$value];
+              break;
             case 'name':
               return $row[$value];
               break;
@@ -1579,6 +1588,9 @@ $url=bdika_color ($hr_new,$ww_new,$ff_new,$bb_new,$tt_new,$mm_new);
 
 $dogs->url_id=ret_id_from_url($url);
 
+$lucky=Rand(1,100);
+
+$dogs->lucky=$lucky;
 $id = R::store( $dogs );
 
 $id=$id_temp;

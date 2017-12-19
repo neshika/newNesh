@@ -16,8 +16,13 @@ require "/libs/up.php";
 /*<h1 style="font-size: 120%; font-family: Verdana, Arial, Helvetica, sans-serif; 
   color: #336">Заголовок</h1>*/
   if ( isset($_POST['newName']) ){ 
-
-    insert_data('animals',$id,'name',$_POST['name1']);
+    if("" != $_POST['name1']){
+       insert_data('animals',$id,'name',$_POST['name1']);
+    }
+    else {  // всплывающее окно, если имя не ввели
+      ?> <script>alert ("ВВедите имя!");</script>   
+      <?php
+    }
   }
    if ( isset($_POST['add_age']) ){ 
 
@@ -26,8 +31,8 @@ require "/libs/up.php";
 
 ?>
 
-<!-- ******************** вывод питомника / имя собаки и картинка пола  *****************-->    
-          <div style="background: white; height: 80px; width: 1170px;"> <h3 align="center"><?php echo find_where('animals',$id,'name');?><?php echo ' "' . find_where('animals',$id,'kennel') . '" ';?> <?php echo ret_pic($id);?></h3>
+<!-- ******************** вывод питомника / имя собаки и картинка пола   выводит число счастья *****************-->    
+          <div style="background: white; height: 80px; width: 1170px;"> <h3 align="center"><?php echo find_where('animals',$id,'name');?><?php echo ' "' . find_where('animals',$id,'kennel') . '" ';?> <?php echo ret_pic($id) . find_where('animals',$id,'lucky');?></h3>
            </div>
           
 <!-- ******************** вывод доп меню собаки  заводчик / хозяин  *****************-->  
